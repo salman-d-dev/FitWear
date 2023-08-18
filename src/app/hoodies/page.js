@@ -10,13 +10,13 @@ const Hoodies = () => {
             {/* Repeat this block for each image */}
             <Link href="product/fit-wear">
               <div className="p-2 border rounded-md shadow-lg">
-                <a className="block relative rounded overflow-hidden">
+                <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto md:h-81 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/61vOeoqmGQL._AC_UX569_.jpg"
+                    className="m-auto h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
                   />
-                </a>
+                </div>
                 <div className="mt-2 text-center md:text-left">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-Shirts</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Your perfect Fit</h2>
@@ -27,13 +27,13 @@ const Hoodies = () => {
             </Link>
             <Link href="product/fit-wear">
               <div className="p-2 border rounded-md shadow-lg">
-                <a className="block relative rounded overflow-hidden">
+                <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto md:h-81 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/61vOeoqmGQL._AC_UX569_.jpg"
+                    className="m-auto h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
                   />
-                </a>
+                </div>
                 <div className="mt-2 text-center md:text-left">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-Shirts</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Your perfect Fit</h2>
@@ -44,13 +44,13 @@ const Hoodies = () => {
             </Link>
             <Link href="product/fit-wear">
               <div className="p-2 border rounded-md shadow-lg">
-                <a className="block relative rounded overflow-hidden">
+                <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto md:h-81 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/61vOeoqmGQL._AC_UX569_.jpg"
+                    className="m-auto h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
                   />
-                </a>
+                </div>
                 <div className="mt-2 text-center md:text-left">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-Shirts</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Your perfect Fit</h2>
@@ -61,13 +61,13 @@ const Hoodies = () => {
             </Link>
             <Link href="product/fit-wear">
               <div className="p-2 border rounded-md shadow-lg">
-                <a className="block relative rounded overflow-hidden">
+                <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto md:h-81 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/61vOeoqmGQL._AC_UX569_.jpg"
+                    className="m-auto h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
                   />
-                </a>
+                </div>
                 <div className="mt-2 text-center md:text-left">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-Shirts</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Your perfect Fit</h2>
@@ -78,13 +78,13 @@ const Hoodies = () => {
             </Link>
             <Link href="product/fit-wear">
               <div className="p-2 border rounded-md shadow-lg">
-                <a className="block relative rounded overflow-hidden">
+                <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto md:h-81 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/61vOeoqmGQL._AC_UX569_.jpg"
+                    className="m-auto h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
                   />
-                </a>
+                </div>
                 <div className="mt-2 text-center md:text-left">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-Shirts</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Your perfect Fit</h2>
@@ -95,13 +95,13 @@ const Hoodies = () => {
             </Link>
             <Link href="product/fit-wear">
               <div className="p-2 border rounded-md shadow-lg">
-                <a className="block relative rounded overflow-hidden">
+                <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto md:h-81 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/61vOeoqmGQL._AC_UX569_.jpg"
+                    className="m-auto h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
                   />
-                </a>
+                </div>
                 <div className="mt-2 text-center md:text-left">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-Shirts</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Your perfect Fit</h2>
@@ -112,13 +112,13 @@ const Hoodies = () => {
             </Link>
             <Link href="product/fit-wear">
               <div className="p-2 border rounded-md shadow-lg">
-                <a className="block relative rounded overflow-hidden">
+                <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto md:h-81 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/61vOeoqmGQL._AC_UX569_.jpg"
+                    className="m-auto h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
                   />
-                </a>
+                </div>
                 <div className="mt-2 text-center md:text-left">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-Shirts</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Your perfect Fit</h2>
@@ -129,13 +129,13 @@ const Hoodies = () => {
             </Link>
             <Link href="product/fit-wear">
               <div className="p-2 border rounded-md shadow-lg">
-                <a className="block relative rounded overflow-hidden">
+                <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto md:h-81 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/61vOeoqmGQL._AC_UX569_.jpg"
+                    className="m-auto h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
                   />
-                </a>
+                </div>
                 <div className="mt-2 text-center md:text-left">
                   <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">T-Shirts</h3>
                   <h2 className="text-gray-900 title-font text-lg font-medium">Your perfect Fit</h2>

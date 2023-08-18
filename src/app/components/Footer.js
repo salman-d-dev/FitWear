@@ -6,7 +6,7 @@ const Footer = () => {
       <footer className="text-gray-600 body-font">
         <div className="container px-5 py-2 md:py-20 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
           <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
-            <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+            <div className="flex title-font font-medium items-center md:justify-start justify-center text-red-900">
               <Link href="/">
                 <div className="hidden sm:block md:block lg:block">
                   <Image
@@ -18,7 +18,7 @@ const Footer = () => {
                   />
                 </div>
               </Link>
-            </a>
+            </div>
           </div>
           <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
             <div className="lg:w-1/4 md:w-1/2 w-full px-4">
@@ -150,7 +150,7 @@ const Footer = () => {
                   fill="currentColor"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  stroke-width="2"
+                  strokeWidth="2"
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                 >
@@ -162,7 +162,7 @@ const Footer = () => {
                   fill="currentColor"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  stroke-width="2"
+                  strokeWidth="2"
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                 >
@@ -175,7 +175,7 @@ const Footer = () => {
                   stroke="currentColor"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  stroke-width="2"
+                  strokeWidth="2"
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                 >
@@ -189,7 +189,7 @@ const Footer = () => {
                   stroke="currentColor"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  stroke-width="0"
+                  strokeWidth="0"
                   className="w-5 h-5"
                   viewBox="0 0 24 24"
                 >
