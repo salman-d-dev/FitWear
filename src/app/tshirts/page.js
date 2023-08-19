@@ -14,7 +14,7 @@ const Tshirts = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
                     src="https://m.media-amazon.com/images/I/71HqKxKwYQL._AC_UY741_.jpg"
                   />
                 </div>
@@ -31,7 +31,7 @@ const Tshirts = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
                     src="https://m.media-amazon.com/images/I/71HqKxKwYQL._AC_UY741_.jpg"
                   />
                 </div>
@@ -48,7 +48,7 @@ const Tshirts = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
                     src="https://m.media-amazon.com/images/I/71HqKxKwYQL._AC_UY741_.jpg"
                   />
                 </div>
@@ -65,7 +65,7 @@ const Tshirts = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
                     src="https://m.media-amazon.com/images/I/71HqKxKwYQL._AC_UY741_.jpg"
                   />
                 </div>
@@ -82,7 +82,7 @@ const Tshirts = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
                     src="https://m.media-amazon.com/images/I/71HqKxKwYQL._AC_UY741_.jpg"
                   />
                 </div>
@@ -99,7 +99,7 @@ const Tshirts = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
                     src="https://m.media-amazon.com/images/I/71HqKxKwYQL._AC_UY741_.jpg"
                   />
                 </div>
@@ -116,7 +116,7 @@ const Tshirts = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
                     src="https://m.media-amazon.com/images/I/71HqKxKwYQL._AC_UY741_.jpg"
                   />
                 </div>
@@ -133,7 +133,7 @@ const Tshirts = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
                     src="https://m.media-amazon.com/images/I/71HqKxKwYQL._AC_UY741_.jpg"
                   />
                 </div>

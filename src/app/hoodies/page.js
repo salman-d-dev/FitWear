@@ -13,8 +13,8 @@ const Hoodies = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/61Piw8KGZ0L._UY879_.jpg"
                   />
                 </div>
                 <div className="mt-2 text-center md:text-left">
@@ -30,8 +30,8 @@ const Hoodies = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/61Piw8KGZ0L._UY879_.jpg"
                   />
                 </div>
                 <div className="mt-2 text-center md:text-left">
@@ -47,8 +47,8 @@ const Hoodies = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/61Piw8KGZ0L._UY879_.jpg"
                   />
                 </div>
                 <div className="mt-2 text-center md:text-left">
@@ -64,8 +64,8 @@ const Hoodies = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/61Piw8KGZ0L._UY879_.jpg"
                   />
                 </div>
                 <div className="mt-2 text-center md:text-left">
@@ -81,8 +81,8 @@ const Hoodies = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/61Piw8KGZ0L._UY879_.jpg"
                   />
                 </div>
                 <div className="mt-2 text-center md:text-left">
@@ -98,8 +98,8 @@ const Hoodies = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/61Piw8KGZ0L._UY879_.jpg"
                   />
                 </div>
                 <div className="mt-2 text-center md:text-left">
@@ -115,8 +115,8 @@ const Hoodies = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/61Piw8KGZ0L._UY879_.jpg"
                   />
                 </div>
                 <div className="mt-2 text-center md:text-left">
@@ -132,8 +132,8 @@ const Hoodies = () => {
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
-                    className="m-auto h-80 md:w-full object-cover"
-                    src="https://m.media-amazon.com/images/I/71AsDSb4-2L._AC_UL480_FMwebp_QL65_.jpg"
+                    className="m-auto h-52 md:h-80 md:w-full object-cover"
+                    src="https://m.media-amazon.com/images/I/61Piw8KGZ0L._UY879_.jpg"
                   />
                 </div>
                 <div className="mt-2 text-center md:text-left">

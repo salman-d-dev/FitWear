@@ -28,7 +28,7 @@ const Navbar = () => {
   },[])
 
   return (
-    <div className=" flex flex-col md:flex-row justify-center md:justify-between items-center  py-2 shadow-md">
+    <div className=" flex flex-col md:flex-row justify-center md:justify-between items-center  py-2 shadow-md sticky top-0 z-50 bg-white">
       <div className="logo mx-1">
         <Link href="/">
           <Image
@@ -67,10 +67,10 @@ const Navbar = () => {
       {
         showCart? (
 
-      <div className="cartBar w-72 h-full absolute top-0 right-0 bg-cyan-100 p-10 px-8 z-50 ">
+      <div className="cartBar w-72 h-full fixed top-0 right-0 bg-cyan-100 p-10 px-8 z-50 ">
         <h2 className="font-bold text-xl text-center">Shopping Cart</h2>
         <ol className="list-decimal font-semibold">
-          {Object.keys(cart).length == 0 && <div className="my-4 font-bold text-center">
+          {Object.keys(cart).length == 0 && <div className="my-4 font-bold text-center text-sm">
             Your cart is Empty!
             </div>}
           {Object.keys(cart).map((k)=>{return <li key={k}>
@@ -89,7 +89,9 @@ const Navbar = () => {
           <AiFillCloseCircle />
         </span>
         <div className="flex">
+          <Link href={"/checkout"}>
         <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded text-sm items-center"><BsFillBagCheckFill className="m-1"/>Checkout</button>
+          </Link>
 
         <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded text-sm items-center" onClick={clearCart}>Clear Cart</button>
         </div>
