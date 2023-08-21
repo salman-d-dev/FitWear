@@ -69,7 +69,7 @@ const Navbar = () => {
 
       <div className="cartBar w-72 h-full fixed top-0 right-0 bg-cyan-100 p-10 px-8 z-50 ">
         <h2 className="font-bold text-xl text-center">Shopping Cart</h2>
-        <ol className="list-decimal font-semibold">
+        <ol className="list-decimal font-semibold border-b border-gray-800">
           {Object.keys(cart).length == 0 && <div className="my-4 font-bold text-center text-sm">
             Your cart is Empty!
             </div>}
@@ -85,6 +85,9 @@ const Navbar = () => {
           </li> })}
           
         </ol>
+        <div className="text-lg font-bold ">
+          Total: ₹{subTotal}
+        </div>
         <span className="absolute top-1.5 right-2.5 text-xl cursor-pointer text-indigo-800" onClick={toggleCart}>
           <AiFillCloseCircle />
         </span>
