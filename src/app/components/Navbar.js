@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import {BsFillBagCheckFill} from "react-icons/bs";
+import {MdAccountCircle} from "react-icons/md";
 import {useState, useEffect, useContext } from "react";
-import { icons } from "react-icons";
 import { CartContext } from "../context/CartContext";
 
 const Navbar = () => {
@@ -56,13 +56,16 @@ const Navbar = () => {
           </Link>
         </ul>
       </div>
-      <div>
+      <div className="flex">
         <button
-          className="text-xl md:text-4xl absolute right-0 top-3 mx-3"
+          className="text-xl md:text-4xl absolute right-0 top-3 mx-3 "
           onClick={toggleCart}
         >
           <AiOutlineShoppingCart />
         </button>
+        <Link href={"/login"} className="text-xl md:text-4xl absolute  top-3 right-12 md:right-14">
+        <MdAccountCircle/>
+        </Link>
       </div>
       {
         showCart? (
