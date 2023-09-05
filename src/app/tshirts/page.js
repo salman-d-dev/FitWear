@@ -4,15 +4,67 @@ import Link from 'next/link';
 import productModel from '../models/productModel';
 import { connectToDatabase } from '@/app/middleware/connectDB';
 
-const getProducts = async()=> {
-  await connectToDatabase();
-  const productsData = await productModel.find({category:"T-Shirts"});
-  return productsData
+const getTshirts = async()=> {
+      // Connect to the database
+      await connectToDatabase();
+
+      // Fetch all products
+      const products = await productModel.find();
+  
+      // Create an object to store t-shirts grouped by title
+      const tshirts = {};
+  
+      // Loop through the products
+      for (let item of products) {
+        // If the title doesn't exist in tshirts, create a new entry
+        if (!tshirts[item.title]) {
+          tshirts[item.title] = JSON.parse(JSON.stringify(item));
+          tshirts[item.title].color = [];
+          tshirts[item.title].size = [];
+        }
+  
+        // Check if the product is available (availableQty > 0)
+        if (item.availableQty > 0) {
+          // Check if the color is not already in the array and add it
+          if (!tshirts[item.title].color.includes(item.color)) {
+            tshirts[item.title].color.push(item.color);
+          }
+  
+          // Check if the size is not already in the array and add it
+          if (!tshirts[item.title].size.includes(item.size)) {
+            tshirts[item.title].size.push(item.size);
+          }
+        }
+      }
+  
+      // Filter out colors and sizes with availableQty === 0
+      for (const title in tshirts) {
+        tshirts[title].color = tshirts[title].color.filter(
+          (color) =>
+            products.some(
+              (product) =>
+                product.title === title &&
+                product.color === color &&
+                product.availableQty > 0
+            )
+        );
+  
+        tshirts[title].size = tshirts[title].size.filter(
+          (size) =>
+            products.some(
+              (product) =>
+                product.title === title &&
+                product.size === size &&
+                product.availableQty > 0
+            )
+        );
+      }
+      return tshirts;
 }
 
 
 const Tshirts = async() => {
-  const products = await getProducts();
+  const products = await getTshirts();
   console.log(products)
   return ( 
     <div className='p-2'>
@@ -21,22 +73,38 @@ const Tshirts = async() => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             
             {/* Repeat this block for each image */}
-            {products.map((product)=>{
-              return <div key={product._id}>
-            <Link href={`product/${product.slug}`}>
+            {Object.keys(products).map((key)=>{
+              return <div key={products[key]._id}>
+            <Link href={`product/${products[key].slug}`}>
               <div className="p-2 border rounded-md shadow-lg">
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
                     className="m-auto h-52 md:h-80 md:w-full object-cover"
-                    src={product.img}
+                    src={products[key].img}
                   />
                 </div>
                 <div className="mt-2 text-center md:text-left">
-                  <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">{product.category}</h3>
-                  <h2 className="text-gray-900 title-font text-lg font-medium">{product.title}</h2>
-                  <p className="mt-1">₹{product.price}</p>
-                  <p className="mt-1">{product.size}</p>
+                  <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">{products[key].category}</h3>
+                  <h2 className="text-gray-900 title-font text-lg font-medium">{products[key].title}</h2>
+                  <p className="mt-1">₹{products[key].price}</p>
+
+                  {/* We could have used map function here too for the size */}
+                  <div className="my-1">
+                    {products[key].size.includes('S') && <span className='border border-slate-600 px-1 mx-1'>S</span>}
+                    {products[key].size.includes('M') && <span className='border border-slate-600 px-1 mx-1'>M</span>}
+                    {products[key].size.includes('L') && <span className='border border-slate-600 px-1 mx-1'>L</span>}
+                    {products[key].size.includes('XL') && <span className='border border-slate-600 px-1 mx-1'>XL</span>}
+                    {products[key].size.includes('C') && <span className='border border-slate-600 px-1 mx-1'>C</span>} 
+                  </div>
+
+                    {/* map each color for the color button */}
+                  <div className="my-1">
+                    {products[key].color.map((col)=>{
+                      return <>
+                    <button key={col} style={{backgroundColor:`${col}`, border:"1px solid grey"}} className="border-2 ml-1 rounded-full w-5 h-5 focus:outline-none"></button> </>})}
+                  </div>
+                   
                 </div>
               </div>
             </Link>
