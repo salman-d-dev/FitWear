@@ -65,7 +65,6 @@ const getTshirts = async()=> {
 
 const Tshirts = async() => {
   const products = await getTshirts();
-  console.log(products)
   return ( 
     <div className='p-2'>
       <section className="text-gray-600 body-font">
@@ -99,11 +98,14 @@ const Tshirts = async() => {
                   </div>
 
                     {/* map each color for the color button */}
-                  <div className="my-1">
-                    {products[key].color.map((col)=>{
-                      return <>
-                    <button key={col} style={{backgroundColor:`${col}`, border:"1px solid grey"}} className="border-2 ml-1 rounded-full w-5 h-5 focus:outline-none"></button> </>})}
-                  </div>
+                    {products[key].color.length > 0 && (
+                            <div className="my-1">
+                                {products[key].color.map((col) => (
+                                <button key={col} style={{ backgroundColor: col }} className="ml-1 rounded-full w-5 h-5 focus:outline-none "></button>
+                                ))}
+                            </div>
+                          )}
+                      
                    
                 </div>
               </div>

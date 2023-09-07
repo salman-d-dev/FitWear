@@ -16,7 +16,6 @@ const Navbar = () => {
   const {cart, setCart, subTotal, saveCart, clearCart, addToCart, removeFromCart} = useContext(CartContext);
 
   useEffect(()=>{
-    console.log("Use effect running")
     try {
       if(localStorage.getItem("cart")){
         setCart(JSON.parse(localStorage.getItem("cart")))
@@ -41,18 +40,18 @@ const Navbar = () => {
         </Link>
       </div>
       <div>
-        <ul className="flex items-center space-x-4 font-bold md:text-l my-3 md:my-0">
+        <ul className="flex items-center space-x-4 font-bold md:text-l my-3 md:my-0 ">
           <Link href="/tshirts">
-            <li className="w-max">T-shirts</li>
+            <li className="w-max hover:text-purple-600">T-shirts</li>
           </Link>
           <Link href="/hoodies">
-            <li>Hoodies</li>
+            <li className="w-max hover:text-purple-600">Hoodies</li>
           </Link>
           <Link href="/mugs">
-            <li>Mugs</li>
+            <li className="w-max hover:text-purple-600">Mugs</li>
           </Link>
           <Link href="/stickers">
-            <li>Stickers</li>
+            <li className="w-max hover:text-purple-600">Stickers</li>
           </Link>
         </ul>
       </div>
@@ -78,7 +77,7 @@ const Navbar = () => {
             </div>}
           {Object.keys(cart).map((k)=>{return <li key={k}>
             <div className="item flex">
-              <div className="w-2/3  font-semibold my-5">
+              <div className="w-2/3  font-semibold my-1">
                 {cart[k].name}
               </div>
               <div className="w-1/3  flex items-center justify-center font-semibold">
