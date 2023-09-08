@@ -69,7 +69,7 @@ const Navbar = () => {
       {
         showCart? (
 
-      <div className="cartBar w-72 h-full fixed top-0 right-0 bg-cyan-100 p-10 px-8 z-50 ">
+      <div className="overflow-y-scroll cartBar w-72 h-full fixed top-0 right-0 bg-cyan-100 p-10 px-8 z-50 ">
         <h2 className="font-bold text-xl text-center">Shopping Cart</h2>
         <ol className="list-decimal font-semibold border-b border-gray-800">
           {Object.keys(cart).length == 0 && <div className="my-4 font-bold text-center text-sm">
@@ -77,7 +77,7 @@ const Navbar = () => {
             </div>}
           {Object.keys(cart).map((k)=>{return <li key={k}>
             <div className="item flex">
-              <div className="w-2/3  font-semibold my-1">
+              <div className="w-2/3  font-semibold my-3">
                 {cart[k].name}
               </div>
               <div className="w-1/3  flex items-center justify-center font-semibold">
