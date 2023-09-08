@@ -1,7 +1,10 @@
 "use client";
 import { CartContext } from "@/app/context/CartContext";
 import { useState, useContext, useEffect } from "react";
+//for nav to checkout
 import { useRouter } from "next/navigation";
+//for toast
+import {toast } from "react-toastify";
 
 export default function Product({ params }) {
   const { slug } = params;
@@ -16,10 +19,34 @@ export default function Product({ params }) {
     const pinJson = await pins.json();
     if (pinJson.includes(parseInt(pin))) {
       setServiceable(true);
+      //show toast
+      toast.success('Yay! We deliver at your location!', {
+        position: "bottom-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+
     } else {
       setServiceable(false);
+      //show toast
+      toast.warn('Sorry! We are unable to deliver there yet!', {
+        position: "bottom-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     }
   };
+
   const handlePinChange = (e) => {
     setPin(e.target.value);
   };
@@ -225,16 +252,6 @@ export default function Product({ params }) {
                 Check
               </button>
             </div>
-            {!serviceable && serviceable != null && pin && (
-              <div className="text-red-500 my-2">
-                Sorry! We do not deliver to this location as of yet.
-              </div>
-            )}
-            {serviceable && serviceable != null && (
-              <div className="green-red-500 my-2">
-                Yay! We deliver to your location!
-              </div>
-            )}
           </div>
         </div>
       </div>

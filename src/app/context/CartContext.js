@@ -1,6 +1,7 @@
-"use client"
+"use client";
 
 import {createContext, useState} from 'react';
+import {toast } from "react-toastify";
 
 export const CartContext = createContext();
 
@@ -34,7 +35,17 @@ export const CartProvider = ({children})=> {
         }
         setCart(newCart)
         saveCart(newCart)
-        console.log(newCart)
+        //show toast
+      toast.success('Added to Cart!', {
+        position: "bottom-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     }
 
     const removeFromCart = (itemCode, qty, price, name, size, variant) =>{
@@ -47,6 +58,17 @@ export const CartProvider = ({children})=> {
         }
         setCart(newCart)
         saveCart(newCart)
+        //show toast
+      toast.success('Item removed!', {
+        position: "bottom-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     }
 
 
