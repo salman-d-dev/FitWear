@@ -9,7 +9,7 @@ const getTshirts = async()=> {
       await connectToDatabase();
 
       // Fetch all products
-      const products = await productModel.find();
+      const products = await productModel.find({category:"T-Shirts"});
   
       // Create an object to store t-shirts grouped by title
       const tshirts = {};
