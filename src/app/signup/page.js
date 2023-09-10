@@ -1,13 +1,15 @@
 "use client"
 import Link from "next/link";
-import { useState } from "react";
+import { useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
+
 
 const SignUp = () => {
-  const [user, setUser] = useState({name:"", email:"",password:"",cpassword:""});
-  const handleDataChange = (e)=>{
-    setUser({...user, [e.target.name]:e.target.value})
-  }
-  const passMatch = user.password === user.cpassword;
+  
+  const context = useContext(GlobalContext)
+  const {user, passMatch, handleSignupSubmit, handleDataChange} = context;
+  
+
   return (
     <div>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -17,7 +19,7 @@ const SignUp = () => {
   </div>
 
   <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form className="space-y-6" action="#" method="POST">
+    <form className="space-y-6" method="POST" onSubmit={handleSignupSubmit}>
       <div>
         <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">Name</label>
         <div className="mt-2">

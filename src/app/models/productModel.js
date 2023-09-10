@@ -12,6 +12,8 @@ const productSchema = new mongoose.Schema({
     availableQty:{type:Number, required:true},
 
 }, {timestamps:true});
+
+//correct overwrite model error
 mongoose.models = {};
 
 const productModel = mongoose.model("Product", productSchema);

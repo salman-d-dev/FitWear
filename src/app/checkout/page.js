@@ -1,13 +1,13 @@
 "use client"
 import {React, useContext} from 'react';
-import { CartContext } from '../context/CartContext';
+import { GlobalContext } from '../context/GlobalContext';
 import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import {BsFillBagCheckFill} from "react-icons/bs";
 import Link from 'next/link';
 
 const Checkout = () => {
 
-  const {cart, addToCart, removeFromCart,subTotal} = useContext(CartContext);
+  const {cart, addToCart, removeFromCart,subTotal} = useContext(GlobalContext);
 
   return (
     <div className='my-8 text-center text-4xl font-bold p-4'>

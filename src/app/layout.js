@@ -1,6 +1,6 @@
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-import { CartProvider } from './context/CartContext';
+import { GlobalProvider } from './context/GlobalContext';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import ToastProvider from './context/ToastProvider';
@@ -15,14 +15,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CartProvider>
+        <GlobalProvider>
           <ToastProvider>
 
         <Navbar/>
         {children}
         <Footer/>
           </ToastProvider>
-        </CartProvider>
+        </GlobalProvider>
         </body>
     </html>
   )

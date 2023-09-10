@@ -1,5 +1,5 @@
 "use client";
-import { CartContext } from "@/app/context/CartContext";
+import { GlobalContext } from "@/app/context/GlobalContext";
 import { useState, useContext, useEffect } from "react";
 //for nav to checkout
 import { useRouter } from "next/navigation";
@@ -88,7 +88,7 @@ export default function Product({ params }) {
   
   // eslint-disable-next-line
   const router = useRouter();
-  const { addToCart} = useContext(CartContext);
+  const { addToCart} = useContext(GlobalContext);
 
   const handleBuyNow = ()=>{
 

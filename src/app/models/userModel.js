@@ -6,5 +6,9 @@ const userSchema = new mongoose.Schema({
     password:{type:String, required: true}
 }, {timestamps:true});
 
+
+//correct overwrite model error
+mongoose.models = {};
+
 const userModel = mongoose.model("User", userSchema);
 module.exports = userModel;

@@ -5,7 +5,7 @@ import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillPlusCircle, AiFillMinus
 import {BsFillBagCheckFill} from "react-icons/bs";
 import {MdAccountCircle} from "react-icons/md";
 import {useState, useEffect, useContext } from "react";
-import { CartContext } from "../context/CartContext";
+import { GlobalContext } from "../context/GlobalContext";
 
 const Navbar = () => {
   const [showCart, setShowCart] = useState(false);
@@ -13,18 +13,27 @@ const Navbar = () => {
     setShowCart(!showCart)
   };
 
-  const {cart, setCart, subTotal, saveCart, clearCart, addToCart, removeFromCart} = useContext(CartContext);
+
+  const {cart, setCart, subTotal, addToCart, removeFromCart,clearCart, loggedIn, setLoggedIn,handleLogOut} = useContext(GlobalContext);
 
   useEffect(()=>{
     try {
       if(localStorage.getItem("cart")){
         setCart(JSON.parse(localStorage.getItem("cart")))
       }
+      if(localStorage.getItem("token")){
+        setLoggedIn(true)
+        console.log("Logged in already!")
+      } else {
+        setLoggedIn(false)
+      }
     } catch (error) {
       console.log(error)
       localStorage.clear() 
     }
   },[])
+
+
 
   return (
     <div className=" flex flex-col md:flex-row justify-center md:justify-between items-center  py-2 shadow-md sticky top-0 z-50 bg-white">
@@ -62,9 +71,14 @@ const Navbar = () => {
         >
           <AiOutlineShoppingCart />
         </button>
-        <Link href={"/login"} className="text-xl md:text-4xl absolute  top-3 right-12 md:right-14">
+        {/* conditionally render profile button */}
+        {!loggedIn? (<Link href={"/login"} className="text-xl md:text-4xl absolute  top-3 right-12 md:right-14">
         <MdAccountCircle/>
-        </Link>
+        </Link>) : 
+        <button className="absolute  top-3 right-14 md:right-14 flex ml-14 text-sm md:text-base text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded " onClick={handleLogOut}>
+          Log Out
+        </button>
+        }
       </div>
       {
         showCart? (
