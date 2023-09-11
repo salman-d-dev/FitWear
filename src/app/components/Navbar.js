@@ -4,17 +4,14 @@ import Link from "next/link";
 import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import {BsFillBagCheckFill} from "react-icons/bs";
 import {MdAccountCircle} from "react-icons/md";
-import {useState, useEffect, useContext } from "react";
+import {useEffect, useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
 
 const Navbar = () => {
-  const [showCart, setShowCart] = useState(false);
-  const toggleCart = () => {
-    setShowCart(!showCart)
-  };
 
 
-  const {cart, setCart, subTotal, addToCart, removeFromCart,clearCart, loggedIn, setLoggedIn,handleLogOut} = useContext(GlobalContext);
+
+  const {cart, setCart, subTotal, addToCart, removeFromCart,clearCart, loggedIn, setLoggedIn, handleLogOut, showCart, toggleCart, profileDropDown, setProfileDropDown} = useContext(GlobalContext);
 
   useEffect(()=>{
     try {
@@ -51,34 +48,49 @@ const Navbar = () => {
       <div>
         <ul className="flex items-center space-x-4 font-bold md:text-l my-3 md:my-0 ">
           <Link href="/tshirts">
-            <li className="w-max hover:text-purple-600">T-shirts</li>
+            <li className="w-max text-black hover:text-cyan-600">T-shirts</li>
           </Link>
           <Link href="/hoodies">
-            <li className="w-max hover:text-purple-600">Hoodies</li>
+            <li className="w-max text-black hover:text-yellow-400">Hoodies</li>
           </Link>
           <Link href="/mugs">
-            <li className="w-max hover:text-purple-600">Mugs</li>
+            <li className="w-max text-black hover:text-cyan-600">Mugs</li>
           </Link>
           <Link href="/stickers">
-            <li className="w-max hover:text-purple-600">Stickers</li>
+            <li className="w-max text-black hover:text-yellow-400">Stickers</li>
           </Link>
         </ul>
       </div>
       <div className="flex">
         <button
-          className="text-xl md:text-4xl absolute right-0 top-3 mx-3 "
+          className="text-xl md:text-4xl absolute right-0 top-3 mx-3 text-black hover:text-cyan-600"
           onClick={toggleCart}
         >
           <AiOutlineShoppingCart />
         </button>
         {/* conditionally render profile button */}
-        {!loggedIn? (<Link href={"/login"} className="text-xl md:text-4xl absolute  top-3 right-12 md:right-14">
-        <MdAccountCircle/>
-        </Link>) : 
-        <button className="absolute  top-3 right-14 md:right-14 flex ml-14 text-sm md:text-base text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded " onClick={handleLogOut}>
-          Log Out
-        </button>
-        }
+
+        
+        <div className="absolute  top-3 right-12 md:right-14 cursor-pointer" onMouseOver={()=>{setProfileDropDown(true)}} onMouseOut={()=>{setProfileDropDown(false)}}>
+        <span className="text-xl md:text-4xl  hover:text-cyan-600">
+        <MdAccountCircle />
+        </span>
+        {!loggedIn && profileDropDown? (<div className="flex items-center justify-center bg-cyan-100 absolute top-6 right-3 sm:right-7 px-3 py-4 w-32 h-auto rounded-md">
+
+        <Link href={"/login"}>
+        <button className="text-xs  px-2 py-1 sm:bg-black md:text-base text-white bg-black focus:outline-none hover:bg-cyan-600 rounded" >
+        Login
+      </button>
+        </Link>  
+        </div>
+        ) : (profileDropDown && loggedIn && <div className="bg-cyan-300 absolute top-6 right-3 sm:right-7 px-3 py-4 w-32 rounded-md">
+      <ul>
+        <Link href={"/myaccount"}><li className="my-1 text-base text hover:text-blue-600 hover:font-bold">My Account</li></Link>
+        <Link href={"/orders"}><li className="my-1 text-base text hover:text-blue-600 hover:font-bold">Orders</li></Link>
+        <li className="my-1 text-base cursor-pointer text hover:text-blue-600 hover:font-bold" onClick={handleLogOut}>Logout</li>
+      </ul>
+        </div>)}
+        </div>
       </div>
       {
         showCart? (
@@ -95,7 +107,7 @@ const Navbar = () => {
                 {cart[k].name}
               </div>
               <div className="w-1/3  flex items-center justify-center font-semibold">
-              <AiFillMinusCircle className="cursor-pointer mx-1 text-lg text-indigo-500" onClick={()=>{removeFromCart(k, 1 , cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}/>{cart[k].qty}<AiFillPlusCircle className="cursor-pointer mx-1 text-lg text-indigo-500" onClick={()=>{addToCart(k, 1 , cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}/>
+              <AiFillMinusCircle className="cursor-pointer mx-1 text-lg text-black" onClick={()=>{removeFromCart(k, 1 , cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}/>{cart[k].qty}<AiFillPlusCircle className="cursor-pointer mx-1 text-lg text-black" onClick={()=>{addToCart(k, 1 , cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}/>
               </div>
             </div>
           </li> })}
@@ -109,10 +121,10 @@ const Navbar = () => {
         </span>
         <div className="flex">
           <Link href={"/checkout"}>
-        <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded text-sm items-center"><BsFillBagCheckFill className="m-1"/>Checkout</button>
+        <button className="flex mx-auto mt-16 text-white bg-black border-0 py-2 px-2 focus:outline-none hover:bg-black rounded text-sm items-center"><BsFillBagCheckFill className="m-1"/>Checkout</button>
           </Link>
 
-        <button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded text-sm items-center" onClick={clearCart}>Clear Cart</button>
+        <button className="flex mx-auto mt-16 text-white bg-black border-0 py-2 px-2 focus:outline-none hover:bg-black rounded text-sm items-center" onClick={clearCart}>Clear Cart</button>
         </div>
       </div>
         ) : (null)

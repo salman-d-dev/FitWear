@@ -72,7 +72,12 @@ export const GlobalProvider = ({children})=> {
         });
     }
 
-    //login button state navbar
+    // navbar
+
+    const [showCart, setShowCart] = useState(false);
+    const toggleCart = () => {
+      setShowCart(!showCart)
+    };
     const [loggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
   const handleLogOut = ()=>{
@@ -91,6 +96,8 @@ export const GlobalProvider = ({children})=> {
       });
       router.push("/login");
   }
+
+    const [profileDropDown, setProfileDropDown] = useState(false)
 
 
     //login page
@@ -227,7 +234,7 @@ export const GlobalProvider = ({children})=> {
 
 
   return (
-    <GlobalContext.Provider value={({cart, setCart, subTotal, saveCart, clearCart, addToCart, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user })}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={({cart, setCart, subTotal, saveCart, clearCart, addToCart, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown })}>{children}</GlobalContext.Provider>
   )
 }
 
