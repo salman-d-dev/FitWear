@@ -1,14 +1,22 @@
 "use client"
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import { useRouter } from "next/navigation";
 
 
 const Login = () => {
 
+  const router = useRouter();
+  useEffect(()=>{
+      if(localStorage.getItem("token")){
+        router.push("/")
+      }
+  },[]);
 
   const context = useContext(GlobalContext)
-  const {setLoggedIn, handleLoginSubmit, user, setUser, handleDataChange} = context;
+  const { handleLoginSubmit,handleDataChange} = context;
+
 
   return (
     <div>

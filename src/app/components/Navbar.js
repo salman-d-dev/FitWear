@@ -72,7 +72,7 @@ const Navbar = () => {
 
         
         <div className="absolute  top-3 right-12 md:right-14 cursor-pointer" onMouseOver={()=>{setProfileDropDown(true)}} onMouseOut={()=>{setProfileDropDown(false)}}>
-        <span className="text-xl md:text-4xl  hover:text-cyan-600">
+        <span className={`text-xl md:text-4xl ${loggedIn? "text-green-300" : "text-black"}  hover:text-cyan-600`}>
         <MdAccountCircle />
         </span>
         {!loggedIn && profileDropDown? (<div className="flex items-center justify-center bg-cyan-100 absolute top-6 right-3 sm:right-7 px-3 py-4 w-32 h-auto rounded-md">
@@ -86,7 +86,7 @@ const Navbar = () => {
         ) : (profileDropDown && loggedIn && <div className="bg-cyan-300 absolute top-6 right-3 sm:right-7 px-3 py-4 w-32 rounded-md">
       <ul>
         <Link href={"/myaccount"}><li className="my-1 text-base text hover:text-blue-600 hover:font-bold">My Account</li></Link>
-        <Link href={"/orders"}><li className="my-1 text-base text hover:text-blue-600 hover:font-bold">Orders</li></Link>
+        <Link href={"/myorders"}><li className="my-1 text-base text hover:text-blue-600 hover:font-bold">Orders</li></Link>
         <li className="my-1 text-base cursor-pointer text hover:text-blue-600 hover:font-bold" onClick={handleLogOut}>Logout</li>
       </ul>
         </div>)}
