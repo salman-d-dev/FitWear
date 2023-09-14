@@ -65,6 +65,7 @@ const getTshirts = async()=> {
 
 const Tshirts = async() => {
   const products = await getTshirts();
+
   return ( 
     <div className='p-2'>
       <section className="text-gray-600 body-font">

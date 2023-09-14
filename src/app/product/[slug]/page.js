@@ -13,7 +13,7 @@ export default function Product({ params }) {
 
 
   const checkServiceability = async () => {
-    const pins = await fetch(`http://localhost:3000/api/getpincodes`);
+    const pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getpincodes`);
     const pinJson = await pins.json();
     if (pinJson.includes(parseInt(pin))) {
       setServiceable(true);
@@ -58,7 +58,7 @@ export default function Product({ params }) {
     const getData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3000/api/getproducts/${decodedSlug}`
+          `${process.env.NEXT_PUBLIC_HOST}/api/getproducts/${decodedSlug}`
         );
 
         if (!response.ok) {
@@ -137,7 +137,7 @@ export default function Product({ params }) {
     ); // We can render a loading indicator or return an empty component
   } else {
 
-
+console.log(process.env.NEXT_PUBLIC_HOST)
   return (
     <section className="text-gray-600 body-font overflow-hidden">
       <div className="container px-5 py-16 mx-auto">

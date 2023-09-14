@@ -114,7 +114,7 @@ export const GlobalProvider = ({children})=> {
 
     const handleLoginSubmit = async(e)=>{
       e.preventDefault();
-      const response = await fetch(`${host}/api/login`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -182,7 +182,7 @@ export const GlobalProvider = ({children})=> {
   const passMatch = user.password === user.cpassword;
   const handleSignupSubmit = async(e)=>{
     e.preventDefault();
-    const response = await fetch(`${host}/api/signup`, {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
