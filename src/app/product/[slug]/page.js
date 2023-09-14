@@ -11,12 +11,9 @@ export default function Product({ params }) {
   const { slug } = params;
   const decodedSlug = decodeURIComponent(slug);
 
-  const [pin, setPin] = useState("");
-  //we may need this for order later
-  const [serviceable, setServiceable] = useState(null);
 
   const checkServiceability = async () => {
-    const pins = await fetch("http://localhost:3000/api/getpincodes");
+    const pins = await fetch(`http://localhost:3000/api/getpincodes`);
     const pinJson = await pins.json();
     if (pinJson.includes(parseInt(pin))) {
       setServiceable(true);
@@ -48,15 +45,14 @@ export default function Product({ params }) {
     }
   };
 
+  
+  // eslint-disable-next-line
+  const router = useRouter();
+  const { addToCart, pin, setPin, gotProduct,setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes, selectedSize, setSelectedSize, serviceable, setServiceable } = useContext(GlobalContext);
+
   const handlePinChange = (e) => {
     setPin(e.target.value);
   };
-
-  const [gotProduct, setGotProduct] = useState({});
-  const [selectedColor, setSelectedColor] = useState(null);
-  const [availableSizes, setAvailableSizes] = useState([]);
-  const [selectedSize, setSelectedSize] = useState(null);
-
 
   useEffect(() => {
     const getData = async () => {
@@ -71,24 +67,27 @@ export default function Product({ params }) {
         }
 
         const parseddata = await response.json();
-        setGotProduct(parseddata);
-        if(parseddata.variants){
-          setSelectedColor(parseddata.product.color);
-          setSelectedSize(parseddata.product.size);
-          console.log(parseddata.variants)
-        }
+        if(parseddata !== null && parseddata !== undefined){
+          
+          setGotProduct(parseddata);
+          setSelectedColor(parseddata.product.color)
+          setSelectedSize(parseddata.product.size)
+          setAvailableSizes([parseddata.product.size])
+          }
+
+        
       } catch (error) {
         console.error(error);
         // Handle error here, e.g., return a default value or throw an error
       }
     };
+    
     getData();
+
+    
   }, []);
 
   
-  // eslint-disable-next-line
-  const router = useRouter();
-  const { addToCart} = useContext(GlobalContext);
 
   const handleBuyNow = ()=>{
 
@@ -107,7 +106,7 @@ export default function Product({ params }) {
   }
 
   // Conditional rendering, only render when gotProduct is available
-  if (!gotProduct || Object.keys(gotProduct).length === 0) {
+  if (gotProduct === null || Object.keys(gotProduct).length === 0 || gotProduct === undefined) {
     return (
       <div className="absolute inset-0 bg-white bg-opacity-100 z-10 flex items-center justify-center">
   <div className="flex items-center">
@@ -136,7 +135,8 @@ export default function Product({ params }) {
 </div>
 
     ); // We can render a loading indicator or return an empty component
-  }
+  } else {
+
 
   return (
     <section className="text-gray-600 body-font overflow-hidden">
@@ -155,8 +155,8 @@ export default function Product({ params }) {
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
   {gotProduct.product.title} {gotProduct.variants && (
             <>
-              {selectedSize && `${selectedSize} / `}
-              {selectedColor && `${selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1)}`}
+              {selectedSize && `(${selectedSize} / `}
+              {selectedColor && `${selectedColor.charAt(0).toUpperCase() + selectedColor.slice(1)})`}
               </>
             )}
             </h1>
@@ -166,7 +166,7 @@ export default function Product({ params }) {
   <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
   <div className="flex">
     <span className="mr-3">Color</span>
-    {Object.keys(gotProduct.variants).map((col) => {
+    {Object.keys(gotProduct.variants).map((col, index) => {
       return (
         <button
           onClick={() => {
@@ -184,10 +184,10 @@ export default function Product({ params }) {
             // Set the sizes for the particular color selected
             setAvailableSizes(sizeOptions);
           }}
-          key={col}
+          key={col+`${index}`}
           style={{ backgroundColor: `${col}` }}
           className={
-            "border-2 border-gray-300 ml-1 rounded-full w-6 h-6 focus:border-black"
+            `${selectedColor === col? "border-black" : "border-gray-300"} border-2 ml-1 rounded-full w-6 h-6`
           }
         ></button>
       );
@@ -221,7 +221,7 @@ export default function Product({ params }) {
           <path d="M6 9l6 6 6-6"></path>
         </svg>
       </span>
-    </div>
+    </div> 
   </div>
 
 </div>
@@ -284,4 +284,5 @@ export default function Product({ params }) {
       </div>
     </section>
   );
+              }
 }

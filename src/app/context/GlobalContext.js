@@ -232,9 +232,18 @@ export const GlobalProvider = ({children})=> {
     console.log(fetchedRes)
   }
 
+  //product slug page
+
+  const [pin, setPin] = useState("");
+  const [serviceable, setServiceable] = useState(false)
+  const [gotProduct, setGotProduct] = useState(null);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [availableSizes, setAvailableSizes] = useState([]);
+  const [selectedSize, setSelectedSize] = useState(null);
+
 
   return (
-    <GlobalContext.Provider value={({cart, setCart, subTotal, saveCart, clearCart, addToCart, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown })}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={({cart, setCart, subTotal, saveCart, clearCart, addToCart, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable })}>{children}</GlobalContext.Provider>
   )
 }
 
