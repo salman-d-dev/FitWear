@@ -1,16 +1,16 @@
 "use client"
 import {React, useContext} from 'react';
 import { GlobalContext } from '../context/GlobalContext';
-import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
+import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import {BsFillBagCheckFill} from "react-icons/bs";
-import Link from 'next/link';
+import NotAvailable from '../components/NotAvailable';
 
 const Checkout = () => {
 
-  const {cart, addToCart, removeFromCart,subTotal} = useContext(GlobalContext);
+  const {cart, addToCart, removeFromCart,subTotal, showPayment, setShowPayment} = useContext(GlobalContext);
 
   return (
-    <div className='my-8 text-center text-4xl font-bold p-4'>
+    <div className='my-8 text-center text-4xl font-bold p-4 relative'>
       <h1 className='my-4'>
         Checkout
       </h1>
@@ -86,11 +86,14 @@ const Checkout = () => {
           <h3 className='text-left text-lg '>
             Total: ₹{subTotal}
             </h3>
-        <button className=" flex px-2 py-1 items-center justify-center text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded text-sm w-1/8"><BsFillBagCheckFill className='block'/>Pay ₹{subTotal}</button> 
+        <button className=" flex px-2 py-1 items-center justify-center text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded text-sm w-1/8" onClick={()=>{setShowPayment(true)}}><BsFillBagCheckFill className='block'/>Pay ₹{subTotal}</button> 
         </>)
         }
         </div>
         </div>
+        {showPayment && 
+          <NotAvailable showPayment={showPayment} setShowPayment={setShowPayment}/>
+        }
       </div>
 
   )
