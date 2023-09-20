@@ -22,7 +22,7 @@ export async function POST(req, res){
                 //pass is right, need to generate a jwt and send
             } else {
                 const userIDPayload = {user : foundUser._id};
-                const secretKey = "MY SECRET";
+                const secretKey = process.env.JWT_SECRET;
                 const token = await jwt.sign(userIDPayload , secretKey, {expiresIn:"1h"}) //will expire after 1h
                 return NextResponse.json({token:token},{status:201})
             }

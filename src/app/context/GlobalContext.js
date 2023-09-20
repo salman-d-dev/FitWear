@@ -83,6 +83,10 @@ export const GlobalProvider = ({children})=> {
   const handleLogOut = ()=>{
     setLoggedIn(false);
     localStorage.removeItem("token");
+    //then remove cart too
+    setCart({})
+    saveCart({})
+
     //show toast
     toast.success("Logged out successfully!", {
       position: "bottom-center",
@@ -245,9 +249,14 @@ export const GlobalProvider = ({children})=> {
   
   const [showPayment, setShowPayment] = useState(false)
 
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+  const [address, setAddress] = useState("")
+
 
   return (
-    <GlobalContext.Provider value={({cart, setCart, subTotal, saveCart, clearCart, addToCart, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment })}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress })}>{children}</GlobalContext.Provider>
   )
 }
 

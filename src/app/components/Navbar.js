@@ -11,24 +11,36 @@ const Navbar = () => {
 
 
 
-  const {cart, setCart, subTotal, addToCart, removeFromCart,clearCart, loggedIn, setLoggedIn, handleLogOut, showCart, toggleCart, profileDropDown, setProfileDropDown} = useContext(GlobalContext);
+  const {cart, setCart, subTotal, setSubTotal,addToCart, removeFromCart,clearCart, loggedIn, setLoggedIn, handleLogOut, showCart, toggleCart, profileDropDown, setProfileDropDown} = useContext(GlobalContext);
 
-  useEffect(()=>{
+  useEffect(() => {
     try {
-      if(localStorage.getItem("cart")){
-        setCart(JSON.parse(localStorage.getItem("cart")))
+      if (localStorage.getItem("cart")) {
+        setCart(JSON.parse(localStorage.getItem("cart")));
+        
+        // Recalculate and set the subtotal based on the loaded cart data
+        let subt = 0;
+        let keys = Object.keys(JSON.parse(localStorage.getItem("cart")));
+        for (let i = 0; i < keys.length; i++) {
+          const cartItem = JSON.parse(localStorage.getItem("cart"))[keys[i]];
+          subt += cartItem.price * cartItem.qty;
+        }
+        setSubTotal(subt);
       }
-      if(localStorage.getItem("token")){
-        setLoggedIn(true)
-        console.log("Logged in already!")
+  
+      // Check if the user is logged in and set the loggedIn state
+      const token = localStorage.getItem("token");
+      if (token) {
+        setLoggedIn(true);
       } else {
-        setLoggedIn(false)
+        setLoggedIn(false);
       }
     } catch (error) {
-      console.log(error)
-      localStorage.clear() 
+      console.log(error);
+      localStorage.clear();
     }
-  },[])
+  }, []);
+  
 
 
 

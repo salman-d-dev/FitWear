@@ -7,7 +7,9 @@ import NotAvailable from '../components/NotAvailable';
 
 const Checkout = () => {
 
-  const {cart, addToCart, removeFromCart,subTotal, showPayment, setShowPayment} = useContext(GlobalContext);
+  const {cart, addToCart, removeFromCart,subTotal, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, pin, setPin} = useContext(GlobalContext);
+
+  console.log(name)
 
   return (
     <div className='my-8 text-center text-4xl font-bold p-4 relative'>
@@ -20,27 +22,27 @@ const Checkout = () => {
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="name" className="leading-7 text-sm text-gray-600">Name</label>
-        <input type="name" id="name" name="name" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input value={name} onChange={(e)=>{setName(e.target.value)}}  type="name" id="name" name="name" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
         </div>
       <div className=" m-4 w-1/2">
         <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-        <input type="email" id="email" name="email" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input value={email} onChange={(e)=>{setEmail(e.target.value)}}type="email" id="email" name="email" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
         </div>
 
       </div>
       <div className='px-4 bg-slate-50 rounded-lg'>
         <label htmlFor="address" className="leading-7 text-sm text-gray-600">Address</label>
-        <textarea id="address" name="address" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+        <textarea value={address} onChange={(e)=>{setAddress(e.target.value)}} id="address" name="address" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
       </div>
 
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="phone" className="leading-7 text-sm text-gray-600">Phone</label>
-        <input type="text"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input value={phone} onChange={(e)=>{setPhone(e.target.value)}} type="text"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
         </div>
       <div className=" m-4 w-1/2">
-        <label htmlFor="city" className="leading-7 text-sm text-gray-600">City</label>
-        <input type="text" id="city" name="city" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+      <label htmlFor="pinCode" className="leading-7 text-sm text-gray-600">PIN Code</label>
+        <input value={pin} onChange={(e)=>{setPin(e.target.value)}} type="pinCode" id="pinCode" name="pinCode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
         </div>
 
       </div>
@@ -49,9 +51,10 @@ const Checkout = () => {
         <label htmlFor="state" className="leading-7 text-sm text-gray-600">State</label>
         <input type="state" id="state" name="state" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
         </div>
+        
       <div className=" m-4 w-1/2">
-        <label htmlFor="pinCode" className="leading-7 text-sm text-gray-600">PIN Code</label>
-        <input type="pinCode" id="pinCode" name="pinCode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+      <label htmlFor="city" className="leading-7 text-sm text-gray-600">City</label>
+        <input  type="text" id="city" name="city" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
         </div>
 
       </div>
@@ -86,7 +89,7 @@ const Checkout = () => {
           <h3 className='text-left text-lg '>
             Total: ₹{subTotal}
             </h3>
-        <button className=" flex px-2 py-1 items-center justify-center text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded text-sm w-1/8" onClick={()=>{setShowPayment(true)}}><BsFillBagCheckFill className='block'/>Pay ₹{subTotal}</button> 
+        <button disabled={(name === "" || name === null || name === undefined)|| (email === "" || email === null || email === undefined)|| (address === "" || address === null || address === undefined) || (phone === "" || phone === null || phone === undefinedphone) || (pin === "" || pin === null || pin === undefined)} className="disabled:bg-slate-600 flex px-2 py-1 items-center justify-center text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded text-sm w-1/8" onClick={()=>{setShowPayment(true)}}><BsFillBagCheckFill className='block'/>Pay ₹{subTotal}</button> 
         </>)
         }
         </div>
