@@ -7,7 +7,7 @@ import NotAvailable from '../components/NotAvailable';
 
 const Checkout = () => {
 
-  const {cart, addToCart, removeFromCart,subTotal, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, pin, setPin} = useContext(GlobalContext);
+  const {cart, addToCart, removeFromCart,subTotal, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, pin, setPin, handlePlaceOrder} = useContext(GlobalContext);
 
   console.log(name)
 
@@ -41,7 +41,7 @@ const Checkout = () => {
         <input value={phone} onChange={(e)=>{setPhone(e.target.value)}} type="text"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
         </div>
       <div className=" m-4 w-1/2">
-      <label htmlFor="pinCode" className="leading-7 text-sm text-gray-600">PIN Code</label>
+      <label htmlFor="pinCode" className="leading-7 text-sm text-gray-600">Pin Code</label>
         <input value={pin} onChange={(e)=>{setPin(e.target.value)}} type="pinCode" id="pinCode" name="pinCode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
         </div>
 
@@ -89,7 +89,11 @@ const Checkout = () => {
           <h3 className='text-left text-lg '>
             Total: ₹{subTotal}
             </h3>
-        <button disabled={(name === "" || name === null || name === undefined)|| (email === "" || email === null || email === undefined)|| (address === "" || address === null || address === undefined) || (phone === "" || phone === null || phone === undefinedphone) || (pin === "" || pin === null || pin === undefined)} className="disabled:bg-slate-600 flex px-2 py-1 items-center justify-center text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded text-sm w-1/8" onClick={()=>{setShowPayment(true)}}><BsFillBagCheckFill className='block'/>Pay ₹{subTotal}</button> 
+        <button disabled={(name === "" || name === null || name === undefined)|| (email === "" || email === null || email === undefined)|| (address === "" || address === null || address === undefined) || (phone === "" || phone === null || phone === undefined) || (pin === "" || pin === null || pin === undefined)} className="disabled:bg-slate-600 flex px-2 py-1 items-center justify-center text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded text-sm w-1/8" onClick={(e)=>{
+          setShowPayment(true);
+          handlePlaceOrder(e);
+          }}>
+            <BsFillBagCheckFill className='block'/>Pay ₹{subTotal}</button> 
         </>)
         }
         </div>

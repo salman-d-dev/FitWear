@@ -254,9 +254,55 @@ export const GlobalProvider = ({children})=> {
   const [phone, setPhone] = useState("")
   const [address, setAddress] = useState("")
 
+  const generateOrderID = (user)=>{
+     // Generate a random number (between 1000 and 9999)
+    const randomNumber = Math.floor(Math.random() * 9000) + 1000;
+    const orderID = `${user}XYZ${randomNumber}`;
+    return orderID;
+  }
+
+  const handlePlaceOrder = async(e)=>{
+    e.preventDefault();
+    //pass checkout email as user
+    const orderID = generateOrderID(email);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/placeorder`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({email:email, orderID:orderID, cart:cart, address: address, subTotal: subTotal }),
+    });
+    if(response.status === 201){
+      //show toast
+      toast.success('Placed order successfully!', {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+        
+    } else {
+        //show toast
+        toast.warn("Unable to Place order. Please try again later.", {
+          position: "bottom-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          })
+    }
+  }
+
 
   return (
-    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress })}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, handlePlaceOrder })}>{children}</GlobalContext.Provider>
   )
 }
 

@@ -1,15 +1,15 @@
 // "use client"
 import userModel from "@/app/models/userModel";
 import { connectToDatabase } from "@/app/middleware/connectDB";
-import { NextResponse } from "next/server";
+import { NextResponse, NextRequest } from "next/server";
 //for pass and jwt
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-export async function POST(req, res){
+export async function POST(NextRequest, res){
     try {
         await connectToDatabase();
-        const body = await req.json();
+        const body = await NextRequest.json();
         const {email, password} = body;
         const foundUser = await userModel.findOne({email:email})
         if(!foundUser){
