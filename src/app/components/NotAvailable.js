@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BsFillXCircleFill } from "react-icons/bs";
 
 const NotAvailable = ({ showPayment, setShowPayment }) => {

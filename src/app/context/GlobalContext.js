@@ -106,8 +106,6 @@ export const GlobalProvider = ({children})=> {
 
     //login page
     
-    const host = "http://localhost:3000";
-
     const [user, setUser] = useState({name:"", email:"",password:"",cpassword:""});
 
 
@@ -180,6 +178,14 @@ export const GlobalProvider = ({children})=> {
             theme: "light",
             })
       }
+    }
+
+    const [loading, setLoading] = useState(false);
+    const showLoading = (time)=>{
+      setLoading(true);
+      setTimeout(() => {
+        setLoading(false);
+      }, time);
     }
 
     //signup page
@@ -284,6 +290,8 @@ export const GlobalProvider = ({children})=> {
         progress: undefined,
         theme: "light",
         });
+        clearCart();
+        router.push('/myorders')
         
     } else {
         //show toast
@@ -300,9 +308,38 @@ export const GlobalProvider = ({children})=> {
     }
   }
 
+  //my orders page
+
+  const getMyOrders = async()=>{
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/myorders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({token:localStorage.getItem('token')}),
+    });
+    if(response.status === 200){
+      //show toast
+      toast.success('Found Orders!', {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+        return response.json()
+        
+    }
+  }
+
+  const [myOrders, setMyOrders] = useState([]);
+
 
   return (
-    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, handlePlaceOrder })}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, handlePlaceOrder, myOrders, setMyOrders, getMyOrders, loading, showLoading })}>{children}</GlobalContext.Provider>
   )
 }
 

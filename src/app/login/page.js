@@ -1,8 +1,10 @@
 "use client"
 import Link from "next/link";
-import { useContext, useEffect } from "react";
+import React,{ useContext, useEffect} from "react";
 import { GlobalContext } from "../context/GlobalContext";
 import { useRouter } from "next/navigation";
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
+
 
 
 const Login = () => {
@@ -15,7 +17,8 @@ const Login = () => {
   },[]);
 
   const context = useContext(GlobalContext)
-  const { handleLoginSubmit,handleDataChange} = context;
+  const { handleLoginSubmit,handleDataChange, loading, showLoading} = context;
+
 
 
   return (
@@ -27,7 +30,7 @@ const Login = () => {
   </div>
 
   <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-    <form className="space-y-6"  method="POST" onSubmit={handleLoginSubmit}>
+    <form className="space-y-6"  method="POST" onSubmit={(e)=>{handleLoginSubmit(e); showLoading(3000)}}>
       <div>
         <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
         <div className="mt-2">
@@ -48,7 +51,7 @@ const Login = () => {
       </div>
 
       <div>
-        <button type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+        <button type="submit" className="flex w-full h-8 justify-center items-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-slate-500" disabled={loading}>{loading? <AiOutlineLoading3Quarters className="animate-spin"/> : "Login"}</button>
       </div>
     </form>
 
@@ -62,4 +65,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default React.memo(Login);
