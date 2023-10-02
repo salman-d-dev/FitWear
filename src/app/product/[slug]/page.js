@@ -1,8 +1,6 @@
 "use client";
 import { GlobalContext } from "@/app/context/GlobalContext";
-import { useState, useContext, useEffect } from "react";
-//for nav to checkout
-import { useRouter } from "next/navigation";
+import { useContext, useEffect } from "react";
 //for toast
 import {toast } from "react-toastify";
 import LoadingSpinner from "@/app/components/LoadingSpinner";
@@ -47,9 +45,7 @@ export default function Product({ params }) {
   };
 
   
-  // eslint-disable-next-line
-  const router = useRouter();
-  const { addToCart, pin, setPin, gotProduct,setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes, selectedSize, setSelectedSize, serviceable, setServiceable } = useContext(GlobalContext);
+  const { addToCart, pin, setPin, gotProduct,setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes, selectedSize, setSelectedSize, serviceable, setServiceable, router } = useContext(GlobalContext);
 
   const handlePinChange = (e) => {
     setPin(e.target.value);

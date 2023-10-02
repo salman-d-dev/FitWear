@@ -330,16 +330,27 @@ export const GlobalProvider = ({children})=> {
         progress: undefined,
         theme: "light",
         });
-        return response.json()
+        return await response.json()
         
     }
   }
 
   const [myOrders, setMyOrders] = useState([]);
 
+  //order page
+  const getOrder = async(id) =>{
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/myorders/${id}`);
+      return await response.json();
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+
 
   return (
-    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, handlePlaceOrder, myOrders, setMyOrders, getMyOrders, loading, showLoading })}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, handlePlaceOrder, myOrders, setMyOrders, getMyOrders, loading, showLoading, getOrder })}>{children}</GlobalContext.Provider>
   )
 }
 
