@@ -64,7 +64,7 @@ return (
             <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Track Order</button>
         </div>
         </div>
-        <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400"/>
+        <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-80 h-64 object-cover object-center rounded" src={order && order.img}/>
     </div>
     </div>
 </section>

@@ -133,10 +133,10 @@ const Navbar = () => {
         </span>
         <div className="flex">
           <Link href={"/checkout"}>
-        <button className="flex mx-auto mt-16 text-white bg-black border-0 py-2 px-2 focus:outline-none hover:bg-black rounded text-sm items-center"><BsFillBagCheckFill className="m-1"/>Checkout</button>
+        <button disabled={subTotal === 0? true : false} className="flex mx-auto mt-16 text-white bg-black border-0 py-2 px-2 focus:outline-none hover:bg-black rounded text-sm items-center disabled:bg-gray-600"><BsFillBagCheckFill className="m-1"/>Checkout</button>
           </Link>
 
-        <button className="flex mx-auto mt-16 text-white bg-black border-0 py-2 px-2 focus:outline-none hover:bg-black rounded text-sm items-center" onClick={clearCart}>Clear Cart</button>
+        <button disabled={subTotal === 0? true : false} className="flex mx-auto mt-16 text-white bg-black border-0 py-2 px-2 focus:outline-none hover:bg-black rounded text-sm items-center disabled:bg-gray-600" onClick={clearCart}>Clear Cart</button>
         </div>
       </div>
         ) : (null)

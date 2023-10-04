@@ -15,8 +15,22 @@ const Checkout = () => {
   }
   useEffect(() => {
     fetchCityState();
-    console.log(loggedInUser)
   }, [pin]);
+
+  //for email validation
+  function isValidEmail(email) {
+    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+    return emailRegex.test(email);
+  }
+
+  //form validation
+  const errorsExist = ()=>{
+    if((name === "" || name === null || name === undefined)|| (email === "" || email === null || email === undefined)|| (address === "" || address === null || address === undefined || address.length < 5) || (phone === "" || phone === null || phone === undefined || phone.length !== 10) || (pin === "" || pin === null || pin === undefined || pin.length !== 6) || (city === "" || city === null || city === undefined) || (state === "" || state === null || state === undefined) || !isValidEmail(email)){
+      return true;
+    } else {
+      return false;
+    }
+  }
   
   
 
@@ -31,39 +45,39 @@ const Checkout = () => {
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="name" className="leading-7 text-sm text-gray-600">Name</label>
-        <input value={loggedInUser.name? loggedInUser.name : name} onChange={(e)=>{setName(e.target.value)}}  type="name" id="name" name="name" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input value={loggedInUser.name? loggedInUser.name : name} placeholder='Full Name' onChange={(e)=>{setName(e.target.value)}}  type="name" id="name" name="name" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
         </div>
       <div className=" m-4 w-1/2">
         <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-        <input value={loggedInUser.email? loggedInUser.email : email} onChange={(e)=>{setEmail(e.target.value)}}type="email" id="email" name="email" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input value={loggedInUser.email? loggedInUser.email : email} placeholder="Please enter you email" onChange={(e)=>{setEmail(e.target.value)}}type="email" id="email" name="email" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
         </div>
 
       </div>
       <div className='px-4 bg-slate-50 rounded-lg'>
         <label htmlFor="address" className="leading-7 text-sm text-gray-600">Locality</label>
-        <textarea value={address} onChange={(e)=>{setAddress(e.target.value)}} id="address" name="address" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+        <textarea value={address} placeholder='Building / Lane / Locality' onChange={(e)=>{setAddress(e.target.value)}} id="address" name="address" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out placeholder:font-normal"></textarea>
       </div>
 
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="phone" className="leading-7 text-sm text-gray-600">Phone</label>
-        <input value={phone} onChange={(e)=>{setPhone(e.target.value)}} type="text"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input value={phone} placeholder="Your 10 digit phone number" onChange={(e)=>{setPhone(e.target.value)}} type="number"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-medium appearance-none"/>
         </div>
       <div className=" m-4 w-1/2">
       <label htmlFor="pinCode" className="leading-7 text-sm text-gray-600">Pin Code</label>
-        <input value={pin} onChange={handlePinChange} type="pinCode" id="pinCode" name="pinCode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"/>
+        <input value={pin} placeholder='Postal Index Number' onChange={handlePinChange} type="number" id="pinCode" name="pinCode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
         </div>
 
       </div>
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="state" className="leading-7 text-sm text-gray-600">State</label>
-        <input value={state} type="state" id="state" name="state" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" readOnly={true}/>
+        <input value={state} type="state" id="state" name="state" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
         </div>
         
       <div className=" m-4 w-1/2">
       <label htmlFor="city" className="leading-7 text-sm text-gray-600">City</label>
-        <input value={city} type="text" id="city" name="city" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" readOnly={true}/>
+        <input value={city} type="text" id="city" name="city" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
         </div>
 
       </div>
@@ -98,7 +112,7 @@ const Checkout = () => {
           <h3 className='text-left text-lg '>
             Total: ₹{subTotal}
             </h3>
-        <button disabled={(name === "" || name === null || name === undefined)|| (email === "" || email === null || email === undefined)|| (address === "" || address === null || address === undefined) || (phone === "" || phone === null || phone === undefined) || (pin === "" || pin === null || pin === undefined)} className="disabled:bg-slate-600 flex px-2 py-1 items-center justify-center text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded text-sm w-1/8" onClick={(e)=>{
+        <button disabled={errorsExist()} className="disabled:bg-slate-600 flex px-2 py-1 items-center justify-center text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded text-sm w-1/8" onClick={(e)=>{
           setShowPayment(true);
           handlePlaceOrder(e);
           }}>

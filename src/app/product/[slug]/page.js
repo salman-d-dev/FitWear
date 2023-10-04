@@ -65,7 +65,7 @@ export default function Product({ params }) {
 
         const parseddata = await response.json();
         if(parseddata !== null && parseddata !== undefined){
-          
+          console.log(parseddata)
           setGotProduct(parseddata);
           setSelectedColor(parseddata.product.color)
           setSelectedSize(parseddata.product.size)
@@ -91,7 +91,7 @@ export default function Product({ params }) {
     addToCart(
       gotProduct.variants ? gotProduct.variants[selectedColor][selectedSize].slug : gotProduct.product.slug,
       1,
-      5000,
+      gotProduct.product.price,
       `${gotProduct.product.title} ${(selectedSize !== undefined && selectedSize !== null)? "("+selectedSize+ " / " : ""}${ (selectedColor !== undefined && selectedColor !== null)? 
         (selectedColor.charAt(0).toUpperCase() +
         selectedColor.slice(1)) +")" : ""
@@ -200,7 +200,7 @@ return(
 
             <div className="flex">
               <span className="title-font font-medium text-2xl text-gray-900">
-                ₹{gotProduct.product.price}
+                ₹{gotProduct.variants[selectedColor][selectedSize].price}
               </span>
               <button className="flex ml-4 text-sm md:text-base md:ml-12 text-white bg-indigo-500 border-0 py-2 px-2 focus:outline-none hover:bg-indigo-600 rounded " onClick={handleBuyNow}>
                 Buy Now

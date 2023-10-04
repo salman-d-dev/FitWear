@@ -354,6 +354,19 @@ export const GlobalProvider = ({children})=> {
           progress: undefined,
           theme: "light",
         });
+      } 
+      else if (response.status === 403) {
+        // Show toast for data tampering error
+        toast.error("Some items are out of stock. Please clear the cart and try again", {
+          position: "bottom-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
         // Show toast for other errors
         toast.warn("Unable to Place order. Please try again later.", {

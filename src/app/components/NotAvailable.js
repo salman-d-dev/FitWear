@@ -13,7 +13,7 @@ const NotAvailable = ({ showPayment, setShowPayment }) => {
             <BsFillXCircleFill />
           </button>
           <p className="text-blue-800 text-sm">
-            This feature is currently not available. Please try again later.
+            Payment feature is currently unvailable. Please try again later.
           </p>
         </div>
       </div>
