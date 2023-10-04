@@ -49,7 +49,7 @@ if(myOrders.length === 0 ){
 console.log(myOrders)
 return (
     <>
-      <div className='container bg-slate-200 p-3'>
+      <div className='container bg-slate-200 p-3 min-h-screen'>
         <h1 className='text-center text-xl font-bold my-4'>My Orders</h1>
         <div className="relative overflow-x-auto rounded-md">
           <table className="w-full text-sm text-left">
@@ -81,8 +81,8 @@ return (
                       className="bg-cyan-50 border-b hover:bg-green-100"
                     >
                        <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
-                        {Object.keys(orderItem.products).length>3 ? Object.keys(orderItem.products).slice(0,3).map((itemName) => itemName).join(", ")+" ..." : 
-                        Object.keys(orderItem.products).map((itemName) => itemName).join(", ")} {/* Join the items into a comma-separated string */}
+                        {Object.keys(orderItem.products).length>3 ? Object.keys(orderItem.products).slice(0,3).map((itemName) => orderItem.products[itemName].name).join(", ")+" ..." : 
+                        Object.keys(orderItem.products).slice(0,3).map((itemName) => orderItem.products[itemName].name).join(", ")} {/* Join the items into a comma-separated string */}
                       </th>
                       <td className="px-6 py-4">{Object.keys(orderItem.products).length}</td>
                       <td className="px-6 py-4">₹{orderItem.amount}</td>

@@ -24,7 +24,6 @@ export const GlobalProvider = ({children})=> {
     const clearCart = () =>{
       setCart({})
       saveCart({})
-      console.log("Cart cleared!")
     }
 
     const addToCart = (itemCode, qty, price, name, size, variant) =>{
@@ -114,6 +113,8 @@ export const GlobalProvider = ({children})=> {
       setUser({...user, [e.target.name]:e.target.value})
     }
 
+    const [loggedInUser, setLoggedInUser] = useState({name:"", email:""})
+
     const handleLoginSubmit = async(e)=>{
       e.preventDefault();
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
@@ -137,6 +138,8 @@ export const GlobalProvider = ({children})=> {
           theme: "light",
           });
           localStorage.setItem("token",parsedRes.token)
+          console.log(parsedRes.user)
+          setLoggedInUser({name:parsedRes.user.name, email:parsedRes.user.email})
           setLoggedIn(true)
           
           router.push("/")
@@ -259,6 +262,43 @@ export const GlobalProvider = ({children})=> {
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [address, setAddress] = useState("")
+  const [city, setCity] = useState("")
+  const [state, setState] = useState("")
+
+  const fetchCityState = async () => {
+    if (pin.length === 6) {
+      // fetch data for city and state
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getpincodes/getcitystate`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ pincode: pin }),
+      });
+      if (response.status === 200) {
+        const cityStateData = await response.json();
+        console.log(cityStateData);
+        setCity(cityStateData[0]);
+        setState(cityStateData[1]);
+        // return cityStateData;
+      } else if (response.status=== 404){
+          //show toast
+          toast.error("This pin is not serviceable!", {
+            position: "bottom-center",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            })
+      }
+    } else {
+      setCity("")
+      setState("")
+    }
+  };
 
   const generateOrderID = (user)=>{
      // Generate a random number (between 1000 and 9999)
@@ -267,34 +307,55 @@ export const GlobalProvider = ({children})=> {
     return orderID;
   }
 
-  const handlePlaceOrder = async(e)=>{
+  const handlePlaceOrder = async (e) => {
     e.preventDefault();
-    //pass checkout email as user
+    // Pass checkout email as user
     const orderID = generateOrderID(email);
-    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/placeorder`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({email:email, orderID:orderID, cart:cart, address: address, subTotal: subTotal }),
-    });
-    if(response.status === 201){
-      //show toast
-      toast.success('Placed order successfully!', {
-        position: "bottom-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
+  
+    try {
+      const requestBody = {
+        email: email,
+        orderID: orderID,
+        cart: cart,
+        address: `${address} ${city} ${state} ${pin}`,
+        subTotal: subTotal,
+      };
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/placeorder`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody)
+      });
+  
+      if (response.status === 201) {
+        // Show success toast and perform actions upon successful order placement
+        toast.success('Placed order successfully!', {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
         });
         clearCart();
-        router.push('/myorders')
-        
-    } else {
-        //show toast
+        router.push('/myorders');
+      } else if (response.status === 400) {
+        // Show toast for data tampering error
+        toast.error("Something went wrong! Please clear the cart and try again", {
+          position: "bottom-center",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
+      } else {
+        // Show toast for other errors
         toast.warn("Unable to Place order. Please try again later.", {
           position: "bottom-center",
           autoClose: 1500,
@@ -304,10 +365,17 @@ export const GlobalProvider = ({children})=> {
           draggable: true,
           progress: undefined,
           theme: "light",
-          })
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
 
+  // const fetchUser = async() = >{
+  //   const response = await 
+  // }
+  
   //my orders page
 
   const getMyOrders = async()=>{
@@ -350,7 +418,7 @@ export const GlobalProvider = ({children})=> {
 
 
   return (
-    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, handlePlaceOrder, myOrders, setMyOrders, getMyOrders, loading, showLoading, getOrder })}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router, removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress,city, setCity,state, setState, handlePlaceOrder,fetchCityState, loggedInUser,myOrders, setMyOrders, getMyOrders, loading, showLoading, getOrder })}>{children}</GlobalContext.Provider>
   )
 }
 

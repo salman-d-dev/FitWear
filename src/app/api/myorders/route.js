@@ -13,7 +13,7 @@ export async function POST(req,res){
     }
     const userEmail = deCodedToken.user;
     if(userEmail){
-        const userOrders = await orderModel.find({email:userEmail});
+        const userOrders = await orderModel.find({email:userEmail}).sort({createdAt: -1});
         return NextResponse.json(userOrders, {status:200})
     }
 
