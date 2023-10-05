@@ -4,15 +4,16 @@ import Link from "next/link";
 import { AiOutlineShoppingCart, AiFillCloseCircle, AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import {BsFillBagCheckFill} from "react-icons/bs";
 import {MdAccountCircle} from "react-icons/md";
-import {useEffect, useContext } from "react";
+import {useEffect, useContext, useState } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
 
+  const {cart, setCart, subTotal, setSubTotal,addToCart, removeFromCart,clearCart, loggedIn, setLoggedIn, handleLogOut, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown} = useContext(GlobalContext);
+  const [showCartIcon, setShowCartIcon] = useState(true)
 
-
-  const {cart, setCart, subTotal, setSubTotal,addToCart, removeFromCart,clearCart, loggedIn, setLoggedIn, handleLogOut, showCart, toggleCart, profileDropDown, setProfileDropDown} = useContext(GlobalContext);
-
+  const pathname = usePathname();
   useEffect(() => {
     try {
       if (localStorage.getItem("cart")) {
@@ -39,7 +40,13 @@ const Navbar = () => {
       console.log(error);
       localStorage.clear();
     }
-  }, []);
+    if(pathname==="/checkout"){
+      setShowCart(false)
+      setShowCartIcon(false)
+    } else {
+      setShowCartIcon(true)
+    }
+  }, [pathname]);
   
 
 
@@ -74,16 +81,18 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="flex">
-        <button
+        {showCartIcon? (<button
           className="text-xl md:text-4xl absolute right-0 top-3 mx-3 text-black hover:text-cyan-600"
           onClick={toggleCart}
         >
           <AiOutlineShoppingCart />
-        </button>
+        </button>) :
+        null
+        }
         {/* conditionally render profile button */}
 
         
-        <div className="absolute  top-3 right-12 md:right-14 cursor-pointer" onMouseOver={()=>{setProfileDropDown(true)}} onMouseOut={()=>{setProfileDropDown(false)}}>
+        <div className={`absolute  top-3 right-${showCartIcon? 12 : 2} md:right-${showCartIcon? 14 : 2} cursor-pointer`} onMouseOver={()=>{setProfileDropDown(true)}} onMouseOut={()=>{setProfileDropDown(false)}}>
         <span className={`text-xl md:text-4xl ${loggedIn? "text-green-300" : "text-black"}  hover:text-cyan-600`}>
         <MdAccountCircle />
         </span>
