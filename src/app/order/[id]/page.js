@@ -55,7 +55,7 @@ return (
         <div className="flex border-b  py-2 justify-around" key={order.products[productName].name}>
             <span className=" text-gray-500 w-2/4">{order.products[productName].name}</span>
             <span className=" text-gray-900 mx-3 w-1/4">{order.products[productName].qty}</span>
-            <span className=" text-gray-900 w-1/4 text-center">₹{order.products[productName].price}</span>
+            <span className=" text-gray-900 w-1/4 text-center">₹{order.products[productName].price}/-</span>
         </div>
             )
         })}

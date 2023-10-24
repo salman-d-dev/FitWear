@@ -17,10 +17,10 @@ export async function GET(req,{params}) {
     //create slug for color and size variant
     for(let item of prodVariants){
       if(Object.keys(colorSizeSlug).includes(item.color)){
-        colorSizeSlug[item.color][item.size] = {slug: item.slug, img: item.img, price: item.price}
+        colorSizeSlug[item.color][item.size] = {slug: item.slug, img: item.img, price: item.price, availableQty: item.availableQty}
       } else {
         colorSizeSlug[item.color] = {}
-        colorSizeSlug[item.color][item.size] = {slug: item.slug, img: item.img, price: item.price}
+        colorSizeSlug[item.color][item.size] = {slug: item.slug, img: item.img, price: item.price , availableQty: item.availableQty}
 
       }
     }

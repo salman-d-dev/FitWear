@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { pins } from "./getcitystate/pincodes";
 export async function GET(req,res){
-    return NextResponse.json([560037, 110011, 560044],{status:200})
+    const onlypins = Object.keys(pins)
+    return NextResponse.json(onlypins,{status:200})
 }

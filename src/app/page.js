@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function Home() {
   return (
     <main>
-       <div >
+       <div className='p-4'>
         <Image
           src="/fitbg2.jpeg"
           alt="Home BG"
