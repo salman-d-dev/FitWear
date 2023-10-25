@@ -429,9 +429,57 @@ export const GlobalProvider = ({children})=> {
 
   }
 
+  //my account page
+  const [editMode, setEditMode] = useState(false);
+
+  const getUser = async()=>{
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`,{
+        method:"GET",
+        headers:{
+          'token': localStorage.getItem('token')
+        }
+      });
+      const userData = await response.json();
+      if(userData){
+        return userData;
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const updateUser = async(name, address, phone)=>{
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`,{
+        method:"POST",
+        headers:{
+          'token': localStorage.getItem('token')
+        },
+        body: JSON.stringify({name:name, address: address, phone: phone})
+      });
+      if(response.status === 200){
+        //show toast
+        toast.success('Updated Sucessfully!', {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+        setEditMode(false);
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
   return (
-    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router,  removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress,city, setCity,state, setState, handlePlaceOrder,fetchCityState, loggedInUser,myOrders, setMyOrders, getMyOrders, loading, showLoading, getOrder })}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router,  removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress,city, setCity,state, setState, handlePlaceOrder,fetchCityState, loggedInUser,myOrders, setMyOrders, getMyOrders, loading, showLoading, getOrder, getUser,updateUser, editMode, setEditMode })}>{children}</GlobalContext.Provider>
   )
 }
 
