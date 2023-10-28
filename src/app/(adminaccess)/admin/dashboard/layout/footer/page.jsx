@@ -6,8 +6,8 @@ var Footer = function () {
     return (<Box sx={{ pt: 6, textAlign: "center" }}>
       <Typography>
         © 2023 All rights reserved by{" "}
-        <Link href="https://www.wrappixel.com">
-          Wrappixel.com
+        <Link href="/">
+          Fit-Wear.com
         </Link>{" "}
       </Typography>
     </Box>);

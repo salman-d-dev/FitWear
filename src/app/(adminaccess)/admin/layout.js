@@ -27,12 +27,11 @@ var PageWrapper = styled("div")(function () { return ({
   backgroundColor: "transparent",
 }); });
 
-export default function RootLayout(_a) {
+export default function SubLayout(_a) {
   var children = _a.children;
   var _b = useState(true), isSidebarOpen = _b[0], setSidebarOpen = _b[1];
   var _c = useState(false), isMobileSidebarOpen = _c[0], setMobileSidebarOpen = _c[1];
-    return (<html lang="en">
-    <body className={inter.className}>
+    return (
       <ThemeProvider theme={baselightTheme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
@@ -74,6 +73,5 @@ export default function RootLayout(_a) {
     </MainWrapper>
         </div>
       </ThemeProvider>
-    </body>
-  </html>);
+    );
 }
