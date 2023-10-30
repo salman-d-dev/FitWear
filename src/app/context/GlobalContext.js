@@ -138,7 +138,6 @@ export const GlobalProvider = ({children})=> {
           theme: "light",
           });
           localStorage.setItem("token",parsedRes.token)
-          console.log(parsedRes.user)
           setLoggedInUser({name:parsedRes.user.name, email:parsedRes.user.email})
           setLoggedIn(true)
           
@@ -242,7 +241,6 @@ export const GlobalProvider = ({children})=> {
         theme: "light",
         })
     }
-    console.log(fetchedRes)
   }
 
   //product slug page
@@ -277,7 +275,6 @@ export const GlobalProvider = ({children})=> {
       });
       if (response.status === 200) {
         const cityStateData = await response.json();
-        console.log(cityStateData);
         setCity(cityStateData[0]);
         setState(cityStateData[1]);
         // return cityStateData;
@@ -385,9 +382,6 @@ export const GlobalProvider = ({children})=> {
     }
   };
 
-  // const fetchUser = async() = >{
-  //   const response = await 
-  // }
   
   //my orders page
 

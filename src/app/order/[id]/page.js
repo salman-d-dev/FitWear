@@ -18,7 +18,6 @@ export default function Product({ params }) {
             if(data){
                 setOrder(data.order);
                 setLoading(false);
-                Object.keys(data.order.products).map((name)=>{console.log(data.order.products[name].price)})
 
             }
         } catch (error) {

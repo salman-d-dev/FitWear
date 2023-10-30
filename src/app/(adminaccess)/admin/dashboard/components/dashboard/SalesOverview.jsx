@@ -1,9 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import dynamic from "next/dynamic";
 import BaseCard from "../shared/DashboardCard";
 var Chart = dynamic(function () { return import("react-apexcharts"); }, { ssr: false });
 var SalesOverview = function () {
+
+    const [salesArray, setSalesArray] = useState([0,0,0,0,0,0,0,0,0,0,0,0]);
+    const [highestSales, setHighestSales] = useState(0);
+    useEffect(()=>{
+        const fetchSalesData = async()=>{
+            try {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/salesdata`,{
+                    method:"GET",
+                    headers:{
+                      "Content-Type": "application/json",
+                      "admin-token":localStorage.getItem("admin-token"),
+                    },
+                  });
+                if(response.status === 200){
+                    const parsedArray = await response.json();
+                    setSalesArray(parsedArray);
+                    const sortedClonedArray = [...parsedArray].sort((a,b)=> a-b)
+                    setHighestSales(sortedClonedArray[11])
+                    
+                }
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        //call the function
+        fetchSalesData();
+    },[])
+
     var theme = useTheme();
     var primary = theme.palette.primary.main;
     var secondary = theme.palette.secondary.main;
@@ -26,7 +55,7 @@ var SalesOverview = function () {
                 borderRadius: 5,
             },
         },
-        colors: [primary, secondary],
+        colors: ["#048c3b"],
         fill: {
             type: "solid",
             opacity: 1,
@@ -73,11 +102,13 @@ var SalesOverview = function () {
                 },
             },
         },
+
+        
         yaxis: {
             show: true,
-            min: 100,
-            max: 400,
-            tickAmount: 3,
+            min: 0,
+            max: highestSales,
+            tickAmount: 5,
             labels: {
                 style: {
                     cssClass: "grey--text lighten-2--text fill-color",
@@ -94,18 +125,17 @@ var SalesOverview = function () {
             theme: "dark",
         },
     };
+
+
     var seriessalesoverview = [
         {
-            name: "Ample Admin",
-            data: [355, 390, 300, 350, 390, 180, 355, 390, 300, 350, 390, 180],
-        },
-        {
-            name: "Pixel Admin",
-            data: [280, 250, 325, 215, 250, 310, 280, 250, 325, 215, 250, 310],
-        },
+            name: "Sales ₹",
+            data: salesArray,
+        }
     ];
+
     return (<BaseCard title="Sales Overview">
-      <Chart options={optionssalesoverview} series={seriessalesoverview} type="bar" height="295px"/>
+      <Chart options={optionssalesoverview} series={seriessalesoverview} type="bar" height={"350px"}/>
     </BaseCard>);
 };
 export default SalesOverview;

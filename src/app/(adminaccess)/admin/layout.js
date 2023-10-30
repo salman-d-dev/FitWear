@@ -31,6 +31,10 @@ export default function SubLayout(_a) {
   var children = _a.children;
   var _b = useState(true), isSidebarOpen = _b[0], setSidebarOpen = _b[1];
   var _c = useState(false), isMobileSidebarOpen = _c[0], setMobileSidebarOpen = _c[1];
+
+  const router = useRouter();
+
+
     return (
       <ThemeProvider theme={baselightTheme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
@@ -56,6 +60,17 @@ export default function SubLayout(_a) {
             paddingTop: "20px",
             maxWidth: "1200px",
         }}>
+
+          {/* Global JSX to remove navbar and footer */}
+          <style jsx global>{`
+            footer{
+              display:none;
+            }
+            nav{
+              display:none;
+            }
+                           `}</style>
+
           {/* ------------------------------------------- */}
           {/* Page Route */}
           {/* ------------------------------------------- */}

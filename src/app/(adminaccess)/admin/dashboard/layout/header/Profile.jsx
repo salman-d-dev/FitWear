@@ -11,7 +11,7 @@ var __assign = (this && this.__assign) || function () {
 };
 import React, { useState } from "react";
 import { useTheme } from "@mui/material/styles";
-import { Box, Menu, Avatar, Typography, Divider, Button, IconButton, ListItemButton, List, ListItemText, } from "@mui/material";
+import { Box, Menu, Typography, Divider, Button, IconButton } from "@mui/material";
 import { IconChevronDown, IconCreditCard, IconCurrencyDollar, IconShield, } from "@tabler/icons-react";
 var Profile = function () {
     var _a = useState(null), anchorEl2 = _a[0], setAnchorEl2 = _a[1];
@@ -59,10 +59,6 @@ var Profile = function () {
       <IconButton size="large" aria-label="menu" color="inherit" aria-controls="msgs-menu" aria-haspopup="true" sx={__assign({}, (typeof anchorEl2 === "object" && {
             borderRadius: "9px",
         }))} onClick={handleClick2}>
-        <Avatar src={"/images/users/user2.jpg"} alt={"ProfileImg"} sx={{
-            width: 30,
-            height: 30,
-        }}/>
         <Box sx={{
             display: {
                 xs: "none",
@@ -70,13 +66,10 @@ var Profile = function () {
             },
             alignItems: "center",
         }}>
-          <Typography color="textSecondary" variant="h5" fontWeight="400" sx={{ ml: 1 }}>
-            Hi,
-          </Typography>
           <Typography variant="h5" fontWeight="700" sx={{
             ml: 1,
         }}>
-            Julia
+            Admin
           </Typography>
           <IconChevronDown width="20" height="20"/>
         </Box>
@@ -92,31 +85,10 @@ var Profile = function () {
                 pt: 0
             },
         }}>
-
-        <Box pt={0}>
-
-          <List>
-            <ListItemButton component="a" href="#">
-              <ListItemText primary="Edit Profile"/>
-            </ListItemButton>
-            <ListItemButton component="a" href="#">
-              <ListItemText primary="Account"/>
-            </ListItemButton>
-            <ListItemButton component="a" href="#">
-              <ListItemText primary="Change Password"/>
-            </ListItemButton>
-            <ListItemButton component="a" href="#">
-              <ListItemText primary="My Settings"/>
-            </ListItemButton>
-          </List>
-
-        </Box>
         <Divider />
-        <Box mt={2}>
-          <Button fullWidth variant="contained" color="primary">
+          <Button fullWidth variant="contained" className="bg-teal-400">
             Logout
           </Button>
-        </Box>
 
       </Menu>
     </Box>);

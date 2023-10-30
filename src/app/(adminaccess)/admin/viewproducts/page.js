@@ -1,11 +1,17 @@
-import React from 'react'
-import Table from '../dashboard/ui-components/Table'
+"use client"
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 const ViewProducts = () => {
+  const router = useRouter();
+  useEffect(()=>{
+    if(!localStorage.getItem('admin-token')){
+      router.push('/admin')
+    }
+  },[])
   return (
     <div>
-      Hmm
-      <Table title={"All Products"}/>
+      All produ
     </div>
   )
 }

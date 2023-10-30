@@ -10,7 +10,7 @@ const MyAccount = () => {
     
 
     
-    const {loggedInUser, getUser, name, setName, email, setEmail,  phone, setPhone,pin,setPin,address, setAddress,city, setCity,state, setState, fetchCityState, updateUser, editMode, setEditMode, router} = useContext(GlobalContext);
+    const { getUser, name, setName, email, setEmail,  phone, setPhone,pin,setPin,address, setAddress,city, state,  fetchCityState, updateUser, editMode, setEditMode, router} = useContext(GlobalContext);
 
     useEffect(()=>{
         if(!localStorage.getItem("token")){
@@ -19,7 +19,6 @@ const MyAccount = () => {
         const fetchUserData = async()=>{
           const data = await getUser();
           if(data){
-            console.log(data)
             if(data.name){
               setName(data.name)
             }
@@ -35,7 +34,6 @@ const MyAccount = () => {
         }
         }
         fetchUserData();
-        console.log(router.pathname);
     },[]);
 
     useEffect(() => {

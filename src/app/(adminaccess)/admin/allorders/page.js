@@ -1,10 +1,17 @@
-import React from 'react'
-import Table from '../dashboard/ui-components/Table'
+"use client"
+import { useRouter } from 'next/navigation';
+import React, { useEffect } from 'react'
 
 const AllOrders = () => {
+  const router = useRouter();
+  useEffect(()=>{
+    if(!localStorage.getItem('admin-token')){
+      router.push('/admin')
+    }
+  },[])
   return (
     <div className='min-h-screen'>
-      <Table title={"All Orders"}/>
+      All orders
     </div>
   )
 }

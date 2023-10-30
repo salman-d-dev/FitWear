@@ -14,7 +14,6 @@ export default function Product({ params }) {
   const checkServiceability = async () => {
     const pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getpincodes`);
     const pinJson = await pins.json();
-    console.log(pinJson.includes("560001"))
     if (pinJson.includes(pin)) {
       setServiceable(true);
       //show toast
@@ -66,11 +65,10 @@ export default function Product({ params }) {
 
         const parseddata = await response.json();
         if(parseddata !== null && parseddata !== undefined){
-          console.log(parseddata)
           setGotProduct(parseddata);
-          setSelectedColor(parseddata.product.color)
-          setSelectedSize(parseddata.product.size)
-          setAvailableSizes([parseddata.product.size])
+          setSelectedColor(parseddata.product.color);
+          setSelectedSize(parseddata.product.size);
+          setAvailableSizes([parseddata.product.size]);
           }
 
         
@@ -81,11 +79,6 @@ export default function Product({ params }) {
     };
     
     getData();
-
-    if(gotProduct && selectedSize && selectedColor){
-
-      console.log(gotProduct.variants[selectedColor][selectedSize].availableQty)
-    }
     
   }, []);
 

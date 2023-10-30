@@ -25,11 +25,5 @@ var Menuitems = [
         icon: IconDatabase,
         href: "/admin/allorders",
     },
-    {
-        id: uniqueId(),
-        title: "Image Uploader",
-        icon: IconUpload,
-        href: "/admin/imageuploader",
-    }
 ];
 export default Menuitems;

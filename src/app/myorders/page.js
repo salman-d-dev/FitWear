@@ -46,7 +46,6 @@ if(myOrders.length === 0 ){
     return (<LoadingSpinner/>)
 }
 
-console.log(myOrders)
 return (
     <>
       <div className='container bg-slate-200 p-3 min-h-screen'>

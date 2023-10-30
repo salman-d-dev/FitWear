@@ -10,7 +10,7 @@ var __assign = (this && this.__assign) || function () {
     };
     return __assign.apply(this, arguments);
 };
-import { Paper, Grid, Stack, TextField, Checkbox, FormGroup, FormControlLabel, RadioGroup, Radio, FormLabel, FormControl, Button,Select , InputLabel, MenuItem} from '@mui/material';
+import { Paper, Grid, Stack, TextField, FormControl, Button,Select , InputLabel, MenuItem} from '@mui/material';
 import BaseCard from '@/app/(adminaccess)/admin/dashboard/components/shared/BaseCard';
 import { createTheme, styled } from '@mui/material/styles';
 import { useState } from 'react';
@@ -93,6 +93,7 @@ var Form = function () {
         method:"POST",
         headers:{
           "Content-Type": "application/json",
+          "admin-token":localStorage.getItem("admin-token"),
         },
         body: JSON.stringify(products)
       }
