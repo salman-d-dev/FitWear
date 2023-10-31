@@ -2,7 +2,6 @@
 import { GlobalContext } from "../context/GlobalContext";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import LoadingSpinner from "../components/LoadingSpinner";
 
 

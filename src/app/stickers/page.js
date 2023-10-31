@@ -100,8 +100,8 @@ const Stickers = async() => {
                     {/* map each color for the color button */}
                     {products[key].color.length > 0 && (
                             <div className="my-1">
-                                {products[key].color.map((col) => (
-                                <button key={col} style={{ backgroundColor: col }} className="ml-1 rounded-full w-5 h-5 focus:outline-none "></button>
+                                {products[key].color.map((col, index) => (
+                                <button key={index} style={{ backgroundColor: col }} className="ml-1 rounded-full w-5 h-5 focus:outline-none "></button>
                                 ))}
                             </div>
                           )}

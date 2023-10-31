@@ -11,8 +11,8 @@ const Checkout = () => {
 
   const handlePinChange = (e)=>{
     setPin(e.target.value);
-    
   }
+
   useEffect(() => {
     fetchCityState();
   }, [pin]);
@@ -31,8 +31,6 @@ const Checkout = () => {
       return false;
     }
   }
-  
-  
 
   return (
     <div className='my-8 text-center text-4xl font-bold p-4 relative'>
@@ -55,13 +53,13 @@ const Checkout = () => {
       </div>
       <div className='px-4 bg-slate-50 rounded-lg'>
         <label htmlFor="address" className="leading-7 text-sm text-gray-600">Locality</label>
-        <textarea value={address} placeholder='Building / Lane / Locality' onChange={(e)=>{setAddress(e.target.value)}} id="address" name="address" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out placeholder:font-normal"></textarea>
+        <textarea value={loggedInUser?.address} placeholder='Building / Lane / Locality' onChange={(e)=>{setAddress(e.target.value)}} id="address" name="address" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out placeholder:font-normal"></textarea>
       </div>
 
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="phone" className="leading-7 text-sm text-gray-600">Phone</label>
-        <input value={phone} placeholder="Your 10 digit phone number" onChange={(e)=>{setPhone(e.target.value)}} type="number"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-medium appearance-none"/>
+        <input value={loggedInUser?.phone} placeholder="Your 10 digit phone number" onChange={(e)=>{setPhone(e.target.value)}} type="number"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-medium appearance-none"/>
         </div>
       <div className=" m-4 w-1/2">
       <label htmlFor="pinCode" className="leading-7 text-sm text-gray-600">Pin Code</label>

@@ -82,9 +82,7 @@ export const GlobalProvider = ({children})=> {
   const handleLogOut = ()=>{
     setLoggedIn(false);
     localStorage.removeItem("token");
-    //then remove cart too
-    setCart({})
-    saveCart({})
+    localStorage.removeItem("cart");
 
     //show toast
     toast.success("Logged out successfully!", {
@@ -113,7 +111,7 @@ export const GlobalProvider = ({children})=> {
       setUser({...user, [e.target.name]:e.target.value})
     }
 
-    const [loggedInUser, setLoggedInUser] = useState({name:"", email:""})
+    const [loggedInUser, setLoggedInUser] = useState({name:"", email:"", phone:"", address:""})
 
     const handleLoginSubmit = async(e)=>{
       e.preventDefault();
@@ -138,7 +136,7 @@ export const GlobalProvider = ({children})=> {
           theme: "light",
           });
           localStorage.setItem("token",parsedRes.token)
-          setLoggedInUser({name:parsedRes.user.name, email:parsedRes.user.email})
+          setLoggedInUser({name:parsedRes.user.name, email:parsedRes.user.email, phone:parsedRes.user.phone, address:parsedRes.user.address})
           setLoggedIn(true)
           
           router.push("/")

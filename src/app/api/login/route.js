@@ -23,7 +23,7 @@ export async function POST(NextRequest, res){
                 const userIDPayload = {user : foundUser.email};
                 const secretKey = process.env.JWT_SECRET;
                 const token = await jwt.sign(userIDPayload , secretKey, {expiresIn:"10h"}) //will expire after 1h
-                return NextResponse.json({token:token, user:{name:foundUser.name, email: foundUser.email}},{status:201})
+                return NextResponse.json({token:token, user:{name:foundUser.name, email: foundUser.email, phone:foundUser.phone, address: foundUser.address}},{status:201})
             }
         }
     } catch (error) {
