@@ -432,10 +432,11 @@ export const GlobalProvider = ({children})=> {
           'token': localStorage.getItem('token')
         }
       });
-      const userData = await response.json();
-      if(userData){
+      if(response.status === 200){
+        const userData = await response.json();
         return userData;
       }
+      
     } catch (error) {
       console.log(error)
     }

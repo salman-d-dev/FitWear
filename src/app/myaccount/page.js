@@ -1,9 +1,8 @@
 "use client"
-import {useEffect,useContext, useState} from 'react'
-import { useRouter } from 'next/navigation';
+import {useEffect,useContext} from 'react'
 import { GlobalContext } from '../context/GlobalContext';
 import {AiOutlineEdit} from 'react-icons/ai';
-import UserProfile from '../components/UserProfile';
+import UserProfile from '../_components/UserProfile';
 
 
 const MyAccount = () => {

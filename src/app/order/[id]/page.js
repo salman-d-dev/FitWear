@@ -1,7 +1,7 @@
 "use client";
 import { GlobalContext } from "@/app/context/GlobalContext";
 import { useContext, useEffect, useState } from "react";
-import LoadingSpinner from "@/app/components/LoadingSpinner";
+import LoadingSpinner from "@/app/_components/LoadingSpinner";
 
 export default function Product({ params }) {
 

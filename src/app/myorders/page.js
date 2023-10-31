@@ -2,7 +2,7 @@
 import { GlobalContext } from "../context/GlobalContext";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
-import LoadingSpinner from "../components/LoadingSpinner";
+import LoadingSpinner from "../_components/LoadingSpinner";
 
 
 const  MyOrders= () => {

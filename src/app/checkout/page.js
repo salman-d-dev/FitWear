@@ -3,7 +3,7 @@ import {React, useContext, useEffect} from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import {BsFillBagCheckFill} from "react-icons/bs";
-import NotAvailable from '../components/NotAvailable';
+import NotAvailable from '../_components/NotAvailable';
 
 const Checkout = () => {
 

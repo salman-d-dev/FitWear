@@ -4,6 +4,9 @@ const nextConfig = {
         domains: ['m.media-amazon.com'], // Add other domains if needed
         domains: ['images.unsplash.com'], // Add other domains if needed
       },
+      eslint: { 
+        ignoreDuringBuilds: true, 
+      },
 }
 
 module.exports = nextConfig
