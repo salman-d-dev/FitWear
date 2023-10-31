@@ -113,8 +113,6 @@ export const GlobalProvider = ({children})=> {
       setUser({...user, [e.target.name]:e.target.value})
     }
 
-    const [loggedInUser, setLoggedInUser] = useState({name:"", email:"", phone:"", address:""})
-
     const handleLoginSubmit = async(e)=>{
       e.preventDefault();
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
@@ -138,7 +136,6 @@ export const GlobalProvider = ({children})=> {
           theme: "light",
           });
           localStorage.setItem("token",parsedRes.token)
-          setLoggedInUser({name:parsedRes.user.name, email:parsedRes.user.email, phone:parsedRes.user.phone, address:parsedRes.user.address})
           setLoggedIn(true)
           
           router.push("/")
@@ -475,7 +472,7 @@ export const GlobalProvider = ({children})=> {
 
 
   return (
-    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router,  removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress,city, setCity,state, setState, handlePlaceOrder,fetchCityState, loggedInUser,myOrders, setMyOrders, getMyOrders, loading, showLoading, getOrder, getUser,updateUser, editMode, setEditMode })}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router,  removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress,city, setCity,state, setState, handlePlaceOrder,fetchCityState, myOrders, setMyOrders, getMyOrders, loading, showLoading, getOrder, getUser,updateUser, editMode, setEditMode })}>{children}</GlobalContext.Provider>
   )
 }
 

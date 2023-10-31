@@ -11,9 +11,19 @@ import { usePathname } from "next/navigation";
 const Navbar = () => {
 
   const {cart, setCart, subTotal, setSubTotal,addToCart, removeFromCart,clearCart, loggedIn, setLoggedIn, handleLogOut, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown} = useContext(GlobalContext);
+
   const [showCartIcon, setShowCartIcon] = useState(true)
 
   const pathname = usePathname();
+
+  //for first time mounting, check if loggedIn or not
+  useEffect(()=>{
+    if(localStorage.getItem('token')){
+      setLoggedIn(true)
+    } else{
+      setLoggedIn(false)
+    }
+  },[])
   useEffect(() => {
     try {
       if (localStorage.getItem("cart")) {
@@ -29,13 +39,6 @@ const Navbar = () => {
         setSubTotal(subt);
       }
   
-      // Check if the user is logged in and set the loggedIn state
-      const token = localStorage.getItem("token");
-      if (token) {
-        setLoggedIn(true);
-      } else {
-        setLoggedIn(false);
-      }
     } catch (error) {
       console.log(error);
       localStorage.clear();
@@ -94,10 +97,10 @@ const Navbar = () => {
 
         
         <div onMouseOver={()=>{pathname !=="/login" && setProfileDropDown(true)}} onMouseOut={()=>{setProfileDropDown(false)}}>
-        <span className={`absolute  top-3 ${loggedIn? "right-8 md:right-14 text-green-400" : "right-2 md:right-3 text-black"} text-xl md:text-4xl hover:text-cyan-600`}>
+        <span className={`absolute  top-3 ${loggedIn? "right-8 md:right-14 text-green-400" : "right-10 md:right-14 text-black"} text-xl md:text-4xl hover:text-cyan-600 `}>
         <MdAccountCircle />
         </span>
-        {!loggedIn && profileDropDown? (<div className="flex items-center justify-center bg-cyan-100 absolute top-6 right-3 sm:right-7 px-3 py-4 w-32 h-auto rounded-md">
+        {!loggedIn && profileDropDown? (<div className="flex items-center justify-center bg-cyan-100 absolute top-6 right-6 md:right-20 px-3 py-4 w-32 h-auto rounded-md">
 
         <Link href={"/login"}>
         <button className="text-xs  px-2 py-1 sm:bg-black md:text-base text-white bg-black focus:outline-none hover:bg-cyan-600 rounded" >

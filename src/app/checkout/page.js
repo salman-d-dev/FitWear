@@ -1,5 +1,5 @@
 "use client"
-import {React, useContext, useEffect} from 'react';
+import {React, useContext, useEffect, useState} from 'react';
 import { GlobalContext } from '../context/GlobalContext';
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import {BsFillBagCheckFill} from "react-icons/bs";
@@ -7,30 +7,50 @@ import NotAvailable from '../_components/NotAvailable';
 
 const Checkout = () => {
 
-  const {cart, addToCart, removeFromCart,subTotal, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, pin, setPin,city, state, handlePlaceOrder, fetchCityState, loggedInUser} = useContext(GlobalContext);
+  const {cart, addToCart, removeFromCart,subTotal, showPayment, setShowPayment, handlePlaceOrder,name, setName, email, setEmail,  phone, setPhone,pin,setPin,address, setAddress,city, state, fetchCityState, getUser} = useContext(GlobalContext);
 
-  const handlePinChange = (e)=>{
-    setPin(e.target.value);
-  }
+  useEffect(()=>{
+    if(!localStorage.getItem("token")){
+      router.push("/login")
+    }
+    const fetchUserData = async()=>{
+      const data = await getUser();
+      if(data){
+        if(data.name){
+          setName(data.name)
+        }
+        if(data.email){
+          setEmail(data.email)
+        }
+        if(data.phone){
+          setPhone(data.phone)
+        }
+        if(data.address){
+          setAddress(data.address)
+        }
+    }
+    }
+    fetchUserData();
+},[]);
 
-  useEffect(() => {
-    fetchCityState();
-  }, [pin]);
+useEffect(() => {
+  fetchCityState();
+}, [pin]);
 
   //for email validation
-  function isValidEmail(email) {
-    const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
-    return emailRegex.test(email);
-  }
+function isValidEmail(email) {
+const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+return emailRegex.test(email);
+}
 
-  //form validation
-  const errorsExist = ()=>{
-    if((name === "" || name === null || name === undefined)|| (email === "" || email === null || email === undefined)|| (address === "" || address === null || address === undefined || address.length < 5) || (phone === "" || phone === null || phone === undefined || phone.length !== 10) || (pin === "" || pin === null || pin === undefined || pin.length !== 6) || (city === "" || city === null || city === undefined) || (state === "" || state === null || state === undefined) || !isValidEmail(email)){
-      return true;
-    } else {
-      return false;
-    }
-  }
+//form validation
+const errorsExist = ()=>{
+if((name === "" || name === null || name === undefined)|| (email === "" || email === null || email === undefined)|| (address === "" || address === null || address === undefined || address.length < 5) || (phone === "" || phone === null || phone === undefined || phone.length !== 10) || (pin === "" || pin === null || pin === undefined || pin.length !== 6) || (city === "" || city === null || city === undefined) || (state === "" || state === null || state === undefined) || !isValidEmail(email)){
+  return true;
+} else {
+  return false;
+}
+}
 
   return (
     <div className='my-8 text-center text-4xl font-bold p-4 relative'>
@@ -43,27 +63,27 @@ const Checkout = () => {
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="name" className="leading-7 text-sm text-gray-600">Name</label>
-        <input value={loggedInUser.name? loggedInUser.name : name} placeholder='Full Name' onChange={(e)=>{setName(e.target.value)}}  type="name" id="name" name="name" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
+        <input readOnly value={name} placeholder='Full Name'type="name" id="name" name="name" className="w-full  rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal bg-slate-200"/>
         </div>
       <div className=" m-4 w-1/2">
         <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-        <input value={loggedInUser.email? loggedInUser.email : email} placeholder="Please enter you email" onChange={(e)=>{setEmail(e.target.value)}}type="email" id="email" name="email" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
+        <input readOnly value={email} placeholder="Please enter you email" type="email" id="email" name="email" className="w-full  rounded border border-gray-300  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal bg-slate-200"/>
         </div>
 
       </div>
       <div className='px-4 bg-slate-50 rounded-lg'>
         <label htmlFor="address" className="leading-7 text-sm text-gray-600">Locality</label>
-        <textarea value={loggedInUser?.address} placeholder='Building / Lane / Locality' onChange={(e)=>{setAddress(e.target.value)}} id="address" name="address" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out placeholder:font-normal"></textarea>
+        <textarea value={address} placeholder='Building / Lane / Locality' onChange={(e)=>{setAddress(e.target.value)}} id="address" name="address" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out placeholder:font-normal"></textarea>
       </div>
 
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="phone" className="leading-7 text-sm text-gray-600">Phone</label>
-        <input value={loggedInUser?.phone} placeholder="Your 10 digit phone number" onChange={(e)=>{setPhone(e.target.value)}} type="number"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-medium appearance-none"/>
+        <input value={phone} placeholder="Your 10 digit phone number" onChange={(e)=>{setPhone(e.target.value)}} type="number"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-medium appearance-none"/>
         </div>
       <div className=" m-4 w-1/2">
       <label htmlFor="pinCode" className="leading-7 text-sm text-gray-600">Pin Code</label>
-        <input value={pin} placeholder='Postal Index Number' onChange={handlePinChange} type="number" id="pinCode" name="pinCode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
+        <input value={pin} placeholder='Postal Index Number' onChange={(e)=>{setPin(e.target.value)}} type="number" id="pinCode" name="pinCode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
         </div>
 
       </div>
