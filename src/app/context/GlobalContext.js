@@ -81,6 +81,8 @@ export const GlobalProvider = ({children})=> {
   const router = useRouter();
   const handleLogOut = ()=>{
     setLoggedIn(false);
+    setCart({})
+    saveCart({})
     localStorage.removeItem("token");
     localStorage.removeItem("cart");
 
@@ -427,10 +429,11 @@ export const GlobalProvider = ({children})=> {
   const getUser = async()=>{
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`,{
-        method:"GET",
+        method:"POST",
         headers:{
-          'token': localStorage.getItem('token')
-        }
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({token:localStorage.getItem('token')})
       });
       if(response.status === 200){
         const userData = await response.json();

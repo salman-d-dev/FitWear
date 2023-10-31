@@ -2,13 +2,15 @@ import { NextResponse } from "next/server";
 const jwt = require('jsonwebtoken');
 import { connectToDatabase } from "@/app/middleware/connectDB";
 import userModel from "@/app/models/userModel";
-import {headers} from 'next/headers';
+// import {headers} from 'next/headers';
 
 
-export async function GET(req,res){
+export async function POST(req,res){
     try {
-        const headerList = headers();
-        const token = headerList.get('token');
+        // const headerList = headers();
+        const body = await req.json();
+        const {token} = body;
+        // const token = headerList.get('token');
         if(!token){
             return NextResponse.json("No token found!",{status:401});
         }
@@ -21,7 +23,7 @@ export async function GET(req,res){
         if(!user){
             return NextResponse.json("User not found!",{status:404});
         }
-        return NextResponse.json(user, {status:200});
+        return NextResponse.json({name:user.name, email:user.email, address:user.address, phone:user.phone}, {status:200});
     } catch (error) {
         console.log(error)
     }
