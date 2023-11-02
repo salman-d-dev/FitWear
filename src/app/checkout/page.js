@@ -4,38 +4,50 @@ import { GlobalContext } from '../context/GlobalContext';
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import {BsFillBagCheckFill} from "react-icons/bs";
 import NotAvailable from '../_components/NotAvailable';
+import { toast } from 'react-toastify';
 
 const Checkout = () => {
 
-  const {cart, addToCart, removeFromCart,subTotal, showPayment, setShowPayment, handlePlaceOrder,name, setName, email, setEmail,  phone, setPhone,pin,setPin,address, setAddress,city, state, fetchCityState, getUser} = useContext(GlobalContext);
+  const {cart, addToCart, removeFromCart,subTotal, showPayment, setShowPayment, handlePlaceOrder,name, setName, email, setEmail,  phone, setPhone,address, setAddress,fetchCityState, getUser,router, updateUser} = useContext(GlobalContext);
 
   useEffect(()=>{
     if(!localStorage.getItem("token")){
+      toast.warn("Please Login to place order", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
       router.push("/login")
+    } else{
+      const fetchUserData = async()=>{
+        const data = await getUser();
+        if(data){
+          if(data.name){
+            setName(data.name)
+          }
+          if(data.email){
+            setEmail(data.email)
+          }
+          if(data.phone){
+            setPhone(data.phone)
+          }
+          if(data.address){
+            setAddress(data.address)
+          }
+      }
+      }
+      fetchUserData();
     }
-    const fetchUserData = async()=>{
-      const data = await getUser();
-      if(data){
-        if(data.name){
-          setName(data.name)
-        }
-        if(data.email){
-          setEmail(data.email)
-        }
-        if(data.phone){
-          setPhone(data.phone)
-        }
-        if(data.address){
-          setAddress(data.address)
-        }
-    }
-    }
-    fetchUserData();
 },[]);
 
 useEffect(() => {
   fetchCityState();
-}, [pin]);
+}, [address.pincode]);
 
   //for email validation
 function isValidEmail(email) {
@@ -43,15 +55,18 @@ const emailRegex = /^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 return emailRegex.test(email);
 }
 
-//form validation
-const errorsExist = ()=>{
-if((name === "" || name === null || name === undefined)|| (email === "" || email === null || email === undefined)|| (address === "" || address === null || address === undefined || address.length < 5) || (phone === "" || phone === null || phone === undefined || phone.length !== 10) || (pin === "" || pin === null || pin === undefined || pin.length !== 6) || (city === "" || city === null || city === undefined) || (state === "" || state === null || state === undefined) || !isValidEmail(email)){
-  return true;
-} else {
-  return false;
-}
-}
+  //form validation
+  const errorsExist = ()=>{
+    if((name === "" || name === null || name === undefined)|| (email === "" || email === null || email === undefined)|| (address.locality === "" || address.locality === null || address.locality === undefined || address.locality.length < 5) || (phone === "" || phone === null || phone === undefined || phone.length !== 10) || (address.pincode === "" || address.pincode === null || address.pincode === undefined || address.pincode.length !== 6) || (address.city === "" || address.city === null || address.city === undefined) || (address.state === "" || address.state === null || address.state === undefined) || !isValidEmail(email)){
+      return true;
+    } else {
+      return false;
+    }
+  }
 
+  const handleAddressChange =(e)=>{
+    setAddress({...address, [e.target.name]: e.target.value})
+  }
   return (
     <div className='my-8 text-center text-4xl font-bold p-4 relative'>
       <h1 className='my-4'>
@@ -73,29 +88,29 @@ if((name === "" || name === null || name === undefined)|| (email === "" || email
       </div>
       <div className='px-4 bg-slate-50 rounded-lg'>
         <label htmlFor="address" className="leading-7 text-sm text-gray-600">Locality</label>
-        <textarea value={address} placeholder='Building / Lane / Locality' onChange={(e)=>{setAddress(e.target.value)}} id="address" name="address" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out placeholder:font-normal"></textarea>
+        <textarea value={address.locality} placeholder='Building / Lane / Locality' onChange={handleAddressChange} id="address" name="locality" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out placeholder:font-normal"></textarea>
       </div>
 
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="phone" className="leading-7 text-sm text-gray-600">Phone</label>
-        <input value={phone} placeholder="Your 10 digit phone number" onChange={(e)=>{setPhone(e.target.value)}} type="number"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-medium appearance-none"/>
+        <input value={phone} placeholder="Your 10 digit phone number" onChange={(e)=>{setPhone(e.target.value)}} type="text"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-medium appearance-none"/>
         </div>
       <div className=" m-4 w-1/2">
-      <label htmlFor="pinCode" className="leading-7 text-sm text-gray-600">Pin Code</label>
-        <input value={pin} placeholder='Postal Index Number' onChange={(e)=>{setPin(e.target.value)}} type="number" id="pinCode" name="pinCode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
+      <label htmlFor="pincode" className="leading-7 text-sm text-gray-600">Pin Code</label>
+        <input value={address.pincode} placeholder='Postal Index Number' onChange={handleAddressChange} type="text" id="pinCode" name="pincode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
         </div>
 
       </div>
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="state" className="leading-7 text-sm text-gray-600">State</label>
-        <input value={state} type="state" id="state" name="state" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
+        <input value={address.state} type="state" id="state" name="state" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
         </div>
         
       <div className=" m-4 w-1/2">
       <label htmlFor="city" className="leading-7 text-sm text-gray-600">City</label>
-        <input value={city} type="text" id="city" name="city" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
+        <input value={address.city} type="text" id="city" name="city" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
         </div>
 
       </div>
@@ -133,6 +148,7 @@ if((name === "" || name === null || name === undefined)|| (email === "" || email
         <button disabled={errorsExist()} className="disabled:bg-slate-600 flex px-2 py-1 items-center justify-center text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded text-sm w-1/8" onClick={(e)=>{
           setShowPayment(true);
           handlePlaceOrder(e);
+          updateUser(name,address, phone);
           }}>
             <BsFillBagCheckFill className='block'/>Pay ₹{subTotal}</button> 
         </>)

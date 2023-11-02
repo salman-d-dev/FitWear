@@ -20,10 +20,17 @@ export async function POST(req, res) {
     await connectToDatabase();
 
     // Build an object with the fields you want to update
-    const updateFields = {};
+    let updateFields = {};
     if (name) updateFields.name = name;
     if (phone) updateFields.phone = phone;
-    if (address) updateFields.address = address;
+    if (address) {
+      updateFields.address = updateFields.address || {};
+      updateFields.address.locality = address?.locality;
+      updateFields.address.pincode = address?.pincode;
+      updateFields.address.city = address?.city;
+      updateFields.address.state = address?.state;
+    }
+    
 
     // Find and update the user with the specified fields
     const userUpdated = await userModel.findOneAndUpdate(
@@ -32,7 +39,7 @@ export async function POST(req, res) {
       { new: true } // To return the updated user
     );
     if(userUpdated){
-        return NextResponse.json("User updated successfully", { status: 200 });
+        return NextResponse.json(userUpdated, { status: 200 });
     }
     return NextResponse.json("Something went wrong",{status:400})
   } catch (error) {

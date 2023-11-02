@@ -7,49 +7,12 @@ import LoadingSpinner from "@/app/_components/LoadingSpinner";
 
 export default function Product({ params }) {
 
+  
+  const { addToCart,  gotProduct,setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes, selectedSize, setSelectedSize, setServiceable, router } = useContext(GlobalContext);
+
   const { slug } = params;
   const decodedSlug = decodeURIComponent(slug);
 
-
-  const checkServiceability = async () => {
-    const pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getpincodes`);
-    const pinJson = await pins.json();
-    if (pinJson.includes(pin)) {
-      setServiceable(true);
-      //show toast
-      toast.success('Yay! We deliver at your location!', {
-        position: "bottom-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
-
-    } else {
-      setServiceable(false);
-      //show toast
-      toast.warn('Sorry! We are unable to deliver there yet!', {
-        position: "bottom-center",
-        autoClose: 1500,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
-    }
-  };
-
-  
-  const { addToCart, pin, setPin, gotProduct,setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes, selectedSize, setSelectedSize, serviceable, setServiceable, router } = useContext(GlobalContext);
-
-  const handlePinChange = (e) => {
-    setPin(e.target.value);
-  };
 
   useEffect(() => {
     const getData = async () => {
@@ -82,9 +45,45 @@ export default function Product({ params }) {
     
   }, []);
 
-  
+  const [pin, setPin] = useState("")
+
+  const checkServiceability = async () => {
+    const pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getpincodes`);
+    const pinJson = await pins.json();
+    if (pinJson.includes(pin)) {
+      setServiceable(true);
+      //show toast
+      toast.success('Yay! We deliver at your location!', {
+        position: "bottom-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+
+    } else {
+      setServiceable(false);
+      setPin("")
+      //show toast
+      toast.warn('Sorry! We are unable to deliver there yet!', {
+        position: "bottom-center",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+    }
+  };
 
   const handleBuyNow = ()=>{
+    //if logged In
+    if(localStorage.getItem('token')){
 
     addToCart(
       gotProduct.variants ? gotProduct.variants[selectedColor][selectedSize].slug : gotProduct.product.slug,
@@ -98,6 +97,19 @@ export default function Product({ params }) {
       gotProduct.variants? selectedColor : null
     );
       router.push("/checkout");
+    } else {
+      router.push("/login")
+      toast.warn("Please Login to place order", {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      })
+    }
   };
 
   // Conditional rendering, only render when gotProduct is available
@@ -108,8 +120,8 @@ return(
   } else {
 
   return (
-    <section className="text-gray-600 body-font overflow-hidden">
-      <div className="container px-5 py-16 mx-auto">
+    <section className="text-gray-600 body-font overflow-hidden md:min-h-screen">
+      <div className="px-5 py-10 mx-auto">
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <img
             alt="ecommerce"
@@ -227,9 +239,9 @@ return(
             </div>
             <div className="pin mt-6 flex space-x-2 text-sm">
               <input
-                type="text"
+                type="text" value={pin}
                 className="mx-2 border-2 border-purple-600 rounded-md p-2"
-                onChange={handlePinChange}
+                onChange={(e)=>{setPin(e.target.value)}}
                 placeholder="Enter area PIN code"
               />
               <button

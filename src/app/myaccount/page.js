@@ -1,5 +1,5 @@
 "use client"
-import {useEffect,useContext} from 'react'
+import {useEffect,useContext, useState} from 'react'
 import { GlobalContext } from '../context/GlobalContext';
 import {AiOutlineEdit} from 'react-icons/ai';
 import UserProfile from '../_components/UserProfile';
@@ -9,7 +9,9 @@ const MyAccount = () => {
     
 
     
-    const { getUser, name, setName, email, setEmail,  phone, setPhone,pin,setPin,address, setAddress,city, state,  fetchCityState, updateUser, editMode, setEditMode, router} = useContext(GlobalContext);
+    const { getUser, name, setName, email, setEmail,  phone, setPhone,address, setAddress,  fetchCityState, updateUser, editMode, setEditMode, router} = useContext(GlobalContext);
+
+    const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(()=>{
         if(!localStorage.getItem("token")){
@@ -30,6 +32,9 @@ const MyAccount = () => {
             if(data.address){
               setAddress(data.address)
             }
+            if(data.isAdmin){
+              setIsAdmin(true);
+            }
         }
         }
         fetchUserData();
@@ -37,7 +42,11 @@ const MyAccount = () => {
 
     useEffect(() => {
       fetchCityState();
-    }, [pin]);
+    }, [address.pincode]);
+
+    useEffect(()=>{
+      console.log(address);
+    },[address])
 
       //for email validation
   function isValidEmail(email) {
@@ -47,11 +56,15 @@ const MyAccount = () => {
 
   //form validation
   const errorsExist = ()=>{
-    if((name === "" || name === null || name === undefined)|| (email === "" || email === null || email === undefined)|| (address === "" || address === null || address === undefined || address.length < 5) || (phone === "" || phone === null || phone === undefined || phone.length !== 10) || (pin === "" || pin === null || pin === undefined || pin.length !== 6) || (city === "" || city === null || city === undefined) || (state === "" || state === null || state === undefined) || !isValidEmail(email)){
+    if((name === "" || name === null || name === undefined)|| (email === "" || email === null || email === undefined)|| (address.locality === "" || address.locality === null || address.locality === undefined || address.locality.length < 5) || (phone === "" || phone === null || phone === undefined || phone.length !== 10) || (address.pincode === "" || address.pincode === null || address.pincode === undefined || address.pincode.length !== 6) || (address.city === "" || address.city === null || address.city === undefined) || (address.state === "" || address.state === null || address.state === undefined) || !isValidEmail(email)){
       return true;
     } else {
       return false;
     }
+  }
+
+  const handleAddressChange =(e)=>{
+    setAddress({...address, [e.target.name]: e.target.value})
   }
 
   return (
@@ -60,7 +73,7 @@ const MyAccount = () => {
         Account Info
       </h1>
       {!editMode? (
-        <UserProfile/>
+        <UserProfile isAdmin={isAdmin}/>
       ) : (<>
 
       <div className='text-left mt-6 text-xl px-4 flex items-center'>
@@ -82,32 +95,32 @@ const MyAccount = () => {
       </div>
       <div className='px-4 bg-slate-50 rounded-lg'>
         <label htmlFor="address" className="leading-7 text-sm text-gray-600">Locality</label>
-        <textarea value={address} placeholder='Building / Lane / Locality' onChange={(e)=>{setAddress(e.target.value)}} id="address" name="address" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out placeholder:font-normal"></textarea>
+        <textarea value={address.locality} placeholder='Building / Lane / Locality' onChange={handleAddressChange} id="address" name="locality" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out placeholder:font-normal"></textarea>
       </div>
 
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="phone" className="leading-7 text-sm text-gray-600">Phone</label>
-        <input value={phone} placeholder="Your 10 digit phone number" onChange={(e)=>{setPhone(e.target.value)}} type="number"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-medium appearance-none"/>
+        <input value={phone} placeholder="Your 10 digit phone number" onChange={(e)=>{setPhone(e.target.value)}} type="text"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-medium appearance-none"/>
         </div>
       <div className=" m-4 w-1/2">
       <label htmlFor="pinCode" className="leading-7 text-sm text-gray-600">Pin Code</label>
-        <input value={pin} placeholder='Postal Index Number' onChange={(e)=>{setPin(e.target.value)}} type="number" id="pinCode" name="pinCode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
+        <input value={address.pincode} placeholder='Postal Index Number' onChange={handleAddressChange} type="text" id="pinCode" name="pincode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
         </div>
 
       </div>
       <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
       <div className=" m-4 w-1/2">
         <label htmlFor="state" className="leading-7 text-sm text-gray-600">State</label>
-        <input value={state} type="state" id="state" name="state" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
+        <input value={address.state} type="state" id="state" name="state" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
         </div>
         
       <div className=" m-4 w-1/2">
       <label htmlFor="city" className="leading-7 text-sm text-gray-600">City</label>
-        <input value={city} type="text" id="city" name="city" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
+        <input value={address.city} type="text" id="city" name="city" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
         </div>
       </div>
-        <div><button disabled={errorsExist()} onClick={()=>{updateUser(name,`${address} ${state} ${city} ${pin}`, phone); setEditMode(false)}} className="flex mx-auto mt-6 text-white bg-black border-0 py-2 px-2 focus:outline-none hover:bg-slate-800 rounded text-sm items-center disabled:bg-gray-400">Update</button></div>
+        <div><button disabled={errorsExist()} onClick={()=>{updateUser(name,address, phone); setEditMode(false)}} className="flex mx-auto mt-6 text-white bg-black border-0 py-2 px-2 focus:outline-none hover:bg-slate-800 rounded text-sm items-center disabled:bg-gray-400">Update</button></div>
       </>)}
 
     </div>

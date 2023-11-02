@@ -136,7 +136,7 @@ var Form = function () {
         <Grid item xs={12} lg={12}>
           <BaseCard title="Add Product" >
             <>
-            <form>
+            <form onSubmit={handlePushProduct}>
             <Stack spacing={3}>
             
             {/* set tabindex and ref for non interactive elements likw like div, seciton etc */}
@@ -191,7 +191,7 @@ var Form = function () {
               <TextField type='text' name='availableQty' value={product.availableQty} onChange={handleFormChange} id="name-basic" label="Quantity"  variant="outlined" />
             </Stack>
             <br />
-            <Button disabled={!(product.title && product.slug && product.description && product.category && product.price && product.availableQty)} className='bg-[#03c9d7] text-white hover:bg-black disabled:bg-teal-800 ' onClick={handlePushProduct}>
+            <Button disabled={!(product.title && product.slug && product.description && product.category && product.price && product.availableQty)} className='bg-[#03c9d7] text-white hover:bg-black disabled:bg-teal-800 ' type='submit'>
               Add
             </Button>
             <Button className='bg-[#03c9d7] text-white hover:bg-black ml-4' onClick={handleClear}>

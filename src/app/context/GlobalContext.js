@@ -242,7 +242,6 @@ export const GlobalProvider = ({children})=> {
 
   //product slug page
 
-  const [pin, setPin] = useState("");
   const [serviceable, setServiceable] = useState(false)
   const [gotProduct, setGotProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null);
@@ -256,25 +255,21 @@ export const GlobalProvider = ({children})=> {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
-  const [address, setAddress] = useState("")
-  const [city, setCity] = useState("")
-  const [state, setState] = useState("")
+  const [address, setAddress] = useState({locality:"", pincode:"",city:"",state:""})
 
   const fetchCityState = async () => {
-    if (pin.length === 6) {
+    if (address.pincode && address.pincode.length === 6) {
       // fetch data for city and state
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getpincodes/getcitystate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ pincode: pin }),
+        body: JSON.stringify({pincode:address.pincode}),
       });
       if (response.status === 200) {
         const cityStateData = await response.json();
-        setCity(cityStateData[0]);
-        setState(cityStateData[1]);
-        // return cityStateData;
+        setAddress({...address, city: cityStateData[0], state: cityStateData[1]});
       } else if (response.status=== 404){
           //show toast
           toast.error("This pin is not serviceable!", {
@@ -289,8 +284,8 @@ export const GlobalProvider = ({children})=> {
             })
       }
     } else {
-      setCity("")
-      setState("")
+      setAddress({...address, city:"", state:""});
+
     }
   };
 
@@ -311,7 +306,7 @@ export const GlobalProvider = ({children})=> {
         email: email,
         orderID: orderID,
         cart: cart,
-        address: `${address} ${city} ${state} ${pin}`,
+        address: `${address.locality} ${address.city} ${address.state} ${address.pincode}`,
         subTotal: subTotal,
       };
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/placeorder`, {
@@ -391,19 +386,7 @@ export const GlobalProvider = ({children})=> {
       body: JSON.stringify({token:localStorage.getItem('token')}),
     });
     if(response.status === 200){
-      //show toast
-      toast.success('Found Orders!', {
-        position: "bottom-center",
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        });
         return await response.json()
-        
     }
   }
 
@@ -426,53 +409,53 @@ export const GlobalProvider = ({children})=> {
   const getUser = async()=>{
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`,{
-        method:"POST",
+        method:"GET",
         headers:{
-          'Content-Type': 'application/json'
+          'token': localStorage.getItem('token')
         },
-        body: JSON.stringify({token:localStorage.getItem('token')})
       });
       if(response.status === 200){
         const userData = await response.json();
         return userData;
       }
-      
     } catch (error) {
       console.log(error)
     }
   }
 
   const updateUser = async(name, address, phone)=>{
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`,{
-        method:"POST",
-        headers:{
-          'token': localStorage.getItem('token')
-        },
-        body: JSON.stringify({name:name, address: address, phone: phone})
-      });
-      if(response.status === 200){
-        //show toast
-        toast.success('Updated Sucessfully!', {
-          position: "bottom-center",
-          autoClose: 2000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          });
-        setEditMode(false);
+    if(name && address && phone){
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`,{
+          method:"POST",
+          headers:{
+            'token': localStorage.getItem('token')
+          },
+          body: JSON.stringify({name:name, address: address, phone: phone})
+        });
+        if(response.status === 200){
+          //show toast
+          toast.success('Updated Sucessfully!', {
+            position: "bottom-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+          setEditMode(false);
+        }
+      } catch (error) {
+        console.log(error)
       }
-    } catch (error) {
-      console.log(error)
     }
   }
 
 
   return (
-    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router,  removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, pin, setPin, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress,city, setCity,state, setState, handlePlaceOrder,fetchCityState, myOrders, setMyOrders, getMyOrders, loading, showLoading, getOrder, getUser,updateUser, editMode, setEditMode })}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router,  removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, handlePlaceOrder,fetchCityState, myOrders, setMyOrders, getMyOrders, loading, showLoading, getOrder, getUser,updateUser, editMode, setEditMode })}>{children}</GlobalContext.Provider>
   )
 }
 

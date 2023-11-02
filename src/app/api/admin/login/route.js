@@ -20,7 +20,7 @@ export async function POST(NextRequest, res){
                 return NextResponse.json({error:"Incorrect Password!"}, {status:401 })
                 //pass is right, need to generate a jwt and send
             } else {
-                const userIDPayload = {user : foundUser.id};
+                const userIDPayload = {user : foundUser._id};
                 const secretKey = process.env.JWT_SECRET;
                 const token = await jwt.sign(userIDPayload , secretKey, {expiresIn:"10h"}) //will expire after 10h
                 return NextResponse.json({"admin-token":token, dev:foundUser.name},{status:200})
