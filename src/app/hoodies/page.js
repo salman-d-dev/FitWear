@@ -88,7 +88,6 @@ const Hoodies = async() => {
                   <h2 className="text-gray-900 title-font text-lg font-medium">{products[key].title}</h2>
                   <p className="mt-1">₹{products[key].price}</p>
 
-                  {/* We could have used map function here too for the size */}
                   <div className="my-1">
                     {products[key].size.includes('S') && <span className='border border-slate-600 px-1 mx-1'>S</span>}
                     {products[key].size.includes('M') && <span className='border border-slate-600 px-1 mx-1'>M</span>}
@@ -101,7 +100,7 @@ const Hoodies = async() => {
                     {products[key].color.length > 0 && (
                             <div className="my-1">
                                 {products[key].color.map((col) => (
-                                <button key={col} style={{ backgroundColor: col }} className="ml-1 rounded-full w-5 h-5 focus:outline-none "></button>
+                                <button key={col} style={{ backgroundColor: col }} className="border-2 border-black ml-1 rounded-full w-5 h-5 focus:outline-none "></button>
                                 ))}
                             </div>
                           )}

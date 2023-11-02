@@ -13,7 +13,7 @@ var __assign = (this && this.__assign) || function () {
 import { Paper, Grid, Stack, TextField, FormControl, Button,Select , InputLabel, MenuItem} from '@mui/material';
 import BaseCard from '@/app/(adminaccess)/admin/dashboard/components/shared/BaseCard';
 import { createTheme, styled } from '@mui/material/styles';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import ProductCard from './ProductCard';
 
 import {toast } from "react-toastify";
@@ -38,6 +38,7 @@ var Form = function () {
                                         "price":"",
                                         "availableQty":""});
 
+
     const handleFormChange = (e) => {
       const { name, value } = e.target;
       if (name === 'category' && (value === 'Mugs' || value === 'Stickers')) {
@@ -51,19 +52,11 @@ var Form = function () {
     const categories = ['T-Shirts', 'Hoodies', 'Mugs', 'Stickers'];
     const sizes = ["XS", "S", "M","L","XL","C"];
 
+    const formRef = useRef();
     const handlePushProduct = (e)=>{
       e.preventDefault();
       if(product.title && product.slug && product.description && product.category && product.price && product.availableQty){
         setProducts([...products, product]);
-        setProduct({"title":"",
-        "slug":"",
-        "description":"",
-        "img":"",
-        "category":"",
-        "size":"",
-        "color":"",
-        "price":"",
-        "availableQty":""})
       }
       toast.success('Product Added!', {
         position: "bottom-center",
@@ -75,6 +68,20 @@ var Form = function () {
         progress: undefined,
         theme: "light",
         });
+        formRef.current.focus()
+
+    }
+
+    const handleClear = ()=>{
+      setProduct({"title":"",
+        "slug":"",
+        "description":"",
+        "img":"",
+        "category":"",
+        "size":"",
+        "color":"",
+        "price":"",
+        "availableQty":""})
     }
 
 
@@ -132,7 +139,8 @@ var Form = function () {
             <form>
             <Stack spacing={3}>
             
-              <TextField name='title' value={product.title} onChange={handleFormChange} id="name-basic" label="Title" variant="outlined" />
+            {/* set tabindex and ref for non interactive elements likw like div, seciton etc */}
+              <TextField tabIndex={0} ref={formRef} name='title' value={product.title} onChange={handleFormChange} id="name-basic" label="Title" variant="outlined"  />
               <TextField name='slug' value={product.slug} onChange={handleFormChange} id="name-basic" label="Slug" variant="outlined" />
               <TextField name='description' value={product.description} onChange={handleFormChange} id="outlined-multiline-static" label="Description" multiline rows={4} />
               <TextField name='img' value={product.img} onChange={handleFormChange} id="name-basic" label="Image URL (Optional)"  variant="outlined" />
@@ -179,18 +187,21 @@ var Form = function () {
               <TextField type='text' name='color' value={product.color.toLocaleLowerCase()} onChange={handleFormChange} id="name-basic" label="Color (Optional)"  variant="outlined" /> 
               </>) : (
                 null)}
-              <TextField type='number' name='price' value={product.price} onChange={handleFormChange} id="name-basic" label="Price"  variant="outlined" />
-              <TextField type='number' name='availableQty' value={product.availableQty} onChange={handleFormChange} id="name-basic" label="Quantity"  variant="outlined" />
+              <TextField type='text' name='price' value={product.price} onChange={handleFormChange} id="name-basic" label="Price"  variant="outlined" />
+              <TextField type='text' name='availableQty' value={product.availableQty} onChange={handleFormChange} id="name-basic" label="Quantity"  variant="outlined" />
             </Stack>
             <br />
             <Button disabled={!(product.title && product.slug && product.description && product.category && product.price && product.availableQty)} className='bg-[#03c9d7] text-white hover:bg-black disabled:bg-teal-800 ' onClick={handlePushProduct}>
               Add
             </Button>
+            <Button className='bg-[#03c9d7] text-white hover:bg-black ml-4' onClick={handleClear}>
+              Clear
+            </Button>
             </form>
             {/* Product Card */}
             {/* Optional chaining operator?. */}
             {products?.length>0 &&(<div className="flex justify-center items-center flex-col">
-            <div className='container flex flex-wrap gap-2 items-center justify-center md:justify-start p-2'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-2'>
               {products.map((productItem)=>{
                 return (
                   <div key={productItem.slug}>

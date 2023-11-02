@@ -28,10 +28,21 @@ const Login = () => {
       if(response.status===200){
         const parsedResponse = await response.json();
         localStorage.setItem('admin-token', parsedResponse["admin-token"])
+        toast.success('Logged In!', {
+          position: "bottom-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         router.push("/admin/dashboard")
+
         
       } else if(response.status===404){
-        toast.error('No an admin!', {
+        toast.error('Not an admin!', {
             position: "bottom-center",
             autoClose: 2000,
             hideProgressBar: true,
