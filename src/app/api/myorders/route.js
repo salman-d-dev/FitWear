@@ -9,7 +9,7 @@ export async function POST(req,res){
     const secretKey = process.env.JWT_SECRET;
     const deCodedToken = await jwt.verify(token, secretKey);
     if(!deCodedToken){
-        return NextResponse.json({error:"Token verification failed"},{status:407})
+        return NextResponse.json({error:"Token verification failed"},{status:401})
     }
     const userEmail = deCodedToken.user;
     if(userEmail){

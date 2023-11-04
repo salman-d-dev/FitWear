@@ -17,7 +17,7 @@ export async function POST(NextRequest, res){
             //compare pass
             const comparePass = await bcryptjs.compare(password, foundUser.password)
             if(!comparePass){
-                return NextResponse.json({error:"Incorrect Password!"}, {status:407 })
+                return NextResponse.json({error:"Incorrect Password!"}, {status:401 })
                 //pass is right, need to generate a jwt and send
             } else {
                 const userIDPayload = {user : foundUser.email};

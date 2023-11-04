@@ -9,7 +9,7 @@ const ProductList = ({category}) => {
     const {products, setProducts} = useContext(GlobalContext);
     useEffect(()=>{
         const fetchProducts = async()=>{
-            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/getproducts`,{
+            const response = await fetch(`/api/admin/getproducts`,{
                 method:"POST",
                 headers:{
                   "Content-Type": "application/json",
@@ -27,7 +27,7 @@ const ProductList = ({category}) => {
     },[category]);
 
     const handleRemoveProduct = async(id)=>{
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/removeproduct`,{
+      const response = await fetch(`/api/admin/removeproduct`,{
         method:"POST",
         headers:{
           "Content-Type": "application/json",

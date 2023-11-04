@@ -18,7 +18,7 @@ export default function Product({ params }) {
     const getData = async () => {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_HOST}/api/getproducts/${decodedSlug}`
+          `/api/getproducts/${decodedSlug}`
         );
 
         if (!response.ok) {
@@ -48,7 +48,7 @@ export default function Product({ params }) {
   const [pin, setPin] = useState("")
 
   const checkServiceability = async () => {
-    const pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getpincodes`);
+    const pins = await fetch(`/api/getpincodes`);
     const pinJson = await pins.json();
     if (pinJson.includes(pin)) {
       setServiceable(true);

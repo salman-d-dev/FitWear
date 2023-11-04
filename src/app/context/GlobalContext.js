@@ -115,7 +115,7 @@ export const GlobalProvider = ({children})=> {
 
     const handleLoginSubmit = async(e)=>{
       e.preventDefault();
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/login`, {
+      const response = await fetch(`/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -152,7 +152,7 @@ export const GlobalProvider = ({children})=> {
           progress: undefined,
           theme: "light",
           });
-      } else if(response.status === 407){
+      } else if(response.status === 401){
           //show toast
         toast.error("Incorrect password!", {
           position: "bottom-center",
@@ -191,7 +191,7 @@ export const GlobalProvider = ({children})=> {
   const passMatch = user.password === user.cpassword;
   const handleSignupSubmit = async(e)=>{
     e.preventDefault();
-    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/signup`, {
+    const response = await fetch(`/api/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -260,7 +260,7 @@ export const GlobalProvider = ({children})=> {
   const fetchCityState = async () => {
     if (address.pincode && address.pincode.length === 6) {
       // fetch data for city and state
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getpincodes/getcitystate`, {
+      const response = await fetch(`/api/getpincodes/getcitystate`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -309,7 +309,7 @@ export const GlobalProvider = ({children})=> {
         address: `${address.locality} ${address.city} ${address.state} ${address.pincode}`,
         subTotal: subTotal,
       };
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/placeorder`, {
+      const response = await fetch(`/api/placeorder`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -378,7 +378,7 @@ export const GlobalProvider = ({children})=> {
   //my orders page
 
   const getMyOrders = async()=>{
-    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/myorders`, {
+    const response = await fetch(`/api/myorders`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -395,7 +395,7 @@ export const GlobalProvider = ({children})=> {
   //order page
   const getOrder = async(id) =>{
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/myorders/${id}`);
+      const response = await fetch(`/api/myorders/${id}`);
       return await response.json();
     } catch (error) {
       console.log(error)
@@ -408,7 +408,7 @@ export const GlobalProvider = ({children})=> {
 
   const getUser = async()=>{
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`,{
+      const response = await fetch(`/api/getuser`,{
         method:"GET",
         headers:{
           'token': localStorage.getItem('token')
@@ -426,7 +426,7 @@ export const GlobalProvider = ({children})=> {
   const updateUser = async(name, address, phone)=>{
     if(name && address && phone){
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`,{
+        const response = await fetch(`/api/updateuser`,{
           method:"POST",
           headers:{
             'token': localStorage.getItem('token')
@@ -461,7 +461,7 @@ export const GlobalProvider = ({children})=> {
 
 
   const fetchStock = async()=>{
-    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/getstock`,{
+    const response = await fetch(`/api/admin/getstock`,{
       method:"GET",
       headers:{
         "admin-token":localStorage.getItem("admin-token"),

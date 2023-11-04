@@ -10,7 +10,7 @@ var SalesOverview = function () {
     useEffect(()=>{
         const fetchSalesData = async()=>{
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/salesdata`,{
+                const response = await fetch(`/api/admin/salesdata`,{
                     method:"GET",
                     headers:{
                       "Content-Type": "application/json",

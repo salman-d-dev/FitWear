@@ -13,7 +13,7 @@ const AllOrders = () => {
     }
 
     const fetchAllOrders = async()=>{
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/getorders`,{
+      const response = await fetch(`/api/admin/getorders`,{
         method:"GET",
         headers:{
           "admin-token":localStorage.getItem("admin-token"),

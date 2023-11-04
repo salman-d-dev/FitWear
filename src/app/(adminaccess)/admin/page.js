@@ -18,7 +18,7 @@ const Login = () => {
         setTimeout(() => {
             setButtonDisabled(false)
         }, 4000);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/login`, {
+      const response = await fetch(`/api/admin/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
