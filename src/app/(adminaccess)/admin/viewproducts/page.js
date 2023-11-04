@@ -1,36 +1,23 @@
 "use client"
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProductList from "../dashboard/components/dashboard/ProductList";
+import { GlobalContext } from "@/app/context/GlobalContext";
 
 const ViewProducts = () => {
-  const [stock, setStock] = useState([0,0,0,0])
   const router = useRouter();
+  const {selectedCard, setSelectedCard, stock, fetchStock, products} = useContext(GlobalContext);
+
   useEffect(()=>{
     if(!localStorage.getItem('admin-token')){
       router.push('/admin')
     }
 
-    const fetchStock = async()=>{
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/getstock`,{
-        method:"GET",
-        headers:{
-          "admin-token":localStorage.getItem("admin-token"),
-          }
-        }
-      );
-      if(response.status === 200){
-        const parsedStock = await response.json();
-        setStock(parsedStock);
-      }
-    }
-
     fetchStock();
 
-  },[])
+  },[products])
 
-  const [selectedCard, setSelectedCard] = useState("T-Shirts")
   return (
     <div className="min-h-screen">
       <h1 className="text-center font-sans text-[1.5rem] font-semibold my-5">All Products</h1>

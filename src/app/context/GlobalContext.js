@@ -453,9 +453,32 @@ export const GlobalProvider = ({children})=> {
     }
   }
 
+  //admin 
+  //view products 
+  const [selectedCard, setSelectedCard] = useState("T-Shirts");
+  const [stock, setStock] = useState([0,0,0,0]);
+  const [products, setProducts] = useState([]);
+
+
+  const fetchStock = async()=>{
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/getstock`,{
+      method:"GET",
+      headers:{
+        "admin-token":localStorage.getItem("admin-token"),
+        }
+      }
+    );
+    if(response.status === 200){
+      const parsedStock = await response.json();
+      setStock(parsedStock);
+    }
+  }
+
+
+
 
   return (
-    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router,  removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, handlePlaceOrder,fetchCityState, myOrders, setMyOrders, getMyOrders, loading, showLoading, getOrder, getUser,updateUser, editMode, setEditMode })}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={({cart, setCart, subTotal,setSubTotal, saveCart, clearCart, addToCart, router,  removeFromCart, loggedIn, setLoggedIn, handleLoginSubmit,handleDataChange ,handleLogOut, passMatch, handleSignupSubmit, user, showCart, setShowCart, toggleCart, profileDropDown, setProfileDropDown, gotProduct, setGotProduct, selectedColor, setSelectedColor,availableSizes, setAvailableSizes,selectedSize, setSelectedSize, serviceable, setServiceable, showPayment, setShowPayment, name, setName, email, setEmail,  phone, setPhone,address, setAddress, handlePlaceOrder,fetchCityState, myOrders, setMyOrders, getMyOrders, loading, showLoading, getOrder, getUser,updateUser, editMode, setEditMode, selectedCard, setSelectedCard, stock, setStock, fetchStock, products, setProducts })}>{children}</GlobalContext.Provider>
   )
 }
 

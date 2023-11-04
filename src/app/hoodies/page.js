@@ -1,70 +1,81 @@
-import React from 'react';
 import Link from 'next/link';
-
 import productModel from '../models/productModel';
 import { connectToDatabase } from '@/app/middleware/connectDB';
 
+
+// export const dynamic = 'force-dynamic';
+
+//fetch data only if request is sent again after atleast 5min
+export const revalidate = 300;
+
 const getHoodies = async()=> {
-      // Connect to the database
-      await connectToDatabase();
+  // Connect to the database
+  await connectToDatabase();
 
-      // Fetch all products
-      const products = await productModel.find({category:"Hoodies"});
+  // Fetch all products
+  const products = await productModel.find({category:"Hoodies"});
+    // Create an object to store t-shirts grouped by title
+    const hoodies = {};
   
-      // Create an object to store t-shirts grouped by title
-      const hoodies = {};
-  
-      // Loop through the products
-      for (let item of products) {
-        // If the title doesn't exist in hoodies, create a new entry
-        if (!hoodies[item.title]) {
-          hoodies[item.title] = JSON.parse(JSON.stringify(item));
-          hoodies[item.title].color = [];
-          hoodies[item.title].size = [];
-        }
-  
-        // Check if the product is available (availableQty > 0)
-        if (item.availableQty > 0) {
-          // Check if the color is not already in the array and add it
-          if (!hoodies[item.title].color.includes(item.color)) {
-            hoodies[item.title].color.push(item.color);
-          }
-  
-          // Check if the size is not already in the array and add it
-          if (!hoodies[item.title].size.includes(item.size)) {
-            hoodies[item.title].size.push(item.size);
-          }
-        }
+    // Loop through the products
+    for (let item of products) {
+      // If the title doesn't exist in hoodies, create a new entry
+      if (!hoodies[item.title]) {
+        hoodies[item.title] = JSON.parse(JSON.stringify(item));
+        hoodies[item.title].color = [];
+        hoodies[item.title].size = [];
       }
   
-      // Filter out colors and sizes with availableQty === 0
-      for (const title in hoodies) {
-        hoodies[title].color = hoodies[title].color.filter(
-          (color) =>
-            products.some(
-              (product) =>
-                product.title === title &&
-                product.color === color &&
-                product.availableQty > 0
-            )
-        );
+      // Check if the product is available (availableQty > 0)
+      if (item.availableQty > 0) {
+        // Check if the color is not already in the array and add it
+        if (!hoodies[item.title].color.includes(item.color)) {
+          hoodies[item.title].color.push(item.color);
+        }
   
-        hoodies[title].size = hoodies[title].size.filter(
-          (size) =>
-            products.some(
-              (product) =>
-                product.title === title &&
-                product.size === size &&
-                product.availableQty > 0
-            )
-        );
+        // Check if the size is not already in the array and add it
+        if (!hoodies[item.title].size.includes(item.size)) {
+          hoodies[item.title].size.push(item.size);
+        }
       }
-      return hoodies;
-}
+    }
+  
+    // Filter out colors and sizes with availableQty === 0
+    for (const title in hoodies) {
+      hoodies[title].color = hoodies[title].color.filter(
+        (color) =>
+          products.some(
+            (product) =>
+              product.title === title &&
+              product.color === color &&
+              product.availableQty > 0
+          )
+      );
+  
+      hoodies[title].size = hoodies[title].size.filter(
+        (size) =>
+          products.some(
+            (product) =>
+              product.title === title &&
+              product.size === size &&
+              product.availableQty > 0
+          )
+      );
+    }
+    return hoodies;
+  }
 
 
-const Hoodies = async() => {
+
+export default async function Hoodies ()  {
   const products = await getHoodies();
+  if(!products) {
+    return(
+      <h1>Error Fetching Products</h1>
+    )
+  }
+
+  
   return ( 
     <div className='p-2'>
       <section className="text-gray-600 body-font">
@@ -120,6 +131,6 @@ const Hoodies = async() => {
       </section>
     </div>
   )
+  
 }
 
-export default Hoodies;

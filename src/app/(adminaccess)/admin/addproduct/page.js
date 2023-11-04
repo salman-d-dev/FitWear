@@ -12,7 +12,6 @@ const AddProduct = () => {
   },[])
   return (
     <div className='min-h-screen'>
-      
       <Form/>
     </div>
   )

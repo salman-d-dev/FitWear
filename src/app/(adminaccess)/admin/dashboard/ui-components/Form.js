@@ -96,7 +96,7 @@ var Form = function () {
       setTimeout(() => {
         setDisableButton(false)
       }, 4000);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/addproducts`,{
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/admin/addproducts`,{
         method:"POST",
         headers:{
           "Content-Type": "application/json",

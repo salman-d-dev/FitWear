@@ -4,7 +4,7 @@ import { connectToDatabase } from "@/app/middleware/connectDB";
 import userModel from "@/app/models/userModel";
 import {headers} from 'next/headers';
 
-//disable dynamic header error
+// //disable dynamic header error
 export const dynamic = "force-dynamic";
 
 export async function GET(req,res){

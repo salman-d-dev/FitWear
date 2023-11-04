@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 import orderModel from "@/app/models/orderModel";
 
 //disable dynamic header error
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 
 export async function GET(){

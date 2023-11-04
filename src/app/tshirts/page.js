@@ -4,6 +4,9 @@ import Link from 'next/link';
 import productModel from '../models/productModel';
 import { connectToDatabase } from '@/app/middleware/connectDB';
 
+//fetch data only if request is sent again after atleast 5min
+export const revalidate = 300;
+
 const getTshirts = async()=> {
       // Connect to the database
       await connectToDatabase();
