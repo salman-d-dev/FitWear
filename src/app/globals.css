@@ -18,7 +18,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .slick-list{
   padding-top: 10px !important;
-  padding-bottom: 10px !important;
+  padding-bottom: 20px !important;
 }
 .slick-slide > div {
   margin: 0 10px;

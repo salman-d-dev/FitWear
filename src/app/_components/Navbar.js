@@ -56,7 +56,7 @@ const Navbar = () => {
 
   return (
       <nav>
-    <div className=" flex flex-col md:flex-row justify-center md:justify-between items-center  py-2 shadow-md sticky top-0 z-50 bg-slate-200">
+    <div className=" flex flex-col md:flex-row justify-center md:justify-between items-center  py-2 shadow-md sticky top-0 z-50 bg-slate-200 dark:bg-gradient-to-r from-cyan-950 via-violet-950 to-purple-950 dark:shadow-cyan-700">
       <div className="logo mx-1">
         <Link href="/">
           <Image
@@ -71,22 +71,22 @@ const Navbar = () => {
       <div>
         <ul className="flex items-center space-x-4 font-bold md:text-l my-3 md:my-0 ">
           <Link href="/tshirts">
-            <li className="w-max text-black hover:text-cyan-600">T-shirts</li>
+            <li className="w-max text-black dark:text-white hover:text-cyan-600">T-shirts</li>
           </Link>
           <Link href="/hoodies">
-            <li className="w-max text-black hover:text-yellow-400">Hoodies</li>
+            <li className="w-max text-black dark:text-white hover:text-yellow-400">Hoodies</li>
           </Link>
           <Link href="/mugs">
-            <li className="w-max text-black hover:text-cyan-600">Mugs</li>
+            <li className="w-max text-black dark:text-white hover:text-cyan-600">Mugs</li>
           </Link>
           <Link href="/stickers">
-            <li className="w-max text-black hover:text-yellow-400">Stickers</li>
+            <li className="w-max text-black dark:text-white hover:text-yellow-400">Stickers</li>
           </Link>
         </ul>
       </div>
       <div className="flex">
         {showCartIcon? (<button
-          className="text-xl md:text-4xl absolute right-0 top-3 mx-3 text-black hover:text-cyan-600"
+          className="text-xl md:text-4xl absolute right-0 top-3 mx-3 text-black dark:text-white hover:text-cyan-600"
           onClick={toggleCart}
         >
           <AiOutlineShoppingCart />
@@ -97,10 +97,10 @@ const Navbar = () => {
 
         
         <div onMouseOver={()=>{pathname !=="/login" && setProfileDropDown(true)}} onMouseOut={()=>{setProfileDropDown(false)}}>
-        <span className={`absolute  top-3 ${loggedIn? "right-8 md:right-14 text-green-400" : "right-10 md:right-14 text-black"} text-xl md:text-4xl hover:text-cyan-600 `}>
+        <span className={`absolute  top-3 ${loggedIn? "right-8 md:right-14 text-green-400" : "right-10 md:right-14 text-black dark:text-white"} text-xl md:text-4xl hover:text-cyan-600 `}>
         <MdAccountCircle />
         </span>
-        {!loggedIn && profileDropDown? (<div className="flex items-center justify-center bg-cyan-100 absolute top-6 right-6 md:right-20 px-3 py-4 w-32 h-auto rounded-md">
+        {!loggedIn && profileDropDown? (<div className="flex items-center justify-center bg-cyan-100 dark:bg-slate-900 dark:border  absolute top-6 right-6 md:right-20 px-3 py-4 w-32 h-auto rounded-md">
 
         <Link href={"/login"}>
         <button className="text-xs  px-2 py-1 sm:bg-black md:text-base text-white bg-black focus:outline-none hover:bg-cyan-600 rounded" >
@@ -110,11 +110,11 @@ const Navbar = () => {
         </div>
         // edit the dropdown here
         ) : (profileDropDown && loggedIn && 
-        <div className="bg-cyan-300 absolute top-6 right-3 md:right-20 px-3 py-4 w-32 rounded-md">
+        <div className="bg-cyan-300 dark:bg-slate-900 dark:border absolute top-6 right-3 md:right-20 px-3 py-4 w-32 rounded-md">
       <ul>
-        <Link href={"/myaccount"}><li className="my-1 text-base text hover:text-blue-600 hover:font-bold">My Account</li></Link>
-        <Link href={"/myorders"}><li className="my-1 text-base text hover:text-blue-600 hover:font-bold">Orders</li></Link>
-        <li className="my-1 text-base cursor-pointer text hover:text-blue-600 hover:font-bold" onClick={handleLogOut}>Logout</li>
+        <Link href={"/myaccount"}><li className="my-1 text-base dark:text-white text hover:text-blue-600 hover:font-bold">My Account</li></Link>
+        <Link href={"/myorders"}><li className="my-1 text-base dark:text-white text hover:text-blue-600 hover:font-bold">Orders</li></Link>
+        <li className="my-1 text-base dark:text-white cursor-pointer text hover:text-blue-600 hover:font-bold" onClick={handleLogOut}>Logout</li>
       </ul>
         </div>)}
         </div>
@@ -122,26 +122,26 @@ const Navbar = () => {
       {
         showCart? (
 
-      <div className="overflow-y-scroll cartBar w-72 h-full fixed top-0 right-0 bg-cyan-100 p-10 px-8 z-50 ">
+      <div className="overflow-y-scroll cartBar w-72 h-full fixed top-0 right-0 bg-cyan-100 dark:bg-slate-800 p-10 px-8 z-50 dark:text-slate-200">
         <h2 className="font-bold text-xl text-center">Shopping Cart</h2>
-        <ol className="list-decimal font-semibold border-b border-gray-800">
-          {Object.keys(cart).length == 0 && <div className="my-4 font-bold text-center text-sm">
+        <ol className="list-decimal font-semibold border-b border-gray-800 dark:border-gray-200">
+          {Object.keys(cart).length == 0 && <div className="my-4 font-bold text-center text-sm dark:text-white">
             Your cart is Empty!
             </div>}
           {Object.keys(cart).map((k)=>{return <li key={k}>
             <div className="item flex">
-              <div className="w-2/3  font-semibold my-3">
+              <div className="w-2/3  font-semibold my-3 dark:text-white">
                 {cart[k].name}
               </div>
               <div className="w-1/3  flex items-center justify-center font-semibold">
-              <AiFillMinusCircle className="cursor-pointer mx-1 text-lg text-black" onClick={()=>{removeFromCart(k, 1 , cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}/>{cart[k].qty}<AiFillPlusCircle className="cursor-pointer mx-1 text-lg text-black" onClick={()=>{addToCart(k, 1 , cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}/>
+              <AiFillMinusCircle className="cursor-pointer mx-1 text-lg text-black dark:text-white" onClick={()=>{removeFromCart(k, 1 , cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}/>{cart[k].qty}<AiFillPlusCircle className="cursor-pointer mx-1 text-lg text-black dark:text-white" onClick={()=>{addToCart(k, 1 , cart[k].price, cart[k].name, cart[k].size, cart[k].variant)}}/>
               </div>
             </div>
           </li> })}
           
         </ol>
-        <div className="text-lg font-bold ">
-          Total: ₹{subTotal}
+        <div className="text-lg font-bold dark:text-white">
+          Total: <span className="dark:text-green-600">₹</span><span className="dark:text-yellow-200">{subTotal}</span>
         </div>
         <span className="absolute top-1.5 right-2.5 text-xl cursor-pointer text-indigo-800" onClick={toggleCart}>
           <AiFillCloseCircle />

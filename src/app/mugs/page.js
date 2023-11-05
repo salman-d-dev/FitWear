@@ -70,7 +70,7 @@ const Mugs = async() => {
   const products = await getMugs();
   return ( 
     <div className='p-2'>
-      <section className="text-gray-600 body-font">
+      <section className="text-gray-600 dark:text-gray-300 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
             
@@ -78,7 +78,7 @@ const Mugs = async() => {
             {Object.keys(products).map((key)=>{
               return <div key={products[key]._id}>
             <Link href={`product/${products[key].slug}`}>
-              <div className="p-2 border rounded-md shadow-lg">
+              <div className="py-2 px-4 border rounded-md shadow-lg dark:bg-gradient-to-tr from-gray-900 to-slate-800">
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"
@@ -87,8 +87,8 @@ const Mugs = async() => {
                   />
                 </div>
                 <div className="mt-2 text-center md:text-left">
-                  <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">{products[key].category}</h3>
-                  <h2 className="text-gray-900 title-font text-lg font-medium">{products[key].title}</h2>
+                  <h3 className="text-gray-500 dark:text-slate-300 text-xs tracking-widest title-font mb-1">{products[key].category}</h3>
+                  <h2 className="text-gray-900 dark:text-gray-100 title-font text-lg font-medium">{products[key].title}</h2>
                   <p className="mt-1">₹{products[key].price}</p>
 
                   {/* We could have used map function here too for the size */}

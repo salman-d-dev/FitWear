@@ -29,6 +29,7 @@ export default function Product({ params }) {
         const parseddata = await response.json();
         if(parseddata !== null && parseddata !== undefined){
           setGotProduct(parseddata);
+          console.log(parseddata)
           setSelectedColor(parseddata.product.color);
           setSelectedSize(parseddata.product.size);
           setAvailableSizes([parseddata.product.size]);
@@ -133,7 +134,7 @@ return(
               Fit Wear
             </h2>
 
-            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1 md:mb-10 md:mt-6">
   {gotProduct.product.title} {gotProduct.variants && (
             <>
               {selectedSize && `(${selectedSize} / `}
@@ -141,12 +142,12 @@ return(
               </>
             )}
             </h1>
-            <p className="leading-relaxed">{gotProduct.product.description}</p>
+            <p className="leading-relaxed my-4">{gotProduct.product.description}</p>
             <div className={`h-[1px] ${gotProduct.variants[selectedColor][selectedSize].availableQty === 0 ? "visible" : "hidden"}`}>
   <p className="text-red-500 italic text-sm">(This item is currently out of stock)</p>
 </div>
 
-  {gotProduct.variants && Object.keys(gotProduct.variants).length > 0 && selectedColor !== undefined && selectedColor !== null &&  selectedSize !== undefined && selectedSize !== null &&( 
+  {gotProduct.variants && gotProduct.product.size && gotProduct.product.color && Object.keys(gotProduct.variants).length > 0  && selectedColor !== undefined && selectedColor !== null &&  selectedSize !== undefined && selectedSize !== null &&( 
   <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
   <div className="flex">
     <span className="mr-3">Color</span>

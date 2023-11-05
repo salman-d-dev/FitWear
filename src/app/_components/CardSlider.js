@@ -43,9 +43,9 @@ const CardSlider = () => {
       ]
   };
   return (
-    <div className="my-4">
+    <div className="my-4 text-center">
      <Slider {...settings}>
-          <div className="border-2 border-gray-900 rounded-lg cursor-pointer homeCard">
+          <div className="border-2 border-gray-900 dark:border-gray-300 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500 rounded-lg  cursor-pointer homeCard">
             <div className="mb-4">
               <Image
                 src={"/shoppinggirl.jpg"}
@@ -54,7 +54,7 @@ const CardSlider = () => {
                 width={300} className="md:h-60 md:w-80 rounded-lg"
               />
             </div>
-            <h2 className="text-lg text-gray-900 font-bold title-font mb-2">
+            <h2 className="text-lg text-gray-900 dark:text-yellow-300 font-bold title-font mb-2">
               Express Your Style
             </h2>
             <p className="leading-relaxed text-base text-center">
@@ -66,17 +66,17 @@ const CardSlider = () => {
           </div>
         
         
-          <div className="border-2 border-gray-900 rounded-lg shadow-lg cursor-pointer homeCard">
+          <div className="border-2 border-gray-900 dark:border-gray-300 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500 rounded-lg shadow-lg cursor-pointer homeCard">
             <div className=" rounded-full mb-4">
               <Image
                 src={"/mug.jpg"}
                 alt="Mug.svg"
                 height={200}
-                width={300} className="md:h-60 md:w-80 rounded-lg"
+                width={300} className="md:h-60 md:w-80 rounded-lg dark:brightness-75"
               />
               {/* /mug-svgrepo-com.svg */}
             </div>
-            <h2 className="text-lg font-bold title-font mb-2 text-gray-900">
+            <h2 className="text-lg font-bold title-font mb-2 text-gray-900 dark:text-yellow-300">
               Mornings Made Better
             </h2>
             <p className="leading-relaxed text-base text-center">
@@ -86,7 +86,7 @@ const CardSlider = () => {
             </p>
           </div>
 
-          <div className="border-2 border-gray-900  rounded-lg shadow-lg cursor-pointer homeCard">
+          <div className="border-2 border-gray-900 dark:border-gray-300 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500  rounded-lg shadow-lg cursor-pointer homeCard">
             <div className=" mb-4">
               <Image
                 src={"/sticker.jpg"}
@@ -95,7 +95,7 @@ const CardSlider = () => {
                 width={300} className="md:h-60 md:w-80 rounded-lg"
               />
             </div>
-            <h2 className="text-lg text-gray-900 font-bold title-font mb-2">
+            <h2 className="text-lg text-gray-900 font-bold title-font mb-2 dark:text-yellow-300">
               Sticker Your World
             </h2>
             <p className="leading-relaxed text-base text-center">
@@ -104,7 +104,7 @@ const CardSlider = () => {
               our stickers let you make your mark on the world.
             </p>
           </div>
-          <div className="border-2 border-gray-900  rounded-lg shadow-lg cursor-pointer homeCard">
+          <div className="border-2 border-gray-900 dark:border-gray-300 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500  rounded-lg shadow-lg cursor-pointer homeCard">
             <div className=" mb-4">
               <Image
                 src={"/hoodie.jpg"}
@@ -113,14 +113,14 @@ const CardSlider = () => {
                 width={300} className="md:h-60 md:w-80 rounded-lg"
               />
             </div>
-            <h2 className="text-lg text-gray-900 font-bold title-font mb-2">
+            <h2 className="text-lg text-gray-900 font-bold title-font mb-2 dark:text-yellow-300">
               Your Style Sanctuary
             </h2>
             <p className="leading-relaxed text-base text-center">
               Welcome to your style sanctuary. From trendy <Link href={"/hoodies"} className="text-blue-400">Hoodies</Link> to cozy T-Shirts, artistic Mugs, and expressive Stickers, {`we've got everything you need to create a space that reflects your unique personality and style.`}
             </p>
           </div>
-          <div className="border-2 border-gray-900  rounded-lg shadow-lg cursor-pointer homeCard">
+          <div className="border-2 border-gray-900 dark:border-gray-300 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500  rounded-lg shadow-lg cursor-pointer homeCard">
             <div className=" mb-4">
               <Image
                 src={"/darktshirt2.jpg"}
@@ -129,7 +129,7 @@ const CardSlider = () => {
                 width={300} className="md:h-60 md:w-80 rounded-lg"
               />
             </div>
-            <h2 className="text-lg text-gray-900 font-bold title-font mb-2">
+            <h2 className="text-lg text-gray-900 font-bold title-font mb-2 dark:text-yellow-300">
               Artistry Unleashed
             </h2>
             <p className="leading-relaxed text-base text-center">
