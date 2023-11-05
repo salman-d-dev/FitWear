@@ -3,10 +3,10 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <div className="shadow-2xl">
-      <footer className="text-gray-600 body-font bg-slate-100">
-        <div className="container px-5 py-2 md:py-20 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
+      <footer className="text-gray-600 body-font bg-slate-200">
+        <div className="container px-5 py-2 md:py-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
           <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center">
-            <div className="flex title-font font-medium items-center md:justify-center justify-center text-red-900">
+            <div className="flex title-font font-bold items-center md:justify-center justify-center text-red-900">
               <Link href="/">
                 <div className="hidden sm:block md:block lg:block">
                   <Image
@@ -20,12 +20,12 @@ const Footer = () => {
               </Link>
             </div>
             <div className="mt-3">
-            <p>Find your perfect fit clothes using our Custom size option!</p>
+            <p>A Fit-Wear product</p>
             </div>
           </div>
           <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4 md:border-l-2 md:border-black">
+              <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">
                 SHOP
               </h2>
               <nav className="list-none mb-10">
@@ -51,8 +51,8 @@ const Footer = () => {
                 </li>
               </nav>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4 hidden md:block md:border-l-2 md:border-black">
+              <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">
                 POLICY
               </h2>
               <nav className="list-none mb-10">
@@ -78,8 +78,8 @@ const Footer = () => {
                 </li>
               </nav>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4 hidden md:block md:border-l-2 md:border-black">
+              <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">
                 SOCIAL
               </h2>
               <nav className="list-none mb-10">
@@ -105,8 +105,8 @@ const Footer = () => {
                 </li>
               </nav>
             </div>
-            <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-              <h2 className="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">
+            <div className="lg:w-1/4 md:w-1/2 w-full px-4 hidden md:block md:border-l-2 md:border-black">
+              <h2 className="title-font font-bold text-gray-900 tracking-widest text-sm mb-3">
                 ABOUT
               </h2>
               <nav className="list-none mb-10">
@@ -134,7 +134,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="bg-gray-100">
+        <div className="bg-slate-300">
           <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <p className="text-gray-700 text-sm text-center sm:text-left">
               © 2023 FitWear.com —

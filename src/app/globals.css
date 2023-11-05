@@ -8,3 +8,30 @@ input[type="number"]::-webkit-outer-spin-button {
   appearance: none;
   margin: 0;
 }
+
+.slick-prev{
+  left: 10px !important;
+}
+.slick-next{
+  right: 10px !important;
+}
+
+.slick-list{
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+.slick-slide > div {
+  margin: 0 10px;
+}
+.homeCard{
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center !important;
+  align-items: center !important;
+  height: 570px !important;
+  padding: 1.5rem;
+  box-shadow: 2px 2px 8px rgb(69, 68, 68);
+}
+.homeCard:hover{
+  border: 2px solid cyan;
+}
