@@ -47,11 +47,11 @@ if(myOrders.length === 0 ){
 
 return (
     <>
-      <div className='container bg-slate-200 p-3 min-h-screen'>
+      <div className='container bg-slate-200 dark:bg-gradient-to-tr from-black to-[#01172e] dark:text-slate-200 p-3 min-h-screen'>
         <h1 className='text-center text-xl font-bold my-4'>My Orders</h1>
         <div className="relative overflow-x-auto rounded-md">
           <table className="w-full text-sm text-left">
-            <thead className="text-sm text-gray-700 uppercase  bg-cyan-100">
+            <thead className="text-sm text-gray-700 uppercase  bg-cyan-100 dark:bg-cyan-950 dark:text-gray-200">
               <tr className='border-b-2 border-gray-400'>
                 <th scope="col" className="px-6 py-3">
                   ORDER
@@ -76,7 +76,7 @@ return (
 
                     <tr
                       key={orderItem._id}
-                      className="bg-cyan-50 border-b hover:bg-green-100"
+                      className="bg-cyan-50 dark:bg-blue-950 dark:text-gray-200 border-b dark:hover:bg-black hover:bg-green-100"
                     >
                        <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">
                         {Object.keys(orderItem.products).length>3 ? Object.keys(orderItem.products).slice(0,3).map((itemName) => orderItem.products[itemName].name).join(", ")+" ..." : 

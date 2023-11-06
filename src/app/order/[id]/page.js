@@ -35,32 +35,32 @@ return(
   } 
 return (
     <div>
-        <section className="text-gray-600 body-font overflow-hidden">
+        <section className="text-gray-600 dark:text-gray-300 body-font overflow-hidden min-h-screen">
     <div className="container px-5 py-24 mx-auto">
-    <div className="lg:w-4/5 mx-auto flex flex-wrap">
+    <div className="lg:w-4/5 mx-auto flex flex-wrap ">
         <div className="lg:w-1/2 w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-        <h2 className="text-sm title-font text-gray-500 tracking-widest">Fit-Wear</h2>
-        <h1 className="text-gray-900 text-2xl title-font font-medium mb-4">Order ID: #{order._id.slice(0,15)}</h1>
+        <h2 className="text-sm title-font text-gray-500 dark:text-gray-300 tracking-widest">Fit-Wear</h2>
+        <h1 className="text-gray-900 dark:text-gray-200 text-2xl title-font font-medium mb-4">Order ID: #{order._id.slice(0,15)}</h1>
         <div className="flex mb-4">
             <span className="flex-grow text-green-500  py-2 text-lg px-1">Your order has been placed successfully</span>
         </div>
         <div className="flex mb-4">
-            <span className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1 text-center">Item</span>
-            <span className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1 text-center">Quantity</span>
-            <span className="flex-grow border-b-2 border-gray-300 py-2 text-lg px-1 text-center">Price</span>
+            <span className="flex-grow border-b-2 border-gray-300 dark:border-purple-800 py-2 text-lg px-1 text-center">Item</span>
+            <span className="flex-grow border-b-2 border-gray-300 dark:border-purple-800 py-2 text-lg px-1 text-center">Quantity</span>
+            <span className="flex-grow border-b-2 border-gray-300 dark:border-purple-800 py-2 text-lg px-1 text-center">Price</span>
         </div>
         {order && Object.keys(order.products).map((productName)=>{
             return(
-        <div className="flex border-b  py-2 justify-around" key={order.products[productName].name}>
-            <span className=" text-gray-500 w-2/4">{order.products[productName].name}</span>
-            <span className=" text-gray-900 mx-3 w-1/4">{order.products[productName].qty}</span>
-            <span className=" text-gray-900 w-1/4 text-center">₹{order.products[productName].price}/-</span>
+        <div className="flex border-b-2 dark:border-purple-800  py-2 justify-around" key={order.products[productName].name}>
+            <span className=" text-gray-500 dark:text-slate-300 w-2/4">{order.products[productName].name}</span>
+            <span className=" text-gray-900 dark:text-white mx-3 w-1/4">{order.products[productName].qty}</span>
+            <span className=" text-gray-900 dark:text-white w-1/4 text-center">₹{order.products[productName].price}/-</span>
         </div>
             )
         })}
-        <div className="flex my-3">
-            <span className="title-font font-medium text-2xl text-gray-900">Total: ₹{order.amount}</span>
-            <button className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Track Order</button>
+        <div className="flex my-4">
+            <span className="title-font font-medium text-2xl text-gray-900 dark:text-gray-200">Total: ₹{order.amount}</span>
+            <button className="flex ml-auto text-white bg-indigo-500 dark:bg-purple-800 dark:hover:bg-purple-600 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">Track Order</button>
         </div>
         </div>
         <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-80 h-64 object-cover object-center rounded" src={order && order.img}/>

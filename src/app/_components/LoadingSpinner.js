@@ -1,10 +1,10 @@
 const LoadingSpinner = () => {
     return (
-        <div className="absolute inset-0 bg-white bg-opacity-100 z-10 flex items-center justify-center">
+        <div className="absolute inset-0 bg-white dark:bg-gradient-to-tr from-black to-[#01172e] bg-opacity-100 z-10 flex items-center justify-center">
     <div className="flex items-center">
-      <span className="text-3xl mr-4">Loading</span>
+      <span className="text-3xl mr-4 dark:text-gray-200">Loading</span>
       <svg
-        className="animate-spin h-8 w-8 text-gray-800"
+        className="animate-spin h-8 w-8 text-gray-800 dark:text-cyan-400"
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"

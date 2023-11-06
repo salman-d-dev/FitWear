@@ -69,6 +69,7 @@ export default function SubLayout(_a) {
             nav{
               display:none;
             }
+            
                            `}</style>
 
           {/* ------------------------------------------- */}

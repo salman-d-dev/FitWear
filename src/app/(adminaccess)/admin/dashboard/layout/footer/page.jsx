@@ -19,7 +19,7 @@ var Footer = function () {
     setLoggedIn(false);
     router.push('/admin');
   }
-    return (<><Box sx={{ pt: 6, textAlign: "center" }}>
+    return (<div className="dark:border-t-2 dark:border-white dark:text-white"><Box sx={{ pt: 6, textAlign: "center" }}>
       <Typography>
         © 2023 All rights reserved by{" "}
         <Link href="/">
@@ -31,6 +31,6 @@ var Footer = function () {
       ) : (null)
       }
     </Box>
-      </>);
+      </div>);
 };
 export default Footer;
