@@ -66,7 +66,7 @@ var Form = function () {
         pauseOnHover: true,
         draggable: true,
         progress: undefined,
-        theme: "light",
+        theme: "dark",
         });
         formRef.current.focus()
 
@@ -114,7 +114,7 @@ var Form = function () {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light",
+          theme: "dark",
           });
           setProducts([]);
 
@@ -127,7 +127,7 @@ var Form = function () {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light",
+          theme: "dark",
           });
       }
     }
@@ -139,8 +139,8 @@ var Form = function () {
             <form onSubmit={handlePushProduct}>
             <Stack spacing={3}>
             
-            {/* set tabindex and ref for non interactive elements likw like div, seciton etc */}
-              <TextField tabIndex={0} ref={formRef} name='title' value={product.title} onChange={handleFormChange} id="name-basic" label="Title" variant="outlined"  />
+            {/* set tabindex and ref for non interactive elements likw like div, seciton etc for auto scroll to position*/}
+              <TextField tabIndex={0} ref={formRef} name='title' value={product.title} onChange={handleFormChange} id="name-basic" label="Title" variant="outlined" />
               <TextField name='slug' value={product.slug} onChange={handleFormChange} id="name-basic" label="Slug" variant="outlined" />
               <TextField name='description' value={product.description} onChange={handleFormChange} id="outlined-multiline-static" label="Description" multiline rows={4} />
               <TextField name='img' value={product.img} onChange={handleFormChange} id="name-basic" label="Image URL (Optional)"  variant="outlined" />
@@ -157,7 +157,7 @@ var Form = function () {
                   defaultValue={categories[0]}
                 >
                   {categories.map((category) => (
-                    <MenuItem key={category} value={category}>
+                    <MenuItem key={category} value={category} className='hover:bg-black'>
                       {category}
                     </MenuItem>
                   ))}

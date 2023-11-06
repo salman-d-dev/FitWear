@@ -9,7 +9,10 @@ const Sidebar = function (_a) {
         return (<Box sx={{
                 width: sidebarWidth,
                 flexShrink: 0,
-            }}>
+                backgroundColor:"#1d1f30"
+
+
+            }} >
         {/* ------------------------------------------- */}
         {/* Sidebar for desktop */}
         {/* ------------------------------------------- */}
@@ -19,6 +22,8 @@ const Sidebar = function (_a) {
                     boxSizing: "border-box",
                     border: "0",
                     boxShadow: "rgba(113, 122, 131, 0.11) 0px 7px 30px 0px",
+                    backgroundColor:"#1d1f30"
+
                 },
             }}>
           {/* ------------------------------------------- */}

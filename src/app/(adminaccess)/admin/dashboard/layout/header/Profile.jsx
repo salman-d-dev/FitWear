@@ -71,13 +71,13 @@ var Profile = function () {
         }}>
             Admin
           </Typography>
-          <IconChevronDown width="20" height="20"/>
+          {/* <IconChevronDown width="20" height="20"/> */}
         </Box>
       </IconButton>
       {/* ------------------------------------------- */}
       {/* Message Dropdown */}
       {/* ------------------------------------------- */}
-      <Menu id="msgs-menu" anchorEl={anchorEl2} keepMounted open={Boolean(anchorEl2)} onClose={handleClose2} anchorOrigin={{ horizontal: "right", vertical: "bottom" }} transformOrigin={{ horizontal: "right", vertical: "top" }} sx={{
+      {/* <Menu id="msgs-menu" anchorEl={anchorEl2} keepMounted open={Boolean(anchorEl2)} onClose={handleClose2} anchorOrigin={{ horizontal: "right", vertical: "bottom" }} transformOrigin={{ horizontal: "right", vertical: "top" }} sx={{
             "& .MuiMenu-paper": {
                 width: "360px",
                 p: 2,
@@ -90,7 +90,7 @@ var Profile = function () {
             Logout
           </Button>
 
-      </Menu>
+      </Menu> */}
     </Box>);
 };
 export default Profile;

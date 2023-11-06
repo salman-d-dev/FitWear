@@ -46,7 +46,7 @@ const ProductList = ({category}) => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light",
+          theme: "dark",
           });
           const filteredProducts = products.filter((product)=> product._id !== id);
           setProducts(filteredProducts);
@@ -59,7 +59,7 @@ const ProductList = ({category}) => {
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
-          theme: "light",
+          theme: "dark",
           });
       }
     }
@@ -69,7 +69,7 @@ const ProductList = ({category}) => {
         <h1 className='text-center font-sans text-[1.5rem] font-semibold my-4'>{category}</h1>
         <div className="relative overflow-x-auto rounded-md">
           <table className="w-full text-sm text-left">
-            <thead className="text-sm text-gray-700 uppercase  bg-cyan-100">
+            <thead className="text-sm text-gray-300 uppercase  bg-cyan-800">
               <tr className='border-b-2 border-gray-400'>
                 <th scope="col" className="px-6 py-3">
                   Title
@@ -97,7 +97,7 @@ const ProductList = ({category}) => {
 
                     <tr
                       key={productItem._id}
-                      className="bg-cyan-50 border-b hover:bg-green-100"
+                      className="bg-black border-b hover:bg-slate-700"
                     >
                       <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap">{productItem.title}</th>
                       <td className="px-6 py-4">{category === "T-Shirts" || category === "Hoodies" ? (

@@ -11,9 +11,9 @@ const baselightTheme = createTheme({
     direction: "ltr",
     palette: {
         primary: {
-            main: "#03c9d7",
-            light: "#e5fafb",
-            dark: "#05b2bd",
+            main: "#03befc",
+            light: "#000000",
+            dark: "#fc1703",
             contrastText: "#ffffff",
         },
         secondary: {
@@ -29,10 +29,10 @@ const baselightTheme = createTheme({
             contrastText: "#ffffff",
         },
         info: {
-            main: "#0bb2fb",
-            light: "#a7e3f4",
-            dark: "#0bb2fb",
-            contrastText: "#ffffff",
+            main: "#f1f50a",
+            light: "#f1f50a",
+            dark: "#f1f50a",
+            contrastText: "#f1f50a",
         },
         error: {
             main: "#e46a76",
@@ -61,18 +61,18 @@ const baselightTheme = createTheme({
             600: "#2A3547",
         },
         text: {
-            primary: "#000",
-            secondary: "rgba(0,0,0,0.87)",
+            primary: "#fafafc",
+            secondary: "#fafafc",
         },
         action: {
             disabledBackground: "rgba(73,82,88,0.12)",
             hoverOpacity: 0.02,
             hover: "#f6f9fc",
         },
-        divider: "#e5eaef",
+        divider: "#dd0af5",
         background: {
-            default: "#fafbfb",
-            paper: "#fafbfb",
+            default: "01086b",
+            paper: "#01086b",
         },
     },
     typography: {

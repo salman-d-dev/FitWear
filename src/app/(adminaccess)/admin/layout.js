@@ -11,6 +11,7 @@ import React, { useState,useEffect } from "react";
 import Header from "./dashboard/layout/header/Header"; 
 import Sidebar from "./dashboard/layout/sidebar/Sidebar";
 import Footer from "./dashboard/layout/footer/page";
+import overwritecss from './overwrite.css'
 
 
 var MainWrapper = styled("div")(function () { return ({
@@ -69,6 +70,7 @@ export default function SubLayout(_a) {
             nav{
               display:none;
             }
+            
             
                            `}</style>
 

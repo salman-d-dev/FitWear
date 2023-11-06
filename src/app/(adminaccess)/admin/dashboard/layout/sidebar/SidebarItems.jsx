@@ -8,7 +8,7 @@ var SidebarItems = function (_a) {
     var pathname = usePathname();
     var pathDirect = pathname;
     return (<Box sx={{ px: 2 }}>
-      <List sx={{ pt: 0 }} className="sidebarNav" component="div">
+      <List sx={{ pt: 0 }} className="sidebarNav border rounded-lg p-3" component="div">
         {Menuitems.map(function (item) {
             // {/********SubHeader**********/}
             // if (item.subheader) {

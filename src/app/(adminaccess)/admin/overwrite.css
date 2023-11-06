@@ -1,0 +1,8 @@
+.MuiCardContent-root.css-j9t08o-MuiCardContent-root{
+    background: linear-gradient(90deg, rgb(6, 2, 90) 0%, rgba(15,15,188,0.7630057803468209) 63%, rgb(2, 100, 180) 100%);
+}
+
+.MuiCardContent-root.css-j9t08o-MuiCardContent-root input{
+    border: 2px solid cyan;
+    border-radius: 6px;
+}
