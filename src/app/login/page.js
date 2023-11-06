@@ -6,15 +6,16 @@ import { useRouter } from "next/navigation";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const Login = () => {
+  
+    const context = useContext(GlobalContext);
+    const { handleLoginSubmit, handleDataChange, loading, showLoading, setProfileDropDown } = context;
   const router = useRouter();
   useEffect(() => {
+    setProfileDropDown(false);
     if (localStorage.getItem("token")) {
       router.push("/");
     }
   }, []);
-
-  const context = useContext(GlobalContext);
-  const { handleLoginSubmit, handleDataChange, loading, showLoading } = context;
 
   return (
     <div className="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
@@ -36,6 +37,7 @@ const Login = () => {
           onSubmit={(e) => {
             handleLoginSubmit(e);
             showLoading(3000);
+            setProfileDropDown(false)
           }}
         >
           <div>
