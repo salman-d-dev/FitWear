@@ -64,11 +64,11 @@ const ProductList = ({category}) => {
       }
     }
 
-  return (
-    <div className="mt-3">
+  return (<>
+    <div className="mt-3 container min-h-screen ">
         <h1 className='text-center font-sans text-[1.5rem] font-semibold my-4'>{category}</h1>
-        <div className="relative overflow-x-auto rounded-md">
-          <table className="w-full text-sm text-left">
+        <div className="relative overflow-x-auto md:pl-24 rounded-md">
+          <table className=" text-sm text-left brokenList">
             <thead className="text-sm text-gray-300 uppercase  bg-cyan-800">
               <tr className='border-b-2 border-gray-400'>
                 <th scope="col" className="px-6 py-3">
@@ -116,7 +116,7 @@ const ProductList = ({category}) => {
           </table>
         </div>
     </div>
-  )
+    </>)
 }
 
 export default ProductList

@@ -6,3 +6,29 @@
     border: 2px solid cyan;
     border-radius: 6px;
 }
+.brokenList {
+    overflow-x: auto !important;
+  }
+  
+  /* Add a max-width to limit the table's width on small screens */
+  @media screen and (max-width: 560px) {
+    .brokenList {
+      max-width: 100% !important;
+    }
+  }
+  
+  /* Style the table cells for better readability on small screens */
+  @media screen and (max-width: 560px) {
+    .brokenList table {
+      width: 100% !important;
+    }
+  
+    .brokenList th,
+    .brokenList td {
+      padding: 8px !important;
+      white-space: nowrap !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+  }
+  

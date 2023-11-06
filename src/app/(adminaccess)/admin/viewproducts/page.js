@@ -19,9 +19,9 @@ const ViewProducts = () => {
   },[products])
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen w-full">
       <h1 className="text-center font-sans text-[1.5rem] font-semibold my-5">All Products</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-teal-900 text-center p-5 rounded-lg">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-16 py-4  bg-teal-900 text-center md:p-5 rounded-lg">
 
         <div onClick={(e)=>{setSelectedCard("T-Shirts")}} className="bg-cyan-300 cursor-pointer shadow-lg flex justify-center items-center flex-nowrap flex-col rounded-lg">
           <div className="bg-gradient-to-r from-purple-950 via-purple-700 to-purple-500 w-full h-1/3 rounded-t-lg py-2 text-white">

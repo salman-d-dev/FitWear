@@ -32,7 +32,7 @@ const AllOrders = () => {
     <div className='container bg-[#01172e] p-3 min-h-screen'>
     <h1 className='text-center font-sans text-[1.5rem] font-semibold my-4'>All Orders ({orders?.length})<span className=' text-blue-400 font-extrabold text-xs cursor-pointer inline-block w-3 mx-2' onClick={()=>{setShowOrders((prevState)=> !prevState)}}>{`${showOrders? "(Hide)" : "(Show)"}`}</span></h1>
     <div className="relative overflow-x-auto rounded-md">
-      <table className="w-full text-sm text-left">
+      <table className="w-full text-sm text-left brokenList">
         <thead className="text-sm text-gray-200 uppercase  bg-cyan-900">
           <tr className='border-b-2 border-gray-400'>
             <th scope="col" className="px-6 py-3">
