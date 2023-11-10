@@ -68,58 +68,56 @@ return emailRegex.test(email);
     setAddress({...address, [e.target.name]: e.target.value})
   }
   return (
-    <div className='my-8 text-center text-4xl font-bold p-4 relative'>
+    <div className='py-8 text-center text-4xl font-bold p-4 relative dark:text-white'>
       <h1 className='my-4'>
         Checkout
       </h1>
       <div className='text-left mt-6 text-xl px-4'>
         <h2>1. Delivery Details</h2>
       </div>
-      <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
+      <div className="flex justify-evenly items-center bg-slate-50 rounded-lg dark:bg-gradient-to-tr from-[#320157] to-[#010257]">
       <div className=" m-4 w-1/2">
-        <label htmlFor="name" className="leading-7 text-sm text-gray-600">Name</label>
-        <input readOnly value={name} placeholder='Full Name'type="name" id="name" name="name" className="w-full  rounded border border-gray-300 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal bg-slate-200"/>
+        <label htmlFor="name" className="leading-7 text-sm text-gray-600 dark:text-gray-300">Name</label>
+        <input readOnly value={name} placeholder='Full Name'type="name" id="name" name="name" className="w-full  rounded border border-gray-300 text-base outline-none text-gray-700 dark:border dark:border-cyan-300 dark:bg-gray-800 dark:text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal bg-slate-200"/>
         </div>
       <div className=" m-4 w-1/2">
-        <label htmlFor="email" className="leading-7 text-sm text-gray-600">Email</label>
-        <input readOnly value={email} placeholder="Please enter you email" type="email" id="email" name="email" className="w-full  rounded border border-gray-300  text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal bg-slate-200"/>
-        </div>
-
-      </div>
-      <div className='px-4 bg-slate-50 rounded-lg'>
-        <label htmlFor="address" className="leading-7 text-sm text-gray-600">Locality</label>
-        <textarea value={address.locality} placeholder='Building / Lane / Locality' onChange={handleAddressChange} id="address" name="locality" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out placeholder:font-normal"></textarea>
-      </div>
-
-      <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
-      <div className=" m-4 w-1/2">
-        <label htmlFor="phone" className="leading-7 text-sm text-gray-600">Phone</label>
-        <input value={phone} placeholder="Your 10 digit phone number" onChange={(e)=>{setPhone(e.target.value)}} type="text"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-medium appearance-none"/>
-        </div>
-      <div className=" m-4 w-1/2">
-      <label htmlFor="pincode" className="leading-7 text-sm text-gray-600">Pin Code</label>
-        <input value={address.pincode} placeholder='Postal Index Number' onChange={handleAddressChange} type="text" id="pinCode" name="pincode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
+        <label htmlFor="email" className="leading-7 text-sm text-gray-600 dark:text-gray-300">Email</label>
+        <input readOnly value={email} placeholder="Please enter you email" type="email" id="email" name="email" className="w-full  rounded border border-gray-300  text-base outline-none text-gray-700 dark:border dark:border-cyan-300 dark:bg-gray-800 dark:text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal bg-slate-200"/>
         </div>
 
       </div>
-      <div className="flex justify-evenly items-center bg-slate-50 rounded-lg">
+      <div className='px-4 bg-slate-50 rounded-lg dark:bg-gradient-to-tr from-[#320157] to-[#010257]' >
+        <label htmlFor="address" className="leading-7 text-sm text-gray-600 dark:text-gray-300">Locality</label>
+        <textarea value={address.locality} placeholder='Building / Lane / Locality' onChange={handleAddressChange} id="address" name="locality" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-20 text-base outline-none text-gray-700 dark:border dark:border-cyan-300 dark:bg-black dark:text-white py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out placeholder:font-normal"></textarea>
+      </div>
+
+      <div className="flex justify-evenly items-center bg-slate-50 rounded-lg dark:bg-gradient-to-tr from-[#320157] to-[#010257]">
       <div className=" m-4 w-1/2">
-        <label htmlFor="state" className="leading-7 text-sm text-gray-600">State</label>
-        <input value={address.state} type="state" id="state" name="state" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
+        <label htmlFor="phone" className="leading-7 text-sm text-gray-600 dark:text-gray-300">Phone</label>
+        <input value={phone} placeholder="Your 10 digit phone number" onChange={(e)=>{setPhone(e.target.value)}} type="text"  id="phone" name="phone" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 dark:border dark:border-cyan-300 dark:bg-black dark:text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-medium appearance-none"/>
+        </div>
+      <div className=" m-4 w-1/2">
+      <label htmlFor="pincode" className="leading-7 text-sm text-gray-600 dark:text-gray-300">Pin Code</label>
+        <input value={address.pincode} placeholder='Postal Index Number' onChange={handleAddressChange} type="text" id="pinCode" name="pincode" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 dark:border dark:border-cyan-300 dark:bg-black dark:text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out placeholder:font-normal"/>
+        </div>
+      </div>
+      <div className="flex justify-evenly items-center bg-slate-50 rounded-lg dark:bg-gradient-to-tr from-[#320157] to-[#010257]">
+      <div className=" m-4 w-1/2">
+        <label htmlFor="state" className="leading-7 text-sm text-gray-600 dark:text-gray-300">State</label>
+        <input value={address.state} type="state" id="state" name="state" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 dark:border dark:border-cyan-300 dark:bg-gray-800 dark:text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
         </div>
         
       <div className=" m-4 w-1/2">
-      <label htmlFor="city" className="leading-7 text-sm text-gray-600">City</label>
-        <input value={address.city} type="text" id="city" name="city" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
+      <label htmlFor="city" className="leading-7 text-sm text-gray-600 dark:text-gray-300">City</label>
+        <input value={address.city} type="text" id="city" name="city" className="w-full  rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 dark:border dark:border-cyan-300 dark:bg-gray-800 dark:text-white py-1 px-3 leading-8 transition-colors duration-200 ease-in-out bg-slate-200" readOnly={true}/>
         </div>
-
       </div>
       <div className='text-left mt-6 text-xl px-4'>
         <h2>2. Review Cart Details</h2>
       </div>
-      <div className='bg-slate-100 p-10 rounded-xl'>
+      <div className='bg-slate-100 p-10 rounded-xl dark:bg-gradient-to-tr from-[#320157] to-[#010257]'>
 
-        <ol className="list-decimal font-semibold text-sm border-b border-gray-800 ">
+        <ol className="list-decimal font-semibold text-sm border-b border-gray-800 dark:border-purple-400">
           {Object.keys(cart).length == 0 && <div className="my-4 font-bold text-center text-sm">
             Your cart is Empty!
             </div>}
@@ -145,7 +143,7 @@ return emailRegex.test(email);
           <h3 className='text-left text-lg '>
             Total: ₹{subTotal}
             </h3>
-        <button disabled={errorsExist()} className="disabled:bg-slate-600 flex px-2 py-1 items-center justify-center text-white bg-indigo-500 border-0 focus:outline-none hover:bg-indigo-600 rounded text-sm w-1/8" onClick={(e)=>{
+        <button disabled={errorsExist()} className="disabled:bg-slate-600 flex px-2 py-1 items-center justify-center text-white bg-indigo-500 dark:bg-purple-800 dark:hover:bg-purple-600 dark:disabled:hover:bg-slate-600 border-0 focus:outline-none hover:bg-indigo-600 rounded text-sm w-1/8" onClick={(e)=>{
           setShowPayment(true);
           handlePlaceOrder(e);
           updateUser(name,address, phone);

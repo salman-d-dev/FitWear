@@ -68,8 +68,8 @@ const MyAccount = () => {
   }
 
   return (
-    <div className='min-h-screen text-center text-4xl font-bold p-4 relative dark:text-white'>
-      <h1 className='my-4'>
+    <div className=' min-h-fit sm:min-h-screen text-center text-4xl font-bold p-4 relative dark:text-white'>
+      <h1 className='my-4 sm:my-2'>
         Account Info
       </h1>
       {!editMode? (

@@ -55,7 +55,7 @@ var SalesOverview = function () {
                 borderRadius: 5,
             },
         },
-        colors: ["#048c3b"],
+        colors: ["#1df50a"],
         fill: {
             type: "solid",
             opacity: 1,

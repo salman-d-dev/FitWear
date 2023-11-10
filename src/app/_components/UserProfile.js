@@ -6,8 +6,7 @@ const UserProfile = ({ isAdmin }) => {
   const { name, address, phone, email, setEditMode } =
     useContext(GlobalContext);
   return (
-    <div className="flex items-center min-h-screen sm:h-fit w-full justify-center">
-      <div className="">
+    <div className="flex items-center min-h-fit sm:min-h-screen w-full justify-center">
         <div className="bg-white shadow-xl rounded-lg py-3 md:w-[400px] dark:bg-gradient-to-tr from-[#320157] to-[#010257] dark:border">
           <div className="photo-wrapper p-2">
             <img
@@ -62,7 +61,6 @@ const UserProfile = ({ isAdmin }) => {
             </div>
           </div>
         </div>
-      </div>
     </div>
   );
 };

@@ -77,10 +77,10 @@ export default async function Hoodies ()  {
 
   
   return ( 
-    <div className='p-2'>
+    <div>
       <section className="text-gray-600 dark:text-gray-300 body-font">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="container px-5 pb-24 pt-6 sm:pt-10 mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
             
             {/* Repeat this block for each image */}
             {Object.keys(products).map((key)=>{

@@ -133,7 +133,7 @@ export default function Product({ params }) {
     return <LoadingSpinner />; // We can render a loading indicator or return an empty component
   } else {
     return (
-      <section className="text-gray-600 dark:text-gray-300 body-font overflow-hidden md:min-h-screen">
+      <section className="text-gray-600 dark:text-gray-300 body-font overflow-hidden md:min-h-screen flex items-center justify-center">
         <div className="px-5 py-10 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img

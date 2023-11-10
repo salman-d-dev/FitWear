@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
         <GlobalProvider>
           <ToastProvider>{/* Correct order of wrapping providers */}
             <Navbar />
-            <div className='dark:bg-gradient-to-tr from-black to-[#01172e]'>
+            <div className='dark:bg-gradient-to-tr from-black to-[#01172e] pt-32 sm:pt-20'>
             {children}
             </div>
             <Footer />

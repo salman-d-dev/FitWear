@@ -56,7 +56,7 @@ const Navbar = () => {
 
   return (
       <nav>
-    <div className=" flex flex-col md:flex-row justify-center md:justify-between items-center  py-2 shadow-md sticky top-0 z-50 bg-slate-200 dark:bg-gradient-to-r from-cyan-950 via-violet-950 to-purple-950 dark:shadow-cyan-700">
+    <div className="w-full fixed flex flex-col md:flex-row justify-center md:justify-between items-center  py-2 shadow-md top-0 z-50 bg-slate-200 dark:bg-gradient-to-r from-cyan-950 via-violet-950 to-purple-950 dark:shadow-cyan-700">
       <div className="logo mx-1">
         <Link href="/">
           <Image
@@ -64,7 +64,7 @@ const Navbar = () => {
             alt="FitWear Logo"
             width={160}
             height={40}
-            style={{ height: "5rem", width: "5rem" }}
+            style={{ height: "4rem", width: "4rem" }}
           />
         </Link>
       </div>

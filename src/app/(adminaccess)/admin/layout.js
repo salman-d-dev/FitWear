@@ -73,6 +73,9 @@ export default function SubLayout(_a) {
             body{
               background-color: #01172e;
             }
+            .pt-32 {
+              padding-top: 0;
+            }
             
             
                            `}</style>

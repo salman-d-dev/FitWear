@@ -21,8 +21,8 @@ const  MyOrders= () => {
         if(!loggedIn){
           router.push("/login")
         }
+        
         fetchOrders();
-
     },[])
 
 //if no orders made, show this 
@@ -41,7 +41,7 @@ if (orderNotFound) {
   );
 }
 
-if(myOrders.length === 0 ){
+if(!myOrders){
     return (<LoadingSpinner/>)
 }
 
