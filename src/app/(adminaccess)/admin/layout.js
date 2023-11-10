@@ -70,6 +70,9 @@ export default function SubLayout(_a) {
             nav{
               display:none;
             }
+            body{
+              background-color: #01172e;
+            }
             
             
                            `}</style>

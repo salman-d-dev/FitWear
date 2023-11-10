@@ -211,8 +211,8 @@ export default function Product({ params }) {
                             style={{ backgroundColor: `${col}` }}
                             className={`${
                               selectedColor === col
-                                ? "border-black dark:border-cyan-300"
-                                : "border-gray-300 dark:border-black"
+                                ? "border-black dark:border-cyan-400"
+                                : "border-gray-300 dark:border-white"
                             } border-2 ml-1 rounded-full w-6 h-6`}
                           ></button>
                         );
