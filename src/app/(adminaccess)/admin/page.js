@@ -77,7 +77,7 @@ const Login = () => {
       }
     }
   return (
-    <div className="min-h-screen dark:text-white">
+    <div className="min-h-screen text-black dark:text-white">
       <h1 className=" text-center text-2xl font-bold my-4">Admin Login</h1>
       <div>
         <form onSubmit={handleAdminLogin} className="text-center flex flex-col justify-center items-center p-5 md:px-40">
