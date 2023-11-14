@@ -3,7 +3,7 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <div className="shadow-2xl">
-      <footer className="text-gray-600 dark:text-white body-font bg-slate-200 dark:bg-gradient-to-l from-[#011521] to to-blue-950">
+      <footer className="text-gray-600 border-t border-gray-200 dark:text-white body-font bg-[#d7ffff] dark:bg-gradient-to-l from-[#011521] to to-blue-950">
         <div className="container px-5 py-2 md:py-10 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
           <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center">
             <div className="flex title-font font-bold items-center md:justify-center justify-center text-red-900">
@@ -14,12 +14,12 @@ const Footer = () => {
                     alt="FitWear logo"
                     width={200}
                     height={100}
-                    style={{ height: "8rem", width: "8rem" }}
+                    style={{ height: "5rem", width: "5rem" }}
                   />
                 </div>
               </Link>
             </div>
-            <div className="mt-3">
+            <div className="mt-3 font-serif">
             <p>A Fit-Wear product</p>
             </div>
           </div>
@@ -134,7 +134,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="bg-slate-300 dark:bg-slate-950">
+        <div className="bg-[#bbfcfd] dark:bg-slate-950">
           <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
             <p className="text-gray-700 dark:text-white text-sm text-center sm:text-left">
               © 2023 FitWear.com —

@@ -86,7 +86,7 @@ export default async function Hoodies ()  {
             {Object.keys(products).map((key)=>{
               return <div key={products[key]._id}>
             <Link href={`product/${products[key].slug}`}>
-              <div className="py-2 px-4 border rounded-md shadow-lg dark:bg-gradient-to-tr from-gray-900 to-slate-800">
+              <div className="py-2 px-4 border rounded-md shadow-lg bg-slate-100 dark:bg-gradient-to-tr from-gray-900 to-slate-800">
                 <div className="block relative rounded overflow-hidden">
                   <img
                     alt="ecommerce"

@@ -145,7 +145,7 @@ export default function Product({ params }) {
               }
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-              <h2 className="text-sm title-font text-gray-500 dark:text-cyan-300 tracking-widest">
+              <h2 className="text-sm title-font text-gray-800 dark:text-cyan-300 tracking-widest">
                 Fit Wear
               </h2>
 
@@ -162,7 +162,7 @@ export default function Product({ params }) {
                   </>
                 )}
               </h1>
-              <p className="leading-relaxed my-4">
+              <p className="leading-relaxed my-4 text-gray-800">
                 {gotProduct.product.description}
               </p>
               <div
