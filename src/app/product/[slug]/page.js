@@ -162,7 +162,7 @@ export default function Product({ params }) {
                   </>
                 )}
               </h1>
-              <p className="leading-relaxed my-4 text-gray-800">
+              <p className="leading-relaxed my-4 text-gray-800 dark:text-gray-300">
                 {gotProduct.product.description}
               </p>
               <div
