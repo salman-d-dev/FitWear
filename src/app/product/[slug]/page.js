@@ -133,18 +133,19 @@ export default function Product({ params }) {
     return <LoadingSpinner />; // We can render a loading indicator or return an empty component
   } else {
     return (
-      <section className="text-gray-600 dark:text-gray-300 body-font overflow-hidden md:min-h-screen flex items-center justify-center">
-        <div className="px-5 py-10 mx-auto">
-          <div className="lg:w-4/5 mx-auto flex flex-wrap">
+      <section className="text-gray-600 dark:text-gray-300 body-font overflow-hidden md:min-h-screen flex items-center justify-center min-h-screen">
+        <div className="px-5 py-10 flex justify-center items-center flex-col md:flex-row">
+          <div className="rounded-lg">
             <img
               alt="ecommerce"
-              className="lg:w-1/2 w-full lg:h-auto px-24 object-cover object-top rounded"
+              className="h-fit lg:h-[400px] lg:mr-8 object-cover mx-auto rounded-lg"
               src={
                 gotProduct.variants[selectedColor]?.[selectedSize]?.img ||
                 gotProduct.product.img
               }
             />
-            <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+          </div>
+            <div className="lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font text-gray-800 dark:text-cyan-300 tracking-widest">
                 Fit Wear
               </h2>
@@ -340,7 +341,6 @@ export default function Product({ params }) {
                 </button>
               </div>
             </div>
-          </div>
         </div>
       </section>
     );

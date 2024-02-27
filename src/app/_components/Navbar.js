@@ -72,7 +72,7 @@ const Navbar = () => {
 
   return (
     <nav>
-      <div className="w-full fixed flex flex-col sm:flex-row justify-center sm:justify-between items-center  py-2 shadow-md top-0 z-50 bg-gradient-to-r from-cyan-100 to-pink-200 opacity-95 dark:bg-gradient-to-r dark:from-cyan-950 dark:via-violet-950 dark:to-purple-950 dark:shadow-cyan-700">
+      <div className="w-full fixed flex flex-col sm:flex-row justify-center sm:justify-between items-center  py-2 shadow-md top-0 z-50 bg-gradient-to-r from-cyan-100 to-pink-200 opacity-95 dark:bg-gradient-to-l dark:from-cyan-950 dark:via-violet-950 dark:to-purple-950 dark:shadow-cyan-700">
         <div className="logo mx-1 bg-red-300">
           <Link href="/">
             <Image

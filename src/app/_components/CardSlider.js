@@ -45,7 +45,7 @@ const CardSlider = () => {
   return (
     <div className="my-4 text-center">
      <Slider {...settings}>
-          <div className="border-2 border-gray-900 dark:border-gray-300 bg-slate-100 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500 rounded-lg  cursor-pointer homeCard">
+          <div className="border-2 border-gray-900 dark:border-gray-300 bg-slate-100 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500 rounded-lg   homeCard">
             <div className="mb-4">
               <Image
                 src={"/shoppinggirl.jpg"}
@@ -66,7 +66,7 @@ const CardSlider = () => {
           </div>
         
         
-          <div className="border-2 border-gray-900 dark:border-gray-300 bg-slate-100 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500 rounded-lg shadow-lg cursor-pointer homeCard">
+          <div className="border-2 border-gray-900 dark:border-gray-300 bg-slate-100 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500 rounded-lg shadow-lg  homeCard">
             <div className=" rounded-full mb-4">
               <Image
                 src={"/mug.jpg"}
@@ -86,7 +86,7 @@ const CardSlider = () => {
             </p>
           </div>
 
-          <div className="border-2 border-gray-900 dark:border-gray-300 bg-slate-100 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500  rounded-lg shadow-lg cursor-pointer homeCard">
+          <div className="border-2 border-gray-900 dark:border-gray-300 bg-slate-100 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500  rounded-lg shadow-lg  homeCard">
             <div className=" mb-4">
               <Image
                 src={"/sticker.jpg"}
@@ -104,7 +104,7 @@ const CardSlider = () => {
               our stickers let you make your mark on the world.
             </p>
           </div>
-          <div className="border-2 border-gray-900 dark:border-gray-300 bg-slate-100 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500  rounded-lg shadow-lg cursor-pointer homeCard">
+          <div className="border-2 border-gray-900 dark:border-gray-300 bg-slate-100 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500  rounded-lg shadow-lg  homeCard">
             <div className=" mb-4">
               <Image
                 src={"/hoodie.jpg"}
@@ -120,7 +120,7 @@ const CardSlider = () => {
               Welcome to your style sanctuary. From trendy <Link href={"/hoodies"} className="text-blue-400">Hoodies</Link> to cozy T-Shirts, artistic Mugs, and expressive Stickers, {`we've got everything you need to create a space that reflects your unique personality and style.`}
             </p>
           </div>
-          <div className="border-2 border-gray-900 dark:border-gray-300 bg-slate-100 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500  rounded-lg shadow-lg cursor-pointer homeCard">
+          <div className="border-2 border-gray-900 dark:border-gray-300 bg-slate-100 dark:bg-gradient-to-tr from-[#000b1f] to-purple-950 dark:text-gray-200 dark:hover:shadow-lg dark:hover:shadow-cyan-500  rounded-lg shadow-lg  homeCard">
             <div className=" mb-4">
               <Image
                 src={"/darktshirt2.jpg"}

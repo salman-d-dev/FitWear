@@ -80,7 +80,7 @@ const Tshirts = async () => {
                       <div className="block relative rounded overflow-hidden">
                         <img
                           alt="ecommerce"
-                          className="m-auto h-52 md:h-80 md:w-full object-cover"
+                          className="mx-auto h-52 md:h-80 md:w-full object-cover"
                           src={products[key].img}
                         />
                       </div>

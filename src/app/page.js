@@ -4,14 +4,21 @@ import CardSlider from "./_components/CardSlider";
 export default function Home() {
   return (
     <main>
-      <div className="p-4 md:p-10">
+      <div className="relative w-full h-fit sm:h-[500px] overflow-hidden">
         <Image
-          className="rounded-lg"
-          src="/fitbg2.jpeg"
+          className="rounded-lg mx-auto object-cover object-bottom w-full p-5 dark:brightness-75"
+          // src="/fitbg2.jpeg"
+          src="/stylebg.jpg"
           alt="Home BG"
-          width={1920}
+          sizes="100vw"
+
+          width={100}
           height={100}
         />
+        <div className="absolute bottom-10 left-10 leading-none text-[10vw] font-bold text-white dark:text-gray-300 font-serif flex justify-center items-start flex-col">
+        <span className="mb-2">Fit</span>
+        <span className="ml-[10vw]">Wear</span>
+        </div>
       </div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-16 mx-auto dark:text-white">

@@ -33,5 +33,7 @@ input[type="number"]::-webkit-outer-spin-button {
   box-shadow: 2px 2px 8px rgb(69, 68, 68);
 }
 .homeCard:hover{
-    border: 2px solid cyan;
+    transform: scale(102%);
+    transition: transform 300ms ease-in-out;
+    
 }
